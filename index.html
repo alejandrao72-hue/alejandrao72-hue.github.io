@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alejandra Osorio — Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #8B8427;
+      --pink-dark: #6a6420;
+      --pink-light: #e8e7cc;
+      --dark: #1a1a12;
+      --mid: #3a3a28;
+      --muted: #8a8a6a;
+      --bg: #f0efd8;
+      --white: #fafaf0;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--dark); font-family: var(--sans); font-weight: 300; overflow-x: hidden; cursor: none; }
+
+    /* CURSOR */
+    .cursor { width: 10px; height: 10px; background: var(--pink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.25s var(--ease), height 0.25s var(--ease); }
+    .cursor-ring { width: 38px; height: 38px; border: 1.5px solid var(--pink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s var(--ease), height 0.3s var(--ease); opacity: 0.5; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 28px 56px; transition: all 0.3s; }
+    .nav-logo { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--dark); text-decoration: none; letter-spacing: -0.3px; }
+    .nav-links { display: flex; gap: 40px; align-items: center; }
+    .nav-links a { font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--pink); }
+    .nav-cta { background: var(--pink) !important; color: var(--white) !important; padding: 10px 22px; border-radius: 100px; font-size: 12px !important; transition: background 0.2s !important; }
+    .nav-cta:hover { background: var(--pink-dark) !important; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 56px 80px; position: relative; overflow: hidden; }
+    .hero-bg-text { position: absolute; top: 50%; left: -10px; transform: translateY(-52%); font-family: var(--serif); font-size: clamp(160px, 20vw, 320px); font-weight: 900; color: transparent; -webkit-text-stroke: 1px rgba(200,55,90,0.07); white-space: nowrap; pointer-events: none; user-select: none; line-height: 1; }
+    .hero-tag { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pink); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s var(--ease) 0.2s forwards; }
+    .hero-name { font-family: var(--serif); font-size: clamp(60px, 9vw, 128px); font-weight: 900; line-height: 0.9; letter-spacing: -3px; color: var(--dark); margin-bottom: 40px; opacity: 0; animation: fadeUp 0.9s var(--ease) 0.35s forwards; }
+    .hero-name em { font-style: italic; color: var(--pink); }
+    .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; opacity: 0; animation: fadeUp 0.9s var(--ease) 0.55s forwards; }
+    .hero-bio { max-width: 420px; font-size: 16px; line-height: 1.7; color: var(--mid); font-weight: 300; }
+    .hero-bio strong { color: var(--dark); font-weight: 500; }
+    .hero-meta { text-align: right; display: flex; flex-direction: column; gap: 4px; }
+    .hero-meta span { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .hero-meta strong { font-size: 14px; color: var(--mid); font-weight: 400; }
+    .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeIn 1s ease 1.2s forwards; }
+    .scroll-hint span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--pink), transparent); }
+
+    /* COMPANIES */
+    .companies-section { padding: 56px 56px; display: flex; align-items: center; gap: 60px; border-top: 1px solid rgba(0,0,0,0.07); border-bottom: 1px solid rgba(0,0,0,0.07); }
+    .companies-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; min-width: 120px; }
+    .companies-logos { display: flex; gap: 48px; align-items: center; flex-wrap: wrap; }
+    .company-name { font-family: var(--serif); font-size: 20px; font-weight: 700; color: rgba(0,0,0,0.13); transition: color 0.3s; letter-spacing: -0.3px; cursor: default; }
+    .company-name:hover { color: var(--pink); }
+
+    /* WORK */
+    .work-section { padding: 120px 56px; }
+    .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 72px; }
+    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 16px; }
+    .work-title { font-family: var(--serif); font-size: clamp(40px, 5vw, 68px); font-weight: 700; line-height: 1; letter-spacing: -1.5px; }
+    .work-title em { font-style: italic; color: var(--pink); }
+    .work-count { font-size: 13px; color: var(--muted); }
+
+    /* PROJECT CARDS */
+    .project-card {
+      display: grid; grid-template-columns: 72px 1fr 360px; gap: 40px;
+      align-items: center; padding: 44px 0;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      cursor: pointer; text-decoration: none; color: inherit;
+      position: relative;
+    }
+    .project-card:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .project-card::before { content: ''; position: absolute; left: -56px; right: -56px; top: 0; bottom: 0; background: var(--pink-light); opacity: 0; transition: opacity 0.35s; z-index: -1; }
+    .project-card:hover::before { opacity: 1; }
+    .project-card:hover .project-num { color: var(--pink); }
+    .project-card:hover .project-thumb { transform: scale(1.04); }
+    .project-card:hover .arr { transform: translate(5px, -5px); opacity: 1; }
+
+    .project-num { font-family: var(--serif); font-size: 13px; color: var(--muted); transition: color 0.3s; align-self: flex-start; padding-top: 6px; }
+    .project-info { display: flex; flex-direction: column; gap: 14px; }
+    .project-company { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+    .company-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); display: inline-block; }
+    .project-name { font-family: var(--serif); font-size: clamp(26px, 3.2vw, 46px); font-weight: 700; line-height: 1.02; letter-spacing: -1px; }
+    .project-name em { font-style: italic; }
+    .project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { font-size: 11px; font-weight: 400; letter-spacing: 0.04em; color: var(--muted); border: 1px solid rgba(0,0,0,0.11); padding: 4px 12px; border-radius: 100px; }
+    .project-impact { display: flex; gap: 28px; }
+    .impact-item { display: flex; flex-direction: column; gap: 2px; }
+    .impact-num { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--dark); letter-spacing: -0.5px; }
+    .impact-label { font-size: 11px; color: var(--muted); }
+
+    .project-right { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+    .project-thumb-wrap { width: 100%; aspect-ratio: 16/10; border-radius: 14px; overflow: hidden; background: var(--dark); }
+    .project-thumb { width: 100%; height: 100%; transition: transform 0.5s var(--ease); }
+    .arr { font-size: 22px; color: var(--pink); opacity: 0.35; transition: transform 0.3s var(--ease), opacity 0.3s; }
+
+    /* Thumb mockups */
+    .twilio-bg { background: linear-gradient(135deg, #1a1a0a 0%, #252510 50%, #1a1508 100%); width:100%; height:100%; padding:20px; display:flex; flex-direction:column; gap:10px; position:relative; }
+    .mockup-topbar { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+    .mockup-dot { width:7px; height:7px; border-radius:50%; }
+    .mockup-title { font-size:9px; letter-spacing:0.08em; color:rgba(255,255,255,0.5); font-family:var(--sans); }
+    .mockup-row { display:flex; gap:6px; }
+    .mockup-bar { height:7px; border-radius:4px; background:rgba(255,255,255,0.1); }
+    .mockup-chart { display:flex; align-items:flex-end; gap:5px; height:60px; padding-top:8px; }
+    .m-col { flex:1; border-radius:3px 3px 0 0; }
+    .mockup-label { position:absolute; bottom:14px; left:20px; font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); font-family:var(--sans); }
+
+    .alerts-bg { background: linear-gradient(135deg, #141408 0%, #1e1e08 50%, #1a1500 100%); width:100%; height:100%; padding:20px; display:flex; flex-direction:column; gap:9px; }
+    .alert-row { background:rgba(255,255,255,0.04); border:1px solid rgba(139,132,39,0.35); border-radius:8px; padding:10px 12px; display:flex; align-items:center; gap:9px; }
+    .alert-row.dim { border-color:rgba(255,255,255,0.06); }
+    .a-dot { width:7px; height:7px; border-radius:50%; background:var(--pink); flex-shrink:0; }
+    .a-dot.dim { background:rgba(255,255,255,0.15); }
+    .a-lines { display:flex; flex-direction:column; gap:4px; flex:1; }
+    .a-line { height:5px; border-radius:3px; background:rgba(255,255,255,0.12); }
+    .a-line.s { width:55%; }
+    .a-badge { font-size:7px; letter-spacing:0.05em; background:rgba(139,132,39,0.25); color:#c4bb50; padding:2px 6px; border-radius:4px; white-space:nowrap; font-family:var(--sans); }
+    .a-badge.dim { background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.3); }
+
+    .coming-soon-bg { background:#1a1a1a; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+    .cs-text { font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.2); font-family:var(--sans); }
+
+    /* ABOUT */
+    .about-section { padding: 120px 56px; background: #1a1a0d; color: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 24px; }
+    .about-title { font-family: var(--serif); font-size: clamp(36px, 4vw, 58px); font-weight: 700; line-height: 1.05; letter-spacing: -1px; margin-bottom: 28px; }
+    .about-title em { font-style: italic; color: var(--pink); }
+    .about-bio { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.6); font-weight: 300; margin-bottom: 36px; }
+    .about-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--pink); color: var(--white); text-decoration: none; font-size: 13px; font-weight: 500; padding: 14px 28px; border-radius: 100px; transition: background 0.2s, transform 0.2s; }
+    .about-cta:hover { background: var(--pink-dark); transform: translateY(-2px); }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .skill-block { padding: 28px; border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; gap: 8px; transition: border-color 0.3s, background 0.3s; }
+    .skill-block:hover { border-color: rgba(200,55,90,0.35); background: rgba(200,55,90,0.04); }
+    .skill-icon { font-size: 20px; }
+    .skill-name { font-size: 14px; font-weight: 500; color: var(--white); margin-top: 4px; }
+    .skill-desc { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.5; }
+
+    /* CONTACT */
+    .contact-section { padding: 120px 56px; text-align: center; position: relative; overflow: hidden; }
+    .contact-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(200,55,90,0.05) 0%, transparent 70%); pointer-events: none; }
+    .contact-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 20px; }
+    .contact-title { font-family: var(--serif); font-size: clamp(52px, 8vw, 112px); font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin-bottom: 48px; }
+    .contact-title em { font-style: italic; color: var(--pink); }
+    .contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .contact-link { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 100px; font-size: 13px; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+    .contact-link.primary { background: var(--pink); color: var(--white); }
+    .contact-link.primary:hover { background: var(--pink-dark); transform: translateY(-2px); }
+    .contact-link.secondary { border: 1.5px solid rgba(0,0,0,0.14); color: var(--mid); }
+    .contact-link.secondary:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer { padding: 28px 56px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.06); }
+    footer span { font-size: 12px; color: var(--muted); }
+    footer a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--pink); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.22s; }
+    .reveal-delay-3 { transition-delay: 0.32s; }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .hero { padding: 0 24px 64px; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-meta { text-align: left; }
+      .companies-section { padding: 40px 24px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      .work-section { padding: 80px 24px; }
+      .project-card { grid-template-columns: 48px 1fr; }
+      .project-card::before { left: -24px; right: -24px; }
+      .project-right { display: none; }
+      .about-section { grid-template-columns: 1fr; padding: 80px 24px; }
+      .contact-section { padding: 80px 24px; }
+      footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">AO.</a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="mailto:alejandra.o72@gmail.com" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">design</div>
+  <div class="hero-tag">Product Designer · Bogotá, Colombia</div>
+  <h1 class="hero-name">Alejandra<br><em>Osorio</em></h1>
+  <div class="hero-bottom">
+    <p class="hero-bio">
+      I design <strong>end-to-end digital products</strong> — from discovery and strategy to pixel-perfect execution. 8+ years shaping experiences across B2B SaaS, e-commerce, and digital media.
+    </p>
+    <div class="hero-meta">
+      <span>Currently at</span>
+      <strong>Twilio · Senior PD</strong>
+      <span style="margin-top:10px">Previously</span>
+      <strong>MercadoLibre · Zubale</strong>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- COMPANIES -->
+<div class="companies-section">
+  <span class="companies-label">Experience at</span>
+  <div class="companies-logos">
+    <span class="company-name">Twilio</span>
+    <span class="company-name">Mercado Libre</span>
+    <span class="company-name">Zubale</span>
+    <span class="company-name">Merqueo</span>
+    <span class="company-name">El Tiempo</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="work-section" id="work">
+  <div class="work-header reveal">
+    <div>
+      <div class="section-label">Selected work</div>
+      <h2 class="work-title">Recent<br><em>projects</em></h2>
+    </div>
+    <span class="work-count">2020 – 2026</span>
+  </div>
+
+  <div>
+
+    <!-- 01 -->
+    <a class="project-card reveal" href="project-twilio-strategy.html">
+      <span class="project-num">01</span>
+      <div class="project-info">
+        <span class="project-company"><span class="company-dot"></span>Twilio · 2024–2026</span>
+        <h3 class="project-name">Customer<br><em>Intelligence</em><br>Strategy</h3>
+        <div class="project-tags">
+          <span class="tag">UX Strategy</span>
+          <span class="tag">Product Discovery</span>
+          <span class="tag">Systems Thinking</span>
+        </div>
+        <div class="project-impact">
+          <div class="impact-item">
+            <span class="impact-num">35K+</span>
+            <span class="impact-label">Active users</span>
+          </div>
+          <div class="impact-item">
+            <span class="impact-num">6</span>
+            <span class="impact-label">Products shipped</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-right">
+        <div class="project-thumb-wrap">
+          <div class="twilio-bg project-thumb">
+            <div class="mockup-topbar">
+              <div class="mockup-dot" style="background:var(--pink)"></div>
+              <span class="mockup-title">Messaging &amp; Email Observability</span>
+            </div>
+            <div class="mockup-row">
+              <div class="mockup-bar" style="width:35%;background:rgba(200,55,90,0.5)"></div>
+              <div class="mockup-bar" style="width:20%"></div>
+            </div>
+            <div class="mockup-row">
+              <div class="mockup-bar" style="width:60%"></div>
+            </div>
+            <div class="mockup-chart">
+              <div class="m-col" style="height:45%;background:rgba(200,55,90,0.45)"></div>
+              <div class="m-col" style="height:70%;background:rgba(200,55,90,0.55)"></div>
+              <div class="m-col" style="height:30%;background:rgba(255,255,255,0.1)"></div>
+              <div class="m-col" style="height:85%;background:rgba(200,55,90,0.65)"></div>
+              <div class="m-col" style="height:50%;background:rgba(200,55,90,0.4)"></div>
+              <div class="m-col" style="height:65%;background:rgba(200,55,90,0.5)"></div>
+              <div class="m-col" style="height:95%;background:rgba(200,55,90,0.7)"></div>
+              <div class="m-col" style="height:55%;background:rgba(200,55,90,0.4)"></div>
+            </div>
+            <div class="mockup-label">Customer Intelligence Suite</div>
+          </div>
+        </div>
+        <span class="arr">↗</span>
+      </div>
+    </a>
+
+    <!-- 02 -->
+    <a class="project-card reveal reveal-delay-1" href="project-twilio-insights.html">
+      <span class="project-num">02</span>
+      <div class="project-info">
+        <span class="project-company"><span class="company-dot"></span>Twilio · 2024–2026</span>
+        <h3 class="project-name">Messaging<br><em>Insights</em><br>&amp; Alerts</h3>
+        <div class="project-tags">
+          <span class="tag">Interaction Design</span>
+          <span class="tag">AI Features</span>
+          <span class="tag">B2B SaaS</span>
+        </div>
+        <div class="project-impact">
+          <div class="impact-item">
+            <span class="impact-num">125K</span>
+            <span class="impact-label">Quarterly users</span>
+          </div>
+          <div class="impact-item">
+            <span class="impact-num">−30m</span>
+            <span class="impact-label">Troubleshoot time</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-right">
+        <div class="project-thumb-wrap">
+          <div class="alerts-bg project-thumb">
+            <div class="alert-row">
+              <div class="a-dot"></div>
+              <div class="a-lines"><div class="a-line"></div><div class="a-line s"></div></div>
+              <span class="a-badge">Warning</span>
+            </div>
+            <div class="alert-row dim">
+              <div class="a-dot dim"></div>
+              <div class="a-lines"><div class="a-line"></div><div class="a-line s"></div></div>
+              <span class="a-badge dim">Resolved</span>
+            </div>
+            <div class="alert-row">
+              <div class="a-dot"></div>
+              <div class="a-lines"><div class="a-line"></div><div class="a-line s"></div></div>
+              <span class="a-badge">Critical</span>
+            </div>
+            <div class="alert-row dim">
+              <div class="a-dot dim"></div>
+              <div class="a-lines"><div class="a-line"></div><div class="a-line s"></div></div>
+              <span class="a-badge dim">Resolved</span>
+            </div>
+          </div>
+        </div>
+        <span class="arr">↗</span>
+      </div>
+    </a>
+
+    <!-- 03 Coming soon -->
+    <div class="project-card reveal reveal-delay-2" style="opacity:0.45;pointer-events:none;">
+      <span class="project-num">03</span>
+      <div class="project-info">
+        <span class="project-company"><span class="company-dot" style="background:var(--muted)"></span>Mercado Libre · 2022</span>
+        <h3 class="project-name">Video in<br><em>Product</em></h3>
+        <div class="project-tags"><span class="tag">UX Design</span><span class="tag">E-commerce</span></div>
+      </div>
+      <div class="project-right">
+        <div class="project-thumb-wrap">
+          <div class="coming-soon-bg"><span class="cs-text">Coming soon</span></div>
+        </div>
+        <span class="arr" style="opacity:0.15">↗</span>
+      </div>
+    </div>
+
+    <!-- 04 Coming soon -->
+    <div class="project-card reveal reveal-delay-3" style="opacity:0.45;pointer-events:none;">
+      <span class="project-num">04</span>
+      <div class="project-info">
+        <span class="project-company"><span class="company-dot" style="background:var(--muted)"></span>Zubale · 2022</span>
+        <h3 class="project-name">Onboarding<br><em>Revamp</em></h3>
+        <div class="project-tags"><span class="tag">Research</span><span class="tag">Product Design</span></div>
+      </div>
+      <div class="project-right">
+        <div class="project-thumb-wrap">
+          <div class="coming-soon-bg"><span class="cs-text">Coming soon</span></div>
+        </div>
+        <span class="arr" style="opacity:0.15">↗</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="reveal">
+    <div class="about-label">About me</div>
+    <h2 class="about-title">Designing from<br><em>strategy</em><br>to pixel</h2>
+    <p class="about-bio">
+      I'm an integral product designer who bridges user-centered innovation with strategic thinking and cross-functional leadership. I thrive in complex B2B environments where design, data, and business goals converge.
+    </p>
+    <a href="AlejandraOsorio_CV_Updated.docx" class="about-cta" download>Download CV ↓</a>
+  </div>
+  <div class="skills-grid reveal reveal-delay-1">
+    <div class="skill-block"><span class="skill-icon">🔍</span><span class="skill-name">UX Research</span><span class="skill-desc">Qual & quant, interviews, journey mapping</span></div>
+    <div class="skill-block"><span class="skill-icon">📐</span><span class="skill-name">Product Strategy</span><span class="skill-desc">Discovery, roadmap, stakeholder alignment</span></div>
+    <div class="skill-block"><span class="skill-icon">✏️</span><span class="skill-name">Visual Design</span><span class="skill-desc">Pixel-perfect UI, design systems, Figma</span></div>
+    <div class="skill-block"><span class="skill-icon">🤝</span><span class="skill-name">Leadership</span><span class="skill-desc">Cross-functional collaboration, workshops</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-bg"></div>
+  <div class="contact-label reveal">Available for new opportunities</div>
+  <h2 class="contact-title reveal">Let's<br><em>work</em><br>together</h2>
+  <div class="contact-links reveal">
+    <a href="mailto:alejandra.o72@gmail.com" class="contact-link primary">✉ alejandra.o72@gmail.com</a>
+    <a href="https://www.linkedin.com/in/alejandraosorio" target="_blank" class="contact-link secondary">LinkedIn ↗</a>
+    <a href="https://www.behance.net/AlejandraOsorio" target="_blank" class="contact-link secondary">Behance ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Alejandra Osorio</span>
+  <div style="display:flex;gap:24px">
+    <a href="mailto:alejandra.o72@gmail.com">alejandra.o72@gmail.com</a>
+    <a href="https://www.behance.net/AlejandraOsorio" target="_blank">Behance</a>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+  (function tick() {
+    cursor.style.left=mx+'px'; cursor.style.top=my+'px';
+    rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(tick);
+  })();
+  document.querySelectorAll('a,.project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width='18px'; cursor.style.height='18px'; ring.style.width='52px'; ring.style.height='52px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='38px'; ring.style.height='38px'; });
+  });
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+  // Nav on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50) {
+      nav.style.background = 'rgba(240,239,216,0.96)';
+      nav.style.backdropFilter = 'blur(16px)';
+      nav.style.boxShadow = '0 1px 0 rgba(0,0,0,0.06)';
+    } else {
+      nav.style.background = 'transparent';
+      nav.style.backdropFilter = 'none';
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>
