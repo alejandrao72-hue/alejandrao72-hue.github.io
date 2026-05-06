@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Commerce — Alejandra Osorio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold:#8B8427; --gold-dark:#6a6420; --gold-light:#e8e7cc;
+      --dark:#1a1a12; --mid:#3a3a28; --muted:#8a8a6a;
+      --bg:#f0efd8; --white:#fafaf0;
+      --meli:#FFE600; --meli-dark:#2D3277;
+      --serif:'Playfair Display',Georgia,serif;
+      --sans:'DM Sans',sans-serif;
+      --ease:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--dark);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;}
+
+    .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);}
+    .cursor-ring{width:38px;height:38px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;background:rgba(240,239,216,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);}
+    .nav-logo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--dark);text-decoration:none;}
+    .nav-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mid);text-decoration:none;transition:color .2s;}
+    .nav-back:hover{color:var(--gold);}
+
+    /* HERO */
+    .hero{padding:130px 56px 64px;border-bottom:1px solid rgba(0,0,0,0.08);}
+    .company-badge{display:inline-flex;align-items:center;gap:10px;background:var(--meli-dark);border-radius:100px;padding:7px 16px 7px 12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) .1s forwards;}
+    .meli-m{font-size:14px;font-weight:900;color:var(--meli);font-family:var(--sans);}
+    .meli-name{font-size:12px;font-weight:600;color:white;letter-spacing:.04em;}
+    .badge-sep{width:1px;height:14px;background:rgba(255,255,255,0.2);}
+    .badge-year{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:.08em;}
+    .hero-title{font-family:var(--serif);font-size:clamp(48px,7vw,100px);font-weight:900;line-height:.9;letter-spacing:-2.5px;margin-bottom:48px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
+    .hero-title em{font-style:italic;color:var(--gold);}
+    .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.08);opacity:0;animation:fadeUp .8s var(--ease) .35s forwards;}
+    .meta-item{display:flex;flex-direction:column;gap:5px;}
+    .meta-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+    .meta-value{font-size:14px;color:var(--dark);line-height:1.45;}
+
+    /* COVER */
+    .cover-hero{width:100%;background:var(--dark);padding:64px 56px;display:flex;align-items:center;gap:64px;opacity:0;animation:fadeIn 1s var(--ease) .5s forwards;}
+    .cover-left{flex:1;}
+    .cover-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .cover-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:900;color:var(--white);line-height:1;letter-spacing:-1.5px;margin-bottom:16px;}
+    .cover-title em{font-style:italic;color:var(--gold);}
+    .cover-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.65;max-width:380px;}
+    .cover-right{flex-shrink:0;display:flex;flex-direction:column;gap:10px;min-width:200px;}
+    .cover-stat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 20px;}
+    .cover-stat-num{font-family:var(--serif);font-size:28px;font-weight:900;color:var(--gold);letter-spacing:-1px;line-height:1;}
+    .cover-stat-label{font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;}
+
+    /* CONTENT */
+    .content{max-width:780px;margin:0 auto;padding:88px 56px;}
+    .content.wide{max-width:none;padding:72px 56px;}
+    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+    h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,50px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:24px;}
+    h2 em{font-style:italic;color:var(--gold);}
+    p.body{font-size:17px;line-height:1.8;color:var(--mid);margin-bottom:18px;font-weight:300;}
+    p.body strong{color:var(--dark);font-weight:500;}
+    hr{border:none;border-top:1px solid rgba(0,0,0,0.07);margin:64px 0;}
+
+    /* PROBLEM GRID */
+    .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
+    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:10px;}
+    .problem-icon{font-size:20px;margin-bottom:4px;}
+    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
+    .problem-card h4{font-size:17px;font-weight:700;color:var(--dark);font-family:var(--serif);letter-spacing:-.3px;}
+    .problem-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+
+    /* SPLIT */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:72px 56px;border-bottom:1px solid rgba(0,0,0,0.06);}
+    .split.reverse{direction:rtl;}
+    .split.reverse>*{direction:ltr;}
+    .split-img{border-radius:16px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,0.1);}
+    .split-img img{width:100%;display:block;}
+    .split-text{display:flex;flex-direction:column;gap:16px;}
+    .split-text .cap-badge{display:inline-block;font-size:10px;background:rgba(139,132,39,0.12);color:var(--gold-dark);padding:4px 12px;border-radius:100px;align-self:flex-start;}
+    .split-text h3{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:700;letter-spacing:-.5px;line-height:1.1;}
+    .split-text h3 em{font-style:italic;color:var(--gold);}
+    .split-text p{font-size:15px;line-height:1.75;color:var(--mid);}
+
+    /* FULL IMAGE */
+    .full-img{margin:40px 0;border-radius:16px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);}
+    .full-img img{width:100%;display:block;}
+    .img-caption{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:10px;}
+
+    /* TIMELINE */
+    .timeline{display:flex;flex-direction:column;gap:0;margin:40px 0;}
+    .timeline-item{display:grid;grid-template-columns:120px 1fr;gap:32px;padding:28px 0;border-top:1px solid rgba(0,0,0,0.07);}
+    .timeline-item:last-child{border-bottom:1px solid rgba(0,0,0,0.07);}
+    .timeline-left{display:flex;flex-direction:column;gap:4px;}
+    .timeline-num{font-family:var(--serif);font-size:32px;font-weight:900;color:rgba(139,132,39,0.2);letter-spacing:-1px;line-height:1;}
+    .timeline-phase{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
+    .timeline-right h4{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--dark);margin-bottom:8px;letter-spacing:-.3px;}
+    .timeline-right p{font-size:14px;color:var(--mid);line-height:1.65;}
+    .timeline-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+    .ttag{font-size:10px;background:rgba(139,132,39,0.1);color:var(--gold-dark);padding:3px 10px;border-radius:100px;}
+
+    /* DESIGN DECISIONS GRID */
+    .decisions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
+    .decision-card{background:var(--white);border:1px solid rgba(0,0,0,0.07);padding:32px;display:flex;flex-direction:column;gap:10px;}
+    .decision-num{font-family:var(--serif);font-size:40px;font-weight:900;color:rgba(139,132,39,0.18);letter-spacing:-2px;line-height:1;}
+    .decision-card h4{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--dark);letter-spacing:-.3px;}
+    .decision-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+
+    /* DARK FEATURE BLOCK */
+    .feature-block{background:var(--dark);border-radius:20px;padding:56px;margin:40px 0;}
+    .feature-block .section-tag{color:rgba(255,230,0,0.7);}
+    .feature-block h2{color:var(--white);}
+    .feature-block h2 em{color:var(--gold);}
+    .feature-list{display:flex;flex-direction:column;gap:0;margin-top:32px;}
+    .feature-item{display:flex;align-items:flex-start;gap:20px;padding:20px 0;border-top:1px solid rgba(255,255,255,0.06);}
+    .feature-item:last-child{border-bottom:1px solid rgba(255,255,255,0.06);}
+    .feature-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px;}
+    .feature-item h4{font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:4px;}
+    .feature-item p{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6;}
+
+    /* MVP STAGES */
+    .mvp-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
+    .mvp-card{background:var(--white);border:1px solid rgba(0,0,0,0.07);padding:28px 28px 24px;}
+    .mvp-label{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .mvp-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--dark);margin-bottom:10px;letter-spacing:-.3px;}
+    .mvp-title em{font-style:italic;color:var(--gold);}
+    .mvp-card p{font-size:13px;color:var(--mid);line-height:1.6;}
+    .mvp-badge{display:inline-block;margin-top:12px;font-size:10px;background:rgba(139,132,39,0.1);color:var(--gold-dark);padding:3px 10px;border-radius:100px;}
+
+    /* PULL QUOTE */
+    .pull-quote{padding:48px 56px;background:var(--gold-light);border-left:3px solid var(--gold);margin:48px 0;border-radius:0 16px 16px 0;}
+    .pull-quote p{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-style:italic;line-height:1.5;color:var(--dark);margin-bottom:14px;}
+    .pull-quote cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
+
+    /* RESULTS BOX */
+    .results-box{background:var(--gold-light);border-radius:20px;padding:56px;margin:40px 0;}
+    .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px;}
+    .result-item{display:flex;gap:14px;align-items:flex-start;}
+    .result-icon{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+    .result-text h4{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:3px;}
+    .result-text p{font-size:13px;color:var(--muted);line-height:1.5;margin:0;}
+
+    /* NEXT */
+    .next{padding:72px 56px;border-top:1px solid rgba(0,0,0,0.08);display:flex;justify-content:space-between;align-items:center;}
+    .next-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+    .next-title{font-family:var(--serif);font-size:clamp(26px,3.5vw,44px);font-weight:700;letter-spacing:-.8px;}
+    .next-title em{font-style:italic;color:var(--gold);}
+    .next-link{display:inline-flex;align-items:center;gap:10px;background:var(--dark);color:var(--white);text-decoration:none;font-size:13px;font-weight:500;padding:14px 28px;border-radius:100px;transition:background .2s,transform .2s;}
+    .next-link:hover{background:var(--gold);transform:translateY(-2px);}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .d1{transition-delay:.1s;} .d2{transition-delay:.2s;}
+
+    @media(max-width:900px){
+      nav{padding:18px 24px;}
+      .hero{padding:110px 24px 52px;}
+      .meta-grid{grid-template-columns:1fr 1fr;gap:20px;}
+      .content{padding:56px 24px;}
+      .content.wide{padding:56px 24px;}
+      .cover-hero{flex-direction:column;padding:40px 24px;gap:32px;}
+      .split{grid-template-columns:1fr;padding:48px 24px;gap:32px;}
+      .split.reverse{direction:ltr;}
+      .problem-grid,.decisions-grid,.mvp-strip,.results-grid{grid-template-columns:1fr;}
+      .next{flex-direction:column;gap:28px;align-items:flex-start;padding:56px 24px;}
+      .timeline-item{grid-template-columns:1fr;gap:8px;}
+      .feature-block{padding:36px 24px;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">AO.</a>
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to work
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="company-badge">
+    <span class="meli-m">ML</span>
+    <span class="meli-name">Mercado Libre</span>
+    <div class="badge-sep"></div>
+    <span class="badge-year">2023 – 2024</span>
+  </div>
+  <h1 class="hero-title">Live<br><em>Commerce</em></h1>
+  <div class="meta-grid">
+    <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Senior Product Designer — UX exploration & interaction design</span></div>
+    <div class="meta-item"><span class="meta-label">Team</span><span class="meta-value">Product · Video · Commerce · Engineering</span></div>
+    <div class="meta-item"><span class="meta-label">Scope</span><span class="meta-value">New product pilot — live video selling inside the MeLi app</span></div>
+    <div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Exploratory design · MVP definition · Interaction design</span></div>
+  </div>
+</section>
+
+<!-- COVER -->
+<div class="cover-hero">
+  <div class="cover-left">
+    <div class="cover-tag">Mercado Libre · Live Commerce · LATAM</div>
+    <div class="cover-title">Shopping<br>as a <em>live</em><br>experience</div>
+    <p class="cover-desc">Designing the interaction model for a brand-new product: real-time live video selling inside one of Latin America's largest e-commerce platforms — creators, products, and buyers all in one stream.</p>
+  </div>
+  <div class="cover-right">
+    <div class="cover-stat-card">
+      <div class="cover-stat-num">1</div>
+      <div class="cover-stat-label">New product — 0 to pilot</div>
+    </div>
+    <div class="cover-stat-card">
+      <div class="cover-stat-num">3</div>
+      <div class="cover-stat-label">MVP iterations defined</div>
+    </div>
+    <div class="cover-stat-card">
+      <div class="cover-stat-num">LATAM</div>
+      <div class="cover-stat-label">Target market — Brazil & Argentina first</div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="content">
+  <div class="reveal">
+    <span class="section-tag">The Challenge</span>
+    <h2>A new format, zero<br><em>reference</em> in the platform</h2>
+    <p class="body">Mercado Libre wanted to explore <strong>live commerce</strong> — a format already booming in Asia where creators stream live, showcase products in real time, and viewers can buy directly from the feed. The goal was to design what that experience would look like inside the MeLi app, where no live video product had ever existed.</p>
+    <p class="body">My job was to define the UX from scratch: how does a live stream look? How do products appear alongside the video? How do viewers interact, ask questions, and buy — all without leaving the stream?</p>
+  </div>
+
+  <div class="problem-grid reveal d1">
+    <div class="problem-card">
+      <span class="problem-icon">📺</span>
+      <span class="problem-type">Product challenge</span>
+      <h4>No live format in the platform</h4>
+      <p>MeLi had no existing live video product. Every interaction pattern, screen state, and component had to be designed from zero.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">🛍️</span>
+      <span class="problem-type">Product challenge</span>
+      <h4>Video + commerce in one screen</h4>
+      <p>Balancing a live stream with product cards, chat, and purchase actions — without overwhelming users or breaking the shopping intent.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">⚡</span>
+      <span class="problem-type">Design challenge</span>
+      <h4>Real-time interaction design</h4>
+      <p>Products appear, get highlighted, and disappear as the creator talks about them. Designing that dynamism required careful timing and state management.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">🔁</span>
+      <span class="problem-type">Design challenge</span>
+      <h4>Multiple stream states</h4>
+      <p>The experience changes dramatically: stream active, stream just ended, creator never started. Each state needed its own thoughtful design.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- APPROACH -->
+  <div class="reveal">
+    <span class="section-tag">My Approach</span>
+    <h2>Explore fast,<br><em>define the model</em></h2>
+    <p class="body">With no prior live commerce reference inside MeLi, I focused on <strong>interaction modeling</strong> — defining the rules of the experience before visual polish. What components exist? When do they appear? How do they behave? I explored multiple options for each decision and worked iteratively across three MVP versions to move the product toward pilot.</p>
+  </div>
+
+  <div class="timeline reveal d1">
+    <div class="timeline-item">
+      <div class="timeline-left"><span class="timeline-num">01</span><span class="timeline-phase">Exploration</span></div>
+      <div class="timeline-right">
+        <h4>Define the screen anatomy</h4>
+        <p>Broke down the live screen into four zones — header, video player, product shelf, and live chat — and defined the rules for each: what appears, when, and how controls behave on tap.</p>
+        <div class="timeline-tags"><span class="ttag">Screen anatomy</span><span class="ttag">Figma</span><span class="ttag">Interaction rules</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><span class="timeline-num">02</span><span class="timeline-phase">Interaction</span></div>
+      <div class="timeline-right">
+        <h4>Design product presentation flows</h4>
+        <p>Explored how products get introduced one by one as the creator showcases them — with highlight states, "AHORA" (now) pills, and carousel progression. Tested multiple options per interaction.</p>
+        <div class="timeline-tags"><span class="ttag">Motion design</span><span class="ttag">Product cards</span><span class="ttag">State management</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><span class="timeline-num">03</span><span class="timeline-phase">MVP Scoping</span></div>
+      <div class="timeline-right">
+        <h4>Scope 3 iterable MVP versions</h4>
+        <p>Aligned with product and engineering to define three progressive versions — MVP 0.1, 0.2, and Ideal — each representing a bigger leap in fidelity and feature completeness.</p>
+        <div class="timeline-tags"><span class="ttag">MVP planning</span><span class="ttag">Prioritization</span><span class="ttag">Dev handoff</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN ANATOMY — full image -->
+<div class="content wide">
+  <div class="reveal">
+    <span class="section-tag">Screen Design · Live View</span>
+    <h2>Four zones,<br><em>one screen</em></h2>
+    <p class="body" style="max-width:640px">The live screen needed to work as a unified experience: creator header, video in 16:9, a dynamic product carousel, and a live chat that scrolls behind the products. Every element hides on tap to give full screen to the video.</p>
+  </div>
+  <div class="full-img reveal d1">
+    <img src="Pantalla_inicial.png" alt="Live screen anatomy — header, video, product shelf, and chat zones"/>
+    <p class="img-caption">Live screen · Initial state — 4 interaction zones with on-tap hide behavior</p>
+  </div>
+</div>
+
+<!-- PRODUCT CARDS SPLIT -->
+<div class="split reveal">
+  <div class="split-img">
+    <img src="Product_cards.png" alt="Product card states — highlighted pill, highlighted, and plain variants"/>
+  </div>
+  <div class="split-text">
+    <span class="cap-badge">Component design · Product cards</span>
+    <h3>Cards that<br><em>react in real time</em></h3>
+    <p>Designed three card states: a highlighted card with an "AHORA" pill for the product being actively showcased, a plain highlighted state, and a standard card. As the creator moves to the next product, the highlight transfers and the pill disappears after 2.5 seconds.</p>
+    <p>The carousel follows a defined logic: the product the creator is showing stays first, then favorited items, then products ranked by live likes.</p>
+  </div>
+</div>
+
+<!-- PRODUCT PRESENTATION FLOW — full image -->
+<div class="content wide">
+  <div class="reveal">
+    <span class="section-tag">Interaction · Product Presentation</span>
+    <h2>Products enter<br><em>one at a time</em></h2>
+    <p class="body" style="max-width:640px">Explored how the product shelf animates as the creator introduces items. Option B shows products starting hidden, then entering one by one — highlighted first, then shifting right as the next product is featured. When the fourth product arrives, the carousel scrolls to reveal it while pushing earlier items left.</p>
+  </div>
+  <div class="full-img reveal d1">
+    <img src="Presentacio_n_de_productos_1_a_1_op3.png" alt="Product presentation flow — 4 states showing how products enter and shift in the carousel"/>
+    <p class="img-caption">Product presentation · Option B — 4 stages of product entry and carousel progression</p>
+  </div>
+</div>
+
+<!-- PURCHASE FLOW SPLIT -->
+<div class="split reverse reveal">
+  <div class="split-img">
+    <img src="Flow_1.png" alt="Purchase flow 0.5 — from live stream to product detail to checkout confirmation"/>
+  </div>
+  <div class="split-text">
+    <span class="cap-badge">User flow · Purchase during stream</span>
+    <h3>Buy without<br><em>leaving the stream</em></h3>
+    <p>Tapping a product card opens a product detail overlay within the live experience — keeping the stream context visible. The user can select size and color, complete checkout, and return directly to the live feed once the purchase is confirmed.</p>
+    <p>The post-purchase screen shows delivery estimate, Mercado Puntos earned, and loyalty discounts — reinforcing the platform's value loop.</p>
+  </div>
+</div>
+
+<!-- STREAM END STATE SPLIT -->
+<div class="split reveal">
+  <div class="split-img">
+    <img src="Flow_4.png" alt="Stream ended flow — vivo finalizado screen with product shelf and navigation to home"/>
+  </div>
+  <div class="split-text">
+    <span class="cap-badge">Screen state · Stream ended</span>
+    <h3>When the stream<br><em>ends gracefully</em></h3>
+    <p>Designed the "Vivo Finalizado" state — what happens when the creator ends the stream. Products shown during the live remain visible and shoppable, the user can follow the creator, and the app surfaces a smart product list ordered by favorites and public engagement during the stream.</p>
+    <p>From this state, users land back on MeLi home with a recommendation strip surfacing the stream's products in their browsing history.</p>
+  </div>
+</div>
+
+<!-- FINISHED SCREEN FULL -->
+<div class="content wide">
+  <div class="reveal">
+    <span class="section-tag">Screen Design · Finished State</span>
+    <h2>Three iterations<br>of the <em>end screen</em></h2>
+    <p class="body" style="max-width:640px">Explored three versions of the post-stream screen — from an ideal design with follow prompts and curated product lists, to progressively simpler MVP versions that could ship faster while still preserving the shopping opportunity.</p>
+  </div>
+  <div class="full-img reveal d1">
+    <img src="Pantalla_vivo_finalizado.png" alt="Vivo finalizado — three versions: ideal, MVP 0.2, and MVP 0.1"/>
+    <p class="img-caption">Post-stream screen · Ideal design → MVP 0.2 → MVP 0.1</p>
+  </div>
+</div>
+
+<!-- DESIGN DECISIONS -->
+<div class="content">
+  <div class="reveal">
+    <span class="section-tag">Key Design Decisions</span>
+    <h2>Every tap<br><em>intentional</em></h2>
+  </div>
+  <div class="decisions-grid reveal d1">
+    <div class="decision-card">
+      <span class="decision-num">01</span>
+      <h4>Controls hide on tap</h4>
+      <p>Mute, video title, share, and overlay controls disappear on a single tap — giving the viewer full screen video when they want it, without a permanent UI footprint.</p>
+    </div>
+    <div class="decision-card">
+      <span class="decision-num">02</span>
+      <h4>Products first, chat behind</h4>
+      <p>Chat is always visible but scrolls behind the product shelf — reachable by scrolling down, but never competing with purchase intent. The blur softens the transition.</p>
+    </div>
+    <div class="decision-card">
+      <span class="decision-num">03</span>
+      <h4>The "AHORA" pill</h4>
+      <p>A small contextual pill that appears on the currently featured product and auto-dismisses after 2.5 seconds — nudging attention without interrupting the stream experience.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MVP PROGRESSION -->
+<div class="content">
+  <div class="reveal">
+    <span class="section-tag">MVP Progression</span>
+    <h2>Ship small,<br><em>learn fast</em></h2>
+    <p class="body">Worked with product and engineering to define three progressive versions of the experience — each buildable independently, each moving closer to the ideal end state.</p>
+  </div>
+  <div class="mvp-strip reveal d1">
+    <div class="mvp-card">
+      <span class="mvp-label">Version</span>
+      <div class="mvp-title">MVP <em>0.1</em></div>
+      <p>Core live view with video, product carousel, and chat. Products shown but not dynamically highlighted. Stream ends with a simple product list.</p>
+      <span class="mvp-badge">Ready for devs</span>
+    </div>
+    <div class="mvp-card">
+      <span class="mvp-label">Version</span>
+      <div class="mvp-title">MVP <em>0.2</em></div>
+      <p>Adds "AHORA" highlight pill, live product ordering by engagement (favorites + likes), and improved post-stream screen with "Tus favoritos" section.</p>
+      <span class="mvp-badge">Ready for devs</span>
+    </div>
+    <div class="mvp-card">
+      <span class="mvp-label">Version</span>
+      <div class="mvp-title"><em>Ideal</em> Design</div>
+      <p>Full product entry animation, follow-creator prompt on stream end, curated product lists with social proof metrics, and full in-stream purchase flow.</p>
+      <span class="mvp-badge">Design exploration</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURE BLOCK -->
+<div class="content">
+  <div class="feature-block reveal">
+    <span class="section-tag">Interaction System</span>
+    <h2>What I<br><em>defined</em></h2>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <h4>Live screen anatomy</h4>
+          <p>Header · 16:9 video with tap-to-hide controls · dynamic product shelf · blurred live chat input</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <h4>Product card system</h4>
+          <p>3 card states (highlighted pill / highlighted / plain) with defined timing rules and carousel ordering logic</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <h4>Product presentation flow</h4>
+          <p>Two options explored for how products enter the carousel — Option A (always visible) and Option B (enter one at a time)</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <h4>Purchase flow during stream</h4>
+          <p>Tap product → overlay PDP → select variant → checkout → confirmation with loyalty rewards → return to stream</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <h4>Post-stream state</h4>
+          <p>Vivo Finalizado screen with follow prompt, curated product lists, and continuation into MeLi home with live products surfaced</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PULL QUOTE -->
+<div class="content">
+  <div class="pull-quote reveal">
+    <p>"Designing a new product format means designing the rules first — before a single pixel has the right color."</p>
+    <cite>Reflection on the Live Commerce project · Mercado Libre · 2023</cite>
+  </div>
+</div>
+
+<!-- RESULTS / IMPACT -->
+<div class="content">
+  <div class="results-box reveal">
+    <span class="section-tag">Outcome</span>
+    <h2>Exploration that<br><em>enabled the pilot</em></h2>
+    <div class="results-grid">
+      <div class="result-item"><div class="result-icon">🎯</div><div class="result-text"><h4>Full interaction model defined</h4><p>Every screen state, component, and timing rule documented and ready for engineering handoff across 3 MVP versions.</p></div></div>
+      <div class="result-item"><div class="result-icon">📐</div><div class="result-text"><h4>New component system</h4><p>Designed a reusable product card system with defined states and rules — a foundation for the live commerce design system.</p></div></div>
+      <div class="result-item"><div class="result-icon">🚀</div><div class="result-text"><h4>Pilot-ready specs</h4><p>Two MVP versions marked "Ready for devs" — clear, scoped, and buildable without waiting for the ideal design to be complete.</p></div></div>
+      <div class="result-item"><div class="result-icon">🔭</div><div class="result-text"><h4>Ideal vision documented</h4><p>The full ideal design served as the north star for the product team — a clear picture of where the experience should go.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT -->
+<div class="next reveal">
+  <div>
+    <div class="next-label">Next project</div>
+    <h3 class="next-title">Customer <em>Intelligence</em> Strategy</h3>
+  </div>
+  <a href="project-twilio-strategy.html" class="next-link">View case study →</a>
+</div>
+
+<script>
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  (function tick(){cursor.style.left=mx+'px';cursor.style.top=my+'px';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+  document.querySelectorAll('a').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cursor.style.width='18px';cursor.style.height='18px';ring.style.width='52px';ring.style.height='52px';});
+    el.addEventListener('mouseleave',()=>{cursor.style.width='10px';cursor.style.height='10px';ring.style.width='38px';ring.style.height='38px';});
+  });
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
