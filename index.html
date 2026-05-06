@@ -197,7 +197,7 @@
   <div class="nav-links">
     <a href="#work">Work</a>
     <a href="#about">About</a>
-    <a href="mailto:alejandra.o72@gmail.com" class="nav-cta">Get in touch</a>
+    <a href="#" onclick="document.getElementById('contactModal').style.display='flex';return false;" class="nav-cta">Get in touch</a>
   </div>
 </nav>
 
@@ -217,10 +217,6 @@
       <strong>MercadoLibre · Zubale</strong>
     </div>
   </div>
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
 </section>
 
 <!-- COMPANIES -->
@@ -229,6 +225,7 @@
   <div class="companies-logos">
     <span class="company-name">Twilio</span>
     <span class="company-name">Mercado Libre</span>
+    <span class="company-name">Benchmark Email</span>
     <span class="company-name">Zubale</span>
     <span class="company-name">Merqueo</span>
     <span class="company-name">El Tiempo</span>
@@ -251,7 +248,7 @@
     <a class="project-card reveal" href="project-twilio-strategy.html">
       <span class="project-num">01</span>
       <div class="project-info">
-        <span class="project-company"><span class="company-dot"></span>Twilio · 2024–2026</span>
+        <span class="project-company"><span class="company-dot" style="background:#F22F46"></span>Twilio · 2024–2026</span>
         <h3 class="project-name">Customer<br><em>Intelligence</em><br>Strategy</h3>
         <div class="project-tags">
           <span class="tag">UX Strategy</span>
@@ -304,7 +301,7 @@
     <a class="project-card reveal reveal-delay-1" href="project-twilio-insights.html">
       <span class="project-num">02</span>
       <div class="project-info">
-        <span class="project-company"><span class="company-dot"></span>Twilio · 2024–2026</span>
+        <span class="project-company"><span class="company-dot" style="background:#F22F46"></span>Twilio · 2024–2026</span>
         <h3 class="project-name">Messaging<br><em>Insights</em><br>&amp; Alerts</h3>
         <div class="project-tags">
           <span class="tag">Interaction Design</span>
@@ -378,7 +375,7 @@
     <a href="project-meli-video.html" class="project-card reveal reveal-delay-3">
       <span class="project-num">04</span>
       <div class="project-info">
-        <span class="project-company"><span class="company-dot" style="background:#2D3277"></span>Mercado Libre · 2023</span>
+        <span class="project-company"><span class="company-dot" style="background:#FFE600"></span>Mercado Libre · 2023</span>
         <h3 class="project-name">Live<br><em>Commerce</em></h3>
         <div class="project-tags"><span class="tag">Interaction Design</span><span class="tag">Live Video</span><span class="tag">E-commerce</span></div>
       </div>
@@ -418,8 +415,7 @@
   <h2 class="contact-title reveal">Let's<br><em>work</em><br>together</h2>
   <div class="contact-links reveal">
     <a href="mailto:alejandra.o72@gmail.com" class="contact-link primary">✉ alejandra.o72@gmail.com</a>
-    <a href="https://www.linkedin.com/in/alejandraosorio" target="_blank" class="contact-link secondary">LinkedIn ↗</a>
-    <a href="https://www.behance.net/AlejandraOsorio" target="_blank" class="contact-link secondary">Behance ↗</a>
+    <a href="https://www.linkedin.com/in/alejandra-osorio-9b014614a/" target="_blank" class="contact-link secondary">LinkedIn ↗</a>
   </div>
 </section>
 
@@ -428,9 +424,28 @@
   <span>© 2026 Alejandra Osorio</span>
   <div style="display:flex;gap:24px">
     <a href="mailto:alejandra.o72@gmail.com">alejandra.o72@gmail.com</a>
-    <a href="https://www.behance.net/AlejandraOsorio" target="_blank">Behance</a>
+    <a href="https://www.linkedin.com/in/alejandra-osorio-9b014614a/" target="_blank">LinkedIn</a>
   </div>
 </footer>
+
+<!-- CONTACT MODAL -->
+<div id="contactModal" style="display:none;position:fixed;inset:0;z-index:1000;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:var(--white);border-radius:24px;padding:48px 52px;max-width:420px;width:90%;position:relative;box-shadow:0 32px 80px rgba(0,0,0,0.2);">
+    <button onclick="document.getElementById('contactModal').style.display='none'" style="position:absolute;top:20px;right:20px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1;">✕</button>
+    <div style="font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold,#8B8427);margin-bottom:20px;">Get in touch</div>
+    <h3 style="font-family:var(--serif);font-size:28px;font-weight:700;letter-spacing:-.5px;margin-bottom:32px;line-height:1.1;">Let's talk <em style="font-style:italic;color:var(--gold,#8B8427)">design</em></h3>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <a href="mailto:alejandra.o72@gmail.com" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border:1.5px solid rgba(0,0,0,0.1);border-radius:12px;text-decoration:none;color:var(--dark);transition:border-color .2s;" onmouseover="this.style.borderColor='#8B8427'" onmouseout="this.style.borderColor='rgba(0,0,0,0.1)'">
+        <span style="font-size:20px;">✉</span>
+        <div><div style="font-size:12px;color:var(--muted);margin-bottom:2px;">Email</div><div style="font-size:14px;font-weight:500;">alejandra.o72@gmail.com</div></div>
+      </a>
+      <a href="tel:+573115134498" style="display:flex;align-items:center;gap:14px;padding:16px 20px;border:1.5px solid rgba(0,0,0,0.1);border-radius:12px;text-decoration:none;color:var(--dark);transition:border-color .2s;" onmouseover="this.style.borderColor='#8B8427'" onmouseout="this.style.borderColor='rgba(0,0,0,0.1)'">
+        <span style="font-size:20px;">📱</span>
+        <div><div style="font-size:12px;color:var(--muted);margin-bottom:2px;">WhatsApp / Phone</div><div style="font-size:14px;font-weight:500;">+57 311 513 4498</div></div>
+      </a>
+    </div>
+  </div>
+</div>
 
 <script>
   // Cursor
