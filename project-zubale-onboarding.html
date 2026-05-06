@@ -12,7 +12,7 @@
       --gold:#8B8427; --gold-dark:#6a6420; --gold-light:#e8e7cc;
       --dark:#1a1a12; --mid:#3a3a28; --muted:#8a8a6a;
       --bg:#f0efd8; --white:#fafaf0;
-      --zubale:#2233FF; --zubale-yellow:#FFE600;
+      --zubale:#2233FF;
       --serif:'Playfair Display',Georgia,serif;
       --sans:'DM Sans',sans-serif;
       --ease:cubic-bezier(0.16,1,0.3,1);
@@ -32,7 +32,7 @@
     /* HERO */
     .hero{padding:130px 56px 64px;border-bottom:1px solid rgba(0,0,0,0.08);}
     .company-badge{display:inline-flex;align-items:center;gap:10px;background:var(--zubale);border-radius:100px;padding:7px 16px 7px 12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) .1s forwards;}
-    .zubale-z{font-size:14px;font-weight:900;color:var(--zubale-yellow);font-family:var(--sans);letter-spacing:-.5px;}
+    .zubale-z{font-size:14px;font-weight:900;color:#FFE600;font-family:var(--sans);}
     .zubale-name{font-size:12px;font-weight:600;color:white;letter-spacing:.04em;}
     .badge-sep{width:1px;height:14px;background:rgba(255,255,255,0.2);}
     .badge-year{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:.08em;}
@@ -43,9 +43,17 @@
     .meta-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
     .meta-value{font-size:14px;color:var(--dark);line-height:1.45;}
 
-    /* COVER */
-    .cover{width:100%;overflow:hidden;opacity:0;animation:fadeIn 1s var(--ease) .5s forwards;background:var(--zubale);}
-    .cover img{width:100%;display:block;max-height:480px;object-fit:cover;object-position:top;}
+    /* COVER — hero visual recreated */
+    .cover-hero{width:100%;background:var(--dark);padding:64px 56px;display:flex;align-items:center;gap:64px;opacity:0;animation:fadeIn 1s var(--ease) .5s forwards;}
+    .cover-left{flex:1;}
+    .cover-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .cover-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:900;color:var(--white);line-height:1;letter-spacing:-1.5px;margin-bottom:16px;}
+    .cover-title em{font-style:italic;color:var(--gold);}
+    .cover-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.65;max-width:380px;}
+    .cover-right{flex-shrink:0;display:flex;flex-direction:column;gap:10px;min-width:200px;}
+    .cover-stat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 20px;}
+    .cover-stat-num{font-family:var(--serif);font-size:28px;font-weight:900;color:var(--gold);letter-spacing:-1px;line-height:1;}
+    .cover-stat-label{font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;}
 
     /* CONTENT */
     .content{max-width:780px;margin:0 auto;padding:88px 56px;}
@@ -57,53 +65,72 @@
     p.body strong{color:var(--dark);font-weight:500;}
     hr{border:none;border-top:1px solid rgba(0,0,0,0.07);margin:64px 0;}
 
-    /* SIDE BY SIDE */
+    /* PROBLEM — recreated as styled cards */
+    .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
+    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:10px;}
+    .problem-icon{font-size:20px;margin-bottom:4px;}
+    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
+    .problem-card h4{font-size:17px;font-weight:700;color:var(--dark);font-family:var(--serif);letter-spacing:-.3px;}
+    .problem-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+
+    /* STATS — dark, site palette */
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:48px 0;border-radius:16px;overflow:hidden;}
+    .stat-block{background:var(--dark);padding:44px 36px;display:flex;flex-direction:column;gap:8px;}
+    .stat-num{font-family:var(--serif);font-size:clamp(36px,5vw,60px);font-weight:900;color:var(--gold);letter-spacing:-1.5px;line-height:1;}
+    .stat-label{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.4;}
+
+    /* APPROACH — timeline style */
+    .timeline{display:flex;flex-direction:column;gap:0;margin:40px 0;}
+    .timeline-item{display:grid;grid-template-columns:120px 1fr;gap:32px;padding:28px 0;border-top:1px solid rgba(0,0,0,0.07);}
+    .timeline-item:last-child{border-bottom:1px solid rgba(0,0,0,0.07);}
+    .timeline-left{display:flex;flex-direction:column;gap:4px;}
+    .timeline-num{font-family:var(--serif);font-size:32px;font-weight:900;color:rgba(139,132,39,0.2);letter-spacing:-1px;line-height:1;}
+    .timeline-phase{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
+    .timeline-right h4{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--dark);margin-bottom:8px;letter-spacing:-.3px;}
+    .timeline-right p{font-size:14px;color:var(--mid);line-height:1.65;}
+    .timeline-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+    .ttag{font-size:10px;background:rgba(139,132,39,0.1);color:var(--gold-dark);padding:3px 10px;border-radius:100px;}
+
+    /* SPLIT — image + text */
     .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:72px 56px;border-bottom:1px solid rgba(0,0,0,0.06);}
     .split.reverse{direction:rtl;}
     .split.reverse>*{direction:ltr;}
     .split-img{border-radius:16px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,0.1);}
     .split-img img{width:100%;display:block;max-height:420px;object-fit:cover;object-position:top;}
     .split-text{display:flex;flex-direction:column;gap:16px;}
-    .split-text .cap-badge{display:inline-block;font-size:10px;background:rgba(139,132,39,0.12);color:var(--gold-dark);padding:4px 12px;border-radius:100px;letter-spacing:.04em;align-self:flex-start;}
+    .split-text .cap-badge{display:inline-block;font-size:10px;background:rgba(139,132,39,0.12);color:var(--gold-dark);padding:4px 12px;border-radius:100px;align-self:flex-start;}
     .split-text h3{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:700;letter-spacing:-.5px;line-height:1.1;}
     .split-text h3 em{font-style:italic;color:var(--gold);}
-    .split-text p{font-size:15px;line-height:1.75;color:var(--mid);font-weight:300;}
-
-    /* STATS */
-    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:56px 0;border-radius:16px;overflow:hidden;}
-    .stat-block{background:var(--zubale);padding:44px 36px;display:flex;flex-direction:column;gap:8px;}
-    .stat-num{font-family:var(--serif);font-size:clamp(36px,5vw,60px);font-weight:900;color:var(--zubale-yellow);letter-spacing:-1.5px;line-height:1;}
-    .stat-label{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.4;}
-
-    /* BEFORE/AFTER */
-    .before-after{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
-    .ba-card{padding:40px;display:flex;flex-direction:column;gap:12px;}
-    .ba-card.before{background:#1a1a12;}
-    .ba-card.after{background:var(--zubale);}
-    .ba-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;opacity:.5;color:white;}
-    .ba-stat{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:900;color:white;letter-spacing:-1px;line-height:1;}
-    .ba-stat.highlight{color:var(--zubale-yellow);}
-    .ba-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.5;}
-
-    /* PROBLEM CARDS */
-    .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:40px 0;}
-    .problem-card{padding:28px;background:var(--white);border-radius:14px;border:1px solid rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:10px;}
-    .problem-label{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);display:inline-block;}
-    .problem-card h4{font-size:16px;font-weight:600;color:var(--dark);line-height:1.3;}
-    .problem-card p{font-size:13px;color:var(--muted);line-height:1.6;margin:0;}
-
-    /* PHASE GRID */
-    .phase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
-    .phase-card{padding:28px;border:1px solid rgba(0,0,0,0.08);background:var(--white);display:flex;flex-direction:column;gap:10px;transition:border-color .3s,background .3s;}
-    .phase-card:hover{border-color:var(--gold);background:var(--gold-light);}
-    .phase-num{font-family:var(--serif);font-size:13px;color:var(--gold);font-weight:700;}
-    .phase-name{font-family:var(--serif);font-size:18px;font-weight:700;}
-    .phase-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+    .split-text p{font-size:15px;line-height:1.75;color:var(--mid);}
 
     /* FULL IMAGE */
     .full-img{margin:40px 0;border-radius:16px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);}
     .full-img img{width:100%;display:block;}
     .img-caption{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:10px;}
+
+    /* BEFORE/AFTER — site palette */
+    .before-after{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:48px 0;border-radius:16px;overflow:hidden;}
+    .ba-card{padding:48px 40px;display:flex;flex-direction:column;gap:12px;}
+    .ba-card.before{background:#2a2a20;}
+    .ba-card.after{background:var(--dark);}
+    .ba-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+    .ba-num{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1;}
+    .ba-card.before .ba-num{color:rgba(255,255,255,0.35);}
+    .ba-card.after .ba-num{color:var(--gold);}
+    .ba-desc{font-size:13px;line-height:1.5;}
+    .ba-card.before .ba-desc{color:rgba(255,255,255,0.3);}
+    .ba-card.after .ba-desc{color:rgba(255,255,255,0.5);}
+    .ba-divider{width:40px;height:1px;background:rgba(255,255,255,0.1);margin:8px 0;}
+
+    /* WORKSHOP VISUAL — recreated */
+    .workshop-visual{background:var(--dark);border-radius:20px;padding:48px;margin:40px 0;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+    .workshop-left h3{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:700;color:var(--white);letter-spacing:-.5px;margin-bottom:16px;}
+    .workshop-left h3 em{font-style:italic;color:var(--gold);}
+    .workshop-left p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;}
+    .workshop-teams{display:flex;flex-direction:column;gap:8px;}
+    .workshop-team{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:10px;}
+    .wt-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+    .wt-name{font-size:13px;color:rgba(255,255,255,0.7);}
 
     /* RESULTS BOX */
     .results-box{background:var(--gold-light);border-radius:20px;padding:56px;margin:40px 0;}
@@ -138,10 +165,12 @@
       .meta-grid{grid-template-columns:1fr 1fr;gap:20px;}
       .content{padding:56px 24px;}
       .content.wide{padding:56px 24px;}
+      .cover-hero{flex-direction:column;padding:40px 24px;gap:32px;}
       .split{grid-template-columns:1fr;padding:48px 24px;gap:32px;}
       .split.reverse{direction:ltr;}
-      .stat-row,.before-after,.problem-grid,.phase-grid,.results-grid{grid-template-columns:1fr;}
+      .stat-row,.before-after,.problem-grid,.results-grid,.workshop-visual{grid-template-columns:1fr;}
       .next{flex-direction:column;gap:28px;align-items:flex-start;padding:56px 24px;}
+      .timeline-item{grid-template-columns:1fr;gap:8px;}
     }
   </style>
 </head>
@@ -164,246 +193,230 @@
     <span class="zubale-z">Z</span>
     <span class="zubale-name">Zubale</span>
     <div class="badge-sep"></div>
-    <span class="badge-year">2022</span>
+    <span class="badge-year">2021 – 2023</span>
   </div>
   <h1 class="hero-title">Onboarding<br><em>Revamp</em></h1>
   <div class="meta-grid">
-    <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Senior Product Designer — discovery, workshops, design & testing</span></div>
-    <div class="meta-item"><span class="meta-label">Team</span><span class="meta-value">Product · Tech · Design · Data · Marketing · Operations</span></div>
-    <div class="meta-item"><span class="meta-label">Scope</span><span class="meta-value">Mobile app onboarding for gig workers across 6 Latin American countries</span></div>
-    <div class="meta-item"><span class="meta-label">Impact</span><span class="meta-value">12.75% conversion (from 5.13%) · Time to convert: 13.1 → 3.7 days</span></div>
+    <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Senior PD — discovery, workshops, design & testing</span></div>
+    <div class="meta-item"><span class="meta-label">Team</span><span class="meta-value">Product · Tech · Design · Data · Marketing · Ops</span></div>
+    <div class="meta-item"><span class="meta-label">Scope</span><span class="meta-value">Mobile app onboarding for gig workers across 6 countries</span></div>
+    <div class="meta-item"><span class="meta-label">Impact</span><span class="meta-value">12.75% conversion · Time to convert: 13.1 → 3.7 days</span></div>
   </div>
 </section>
 
-<!-- COVER -->
-<div class="cover">
-  <img src="zubale-hackathon.png" alt="User acquisition hackathon at Zubale"/>
+<!-- COVER — recreated visual -->
+<div class="cover-hero">
+  <div class="cover-left">
+    <div class="cover-tag">Zubale · E-commerce ecosystem · LATAM</div>
+    <div class="cover-title">Getting workers to<br>their <em>first task</em><br>in 12 hours</div>
+    <p class="cover-desc">A cross-functional hackathon that redesigned how 500+ weekly leads register, train, and activate as Zubaleros — the gig workforce behind Walmart, OXXO, and Cencosud operations.</p>
+  </div>
+  <div class="cover-right">
+    <div class="cover-stat-card">
+      <div class="cover-stat-num">6</div>
+      <div class="cover-stat-label">Countries — BR, MX, CO, CR, PE, CL</div>
+    </div>
+    <div class="cover-stat-card">
+      <div class="cover-stat-num">100+</div>
+      <div class="cover-stat-label">Active clients — Walmart, OXXO, Cencosud</div>
+    </div>
+    <div class="cover-stat-card">
+      <div class="cover-stat-num">$70M</div>
+      <div class="cover-stat-label">USD annualized revenue</div>
+    </div>
+  </div>
 </div>
 
 <!-- OVERVIEW -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">Overview</span>
-    <h2>Redesigning how<br><em>gig workers</em> join Zubale</h2>
-    <p class="body">Zubale is an e-commerce solutions ecosystem operating across 6 countries in Latin America, with 100+ active clients including Walmart, OXXO, and Cencosud. Their gig workforce — "Zubaleros" — are independent workers who fulfill orders in stores.</p>
-    <p class="body">The challenge: <strong>getting workers registered, trained, and to their first task as fast as possible.</strong> The previous onboarding was fragmented across WhatsApp, chatbots, web pages, and manual agent workflows — with a conversion rate under 1% and a $200 CAC.</p>
-  </div>
-
-  <div class="stat-row reveal">
-    <div class="stat-block">
-      <span class="stat-num">+340</span>
-      <span class="stat-label">Walmart stores across 32 cities in Mexico</span>
-    </div>
-    <div class="stat-block">
-      <span class="stat-num">500</span>
-      <span class="stat-label">new leads per week needing onboarding</span>
-    </div>
-    <div class="stat-block">
-      <span class="stat-num">$200</span>
-      <span class="stat-label">CAC before the revamp — unsustainable at scale</span>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- PROBLEM -->
-  <div class="reveal">
     <span class="section-tag">The Problem</span>
     <h2>Fragmented, slow,<br><em>and losing users</em></h2>
+    <p class="body">Zubale's gig workers — "Zubaleros" — had to navigate a maze of channels just to register. WhatsApp agents, chatbot groups, web pages, the app, and SMS — each asking for the same information. The result: a conversion rate under 1% and a $200 CAC.</p>
   </div>
 
   <div class="problem-grid reveal">
     <div class="problem-card">
-      <span class="problem-label">Business pain</span>
+      <span class="problem-icon">⚙️</span>
+      <span class="problem-type">Business pain</span>
       <h4>No single source of truth</h4>
-      <p>Manual processes everywhere. User acquisition team had to manage leads across multiple disconnected channels with no unified view.</p>
+      <p>Manual processes everywhere. The user acquisition team had no unified view — leads fell through the cracks constantly.</p>
     </div>
     <div class="problem-card">
-      <span class="problem-label">Business pain</span>
-      <h4>Low conversion — under 1%</h4>
-      <p>CAC of $200 USD and a 5–10 day time to convert made growth unsustainable. Not enough supply to fulfill operations.</p>
+      <span class="problem-icon">📉</span>
+      <span class="problem-type">Business pain</span>
+      <h4>Under 1% conversion</h4>
+      <p>$200 CAC and 5–10 days to convert made scaling unsustainable. Not enough supply to fulfill operations.</p>
     </div>
     <div class="problem-card">
-      <span class="problem-label">User pain</span>
+      <span class="problem-icon">😵</span>
+      <span class="problem-type">User pain</span>
       <h4>Lost across channels</h4>
-      <p>Users bounced between WhatsApp agents, WhatsApp groups, web pages, the app, chatbots, and SMS — all asking for the same information.</p>
+      <p>Users bounced between WhatsApp, chatbots, web pages and the app — all requesting the same documents repeatedly.</p>
     </div>
     <div class="problem-card">
-      <span class="problem-label">User pain</span>
-      <h4>Days of waiting</h4>
-      <p>Users had to submit the same documents multiple times through different channels, then wait days for an agent to reply.</p>
+      <span class="problem-icon">⏳</span>
+      <span class="problem-type">User pain</span>
+      <h4>Days waiting for a reply</h4>
+      <p>After submitting documents, users waited days for an agent to manually review and respond. Most dropped off.</p>
     </div>
+  </div>
+
+  <div class="stat-row reveal">
+    <div class="stat-block"><span class="stat-num">+340</span><span class="stat-label">Walmart stores across 32 cities in Mexico</span></div>
+    <div class="stat-block"><span class="stat-num">500</span><span class="stat-label">new leads per week needing onboarding</span></div>
+    <div class="stat-block"><span class="stat-num">$200</span><span class="stat-label">CAC before the revamp — unsustainable at scale</span></div>
   </div>
 
   <hr>
 
-  <!-- APPROACH -->
+  <!-- HACKATHON APPROACH — recreated -->
   <div class="reveal">
     <span class="section-tag">My Approach</span>
     <h2>A cross-functional<br><em>hackathon</em> to solve it fast</h2>
-    <p class="body">Rather than a traditional design process, we ran a <strong>user acquisition hackathon</strong> — bringing together Product, Tech, Design, Data, Marketing, and Operations in one room to define, prototype and test a solution in days.</p>
-    <p class="body">My role: moderate workshops, lead discovery, design wireframes and prototypes, and run user testing in the field.</p>
+    <p class="body">Rather than a traditional design cycle, we ran a <strong>user acquisition hackathon</strong> — bringing together 7 teams in one room to define, prototype and test a solution in days. My role: moderate workshops, lead discovery, design wireframes and prototypes, and run user testing in the field.</p>
+  </div>
+
+  <div class="workshop-visual reveal d1">
+    <div class="workshop-left">
+      <h3>7 teams,<br><em>one goal</em></h3>
+      <p>Everyone from engineering to operations in the same room, aligned around a single north star: users earn their first 500 pesos within 12 hours of registering.</p>
+    </div>
+    <div class="workshop-teams">
+      <div class="workshop-team"><div class="wt-dot"></div><span class="wt-name">User Acquisition</span></div>
+      <div class="workshop-team"><div class="wt-dot"></div><span class="wt-name">Product</span></div>
+      <div class="workshop-team"><div class="wt-dot"></div><span class="wt-name">Engineering</span></div>
+      <div class="workshop-team"><div class="wt-dot"></div><span class="wt-name">Design</span></div>
+      <div class="workshop-team"><div class="wt-dot"></div><span class="wt-name">Data</span></div>
+      <div class="workshop-team"><div class="wt-dot"></div><span class="wt-name">Marketing</span></div>
+      <div class="workshop-team"><div class="wt-dot"></div><span class="wt-name">Operations</span></div>
+    </div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-left"><span class="timeline-num">01</span><span class="timeline-phase">Discovery</span></div>
+      <div class="timeline-right">
+        <h4>Moderate workshops & map the system</h4>
+        <p>Led cross-functional workshops to map the full onboarding system — from first lead contact to first completed task. Identified all the fragmented touchpoints causing drop-off.</p>
+        <div class="timeline-tags"><span class="ttag">Workshops</span><span class="ttag">System mapping</span><span class="ttag">FigJam</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><span class="timeline-num">02</span><span class="timeline-phase">Design</span></div>
+      <div class="timeline-right">
+        <h4>Wireframe, prototype & benchmark</h4>
+        <p>Benchmarked against Uber, Uber Eats and Lyft driver onboarding flows. Designed a single, guided app-first registration with monetary incentives built in.</p>
+        <div class="timeline-tags"><span class="ttag">Figma</span><span class="ttag">Prototyping</span><span class="ttag">Benchmark</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-left"><span class="timeline-num">03</span><span class="timeline-phase">Testing</span></div>
+      <div class="timeline-right">
+        <h4>User testing at store — in the real world</h4>
+        <p>Ran in-store usability tests directly with real leads at Walmart. Conducted interviews and phone calls to understand where the 50% drop-off was happening and why.</p>
+        <div class="timeline-tags"><span class="ttag">Usability testing</span><span class="ttag">Field research</span><span class="ttag">Phone interviews</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- HACKATHON — full slide image -->
-<div class="content wide">
-  <div class="full-img reveal">
-    <img src="zubale-hackathon.png" alt="User acquisition hackathon — cross-functional team working together"/>
-    <p class="img-caption">The hackathon — 7 teams, 1 goal: redesign onboarding end-to-end</p>
-  </div>
-</div>
-
-<!-- SOLUTION — split layout -->
+<!-- SOLUTION — real app screenshots -->
 <div class="split reveal">
   <div class="split-img">
-    <img src="zubale-solution.png" alt="Zubale app onboarding screens"/>
+    <img src="zubale-solution.png" alt="Zubale app onboarding screens — registration and dummy task"/>
   </div>
   <div class="split-text">
-    <span class="cap-badge">Solution · Phase 1</span>
-    <h3>App-first <em>onboarding</em><br>with $ incentives</h3>
-    <p>We moved the entire registration process into the Zubale app — a single, guided flow with monetary incentives for completion built right in.</p>
-    <p>The goal was clear: <strong>users earn their first 500 pesos within 12 hours of registering</strong> — creating immediate motivation to complete the process.</p>
+    <span class="cap-badge">Solution · App-first onboarding</span>
+    <h3>One flow,<br><em>zero friction</em></h3>
+    <p>The entire registration process consolidated inside the Zubale app — with $ incentives for completion and a guided dummy task that replaced in-store training entirely.</p>
+    <p>A WhatsApp chatbot provided live support throughout, and a tracking dashboard gave the team visibility into where each lead was in the funnel.</p>
   </div>
 </div>
 
-<!-- TESTING — split reverse -->
+<!-- TESTING — field photos -->
 <div class="split reverse reveal">
   <div class="split-img">
-    <img src="zubale-testing.png" alt="Live support and follow-up system"/>
+    <img src="zubale-deepdive.png" alt="In-store usability testing and user interviews"/>
   </div>
   <div class="split-text">
-    <span class="cap-badge">Solution · Phase 2 & 3</span>
-    <h3>Live support &<br><em>follow-up system</em></h3>
-    <p>We added a WhatsApp chatbot for live support during registration, and built a tracking system to identify where users dropped off in the funnel — so the team could re-engage at exactly the right moment.</p>
+    <span class="cap-badge">Testing · In the field</span>
+    <h3>Testing where<br>users <em>actually are</em></h3>
+    <p>We found a 50% drop-off at one specific step. By testing at the actual Walmart stores where leads were being recruited, we discovered users were completing onboarding just to get the reward — without real intent to work.</p>
+    <p>The fix: require completing at least 2 tasks to unlock the reward. Result: 2 out of 3 users now complete the full onboarding.</p>
   </div>
 </div>
 
-<!-- DEEP DIVE TESTING -->
+<!-- FINAL SCREENS — real screenshots -->
 <div class="content wide">
-  <div class="reveal">
-    <span class="section-tag">User Testing</span>
-    <h2 style="max-width:520px">Testing at store,<br><em>in the real world</em></h2>
-  </div>
-  <div class="full-img reveal d1">
-    <img src="zubale-deepdive.png" alt="Deep dive testing — in-store usability testing with real users"/>
-    <p class="img-caption">In-store usability testing, interviews and phone calls with real leads</p>
-  </div>
-</div>
-
-<!-- RESULTS CHART -->
-<div class="content wide">
-  <div class="reveal">
-    <span class="section-tag">Results</span>
-    <h2 style="max-width:520px">Conversion more than<br><em>doubled</em> after launch</h2>
-  </div>
-  <div class="full-img reveal d1">
-    <img src="zubale-results-chart.png" alt="Conversion rate before and after — 5.13% to 12.75%"/>
-    <p class="img-caption">Conversion to first task: 5.13% → 12.75% · Time to convert: 13.1 → 3.7 days</p>
-  </div>
-</div>
-
-<!-- BEFORE / AFTER STATS -->
-<div class="content">
-  <div class="before-after reveal">
-    <div class="ba-card before">
-      <span class="ba-label">Before</span>
-      <span class="ba-stat">5.13%</span>
-      <span class="ba-desc">Conversion to first task</span>
-      <span class="ba-stat" style="margin-top:20px">13.1 days</span>
-      <span class="ba-desc">Average time to convert</span>
-    </div>
-    <div class="ba-card after">
-      <span class="ba-label">After</span>
-      <span class="ba-stat highlight">12.75%</span>
-      <span class="ba-desc">Conversion to first task</span>
-      <span class="ba-stat highlight" style="margin-top:20px">3.7 days</span>
-      <span class="ba-desc">Average time to convert</span>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- REVAMP SCREENS -->
   <div class="reveal">
     <span class="section-tag">The Revamped Flow</span>
-    <h2>Standardized,<br><em>configurable</em> onboarding</h2>
-    <p class="body">After the initial hackathon results, we continued iterating toward a fully standardized and configurable onboarding — one that could be adapted per country, per operation, and per brand client like Walmart or Chedraui.</p>
+    <h2 style="max-width:520px">Standardized,<br><em>configurable</em> per country</h2>
+    <p class="body" style="max-width:640px">The revamped onboarding could be configured per country, operation, and brand client — audiovisual content, document requirements, bonus amounts — all without engineering support.</p>
   </div>
-</div>
-
-<!-- SCREENS — full width -->
-<div class="content wide">
-  <div class="full-img reveal">
-    <img src="zubale-screens.png" alt="Onboarding revamp screens — registration, documents, profiling"/>
-    <p class="img-caption">Final onboarding flow — registration, document upload, user profiling and operation matching</p>
+  <div class="full-img reveal d1">
+    <img src="zubale-screens.png" alt="Final onboarding flow — registration, documents, profiling and store matching"/>
+    <p class="img-caption">Final app flow — registration · document upload · user profiling · operation matching</p>
   </div>
 </div>
 
 <!-- CONFIG TOOL -->
 <div class="split reveal">
   <div class="split-img">
-    <img src="zubale-config-tool.png" alt="Onboarding configuration tool for operations team"/>
+    <img src="zubale-config-tool.png" alt="Internal onboarding configuration tool"/>
   </div>
   <div class="split-text">
-    <span class="cap-badge">Internal tool</span>
-    <h3>Onboarding<br><em>configuration tool</em></h3>
-    <p>We also designed an internal tool for the operations team to configure onboarding settings per brand — vehicle types, bonus amounts, required documents, audiovisual content — without engineering support.</p>
-    <p>This gave operations full control over the experience for each of their 100+ clients.</p>
+    <span class="cap-badge">Internal tool · Operations</span>
+    <h3>Config tool for<br><em>100+ clients</em></h3>
+    <p>Designed an internal tool so operations could configure onboarding settings per brand — vehicle types, bonus amounts, required documents, audiovisual content — without touching engineering.</p>
+    <p>This gave operations full autonomy over the experience for each of their 100+ clients across 6 countries.</p>
   </div>
 </div>
 
-<!-- PROCESS -->
-<div class="content wide">
-  <div class="reveal">
-    <span class="section-tag">The Process</span>
-    <h2 style="max-width:520px">Mapping the full<br><em>system</em></h2>
-  </div>
-  <div class="full-img reveal d1">
-    <img src="zubale-process.png" alt="System mapping and flow diagram"/>
-    <p class="img-caption">System mapping — full onboarding flow across all touchpoints and states</p>
-  </div>
-</div>
-
-<!-- RESULTS BOX -->
+<!-- RESULTS -->
 <div class="content">
+  <div class="reveal">
+    <span class="section-tag">Results</span>
+    <h2>Conversion more than<br><em>doubled</em> after launch</h2>
+  </div>
+
+  <div class="before-after reveal">
+    <div class="ba-card before">
+      <span class="ba-label">Before</span>
+      <span class="ba-num">5.13%</span>
+      <span class="ba-desc">Conversion to first task</span>
+      <div class="ba-divider"></div>
+      <span class="ba-num">13.1 days</span>
+      <span class="ba-desc">Average time to convert</span>
+    </div>
+    <div class="ba-card after">
+      <span class="ba-label">After</span>
+      <span class="ba-num">12.75%</span>
+      <span class="ba-desc">Conversion to first task</span>
+      <div class="ba-divider"></div>
+      <span class="ba-num">3.7 days</span>
+      <span class="ba-desc">Average time to convert</span>
+    </div>
+  </div>
+
+  <div class="full-img reveal">
+    <img src="zubale-results-chart.png" alt="Conversion rate chart before and after hackathon"/>
+    <p class="img-caption">Conversion rate over time — before and after the onboarding revamp</p>
+  </div>
+
   <div class="results-box reveal">
-    <span class="section-tag">Impact Summary</span>
+    <span class="section-tag">Impact summary</span>
     <h2>What we<br><em>achieved</em></h2>
     <div class="results-grid">
-      <div class="result-item">
-        <div class="result-icon">📈</div>
-        <div class="result-text">
-          <h4>2.5x conversion increase</h4>
-          <p>From 5.13% to 12.75% conversion to first task — achieved in weeks, not months.</p>
-        </div>
-      </div>
-      <div class="result-item">
-        <div class="result-icon">⚡</div>
-        <div class="result-text">
-          <h4>72% faster time to convert</h4>
-          <p>From 13.1 days to 3.7 days — users reached their first task 3.5x faster.</p>
-        </div>
-      </div>
-      <div class="result-item">
-        <div class="result-icon">📱</div>
-        <div class="result-text">
-          <h4>Single source of truth</h4>
-          <p>All onboarding consolidated in the app — no more fragmented channels or manual agent work.</p>
-        </div>
-      </div>
-      <div class="result-item">
-        <div class="result-icon">⚙️</div>
-        <div class="result-text">
-          <h4>Configurable per operation</h4>
-          <p>Operations team can configure onboarding per brand, country and operation — without engineering.</p>
-        </div>
-      </div>
+      <div class="result-item"><div class="result-icon">📈</div><div class="result-text"><h4>2.5x conversion increase</h4><p>From 5.13% to 12.75% conversion to first task — in weeks, not quarters.</p></div></div>
+      <div class="result-item"><div class="result-icon">⚡</div><div class="result-text"><h4>72% faster time to convert</h4><p>From 13.1 days to 3.7 days — workers reached their first task 3.5x faster.</p></div></div>
+      <div class="result-item"><div class="result-icon">📱</div><div class="result-text"><h4>Single source of truth</h4><p>All onboarding consolidated in the app — no more fragmented channels or manual work.</p></div></div>
+      <div class="result-item"><div class="result-icon">⚙️</div><div class="result-text"><h4>Configurable per operation</h4><p>Operations can configure onboarding per brand and country — zero engineering needed.</p></div></div>
     </div>
   </div>
 
   <div class="pull-quote reveal">
-    <p>"2 out of 3 users are now completing the onboarding — up from less than 1 in 20 before the revamp."</p>
+    <p>"2 out of 3 users now completing the full onboarding — up from less than 1 in 20 before the revamp."</p>
     <cite>Post-launch testing results · Zubale · 2022</cite>
   </div>
 </div>
@@ -412,7 +425,7 @@
 <div class="next reveal">
   <div>
     <div class="next-label">Next project</div>
-    <h3 class="next-title">Customer <em>Intelligence</em><br>Strategy</h3>
+    <h3 class="next-title">Customer <em>Intelligence</em> Strategy</h3>
   </div>
   <a href="project-twilio-strategy.html" class="next-link">View case study →</a>
 </div>
