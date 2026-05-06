@@ -102,6 +102,9 @@
     .project-thumb { width: 100%; height: 100%; transition: transform 0.5s var(--ease); }
     .arr { font-size: 22px; color: var(--pink); opacity: 0.35; transition: transform 0.3s var(--ease), opacity 0.3s; }
 
+    /* Mobile CTA — hidden on desktop, shown on mobile */
+    .mobile-cta { display: none; }
+
     /* Thumb mockups */
     .twilio-bg { background: linear-gradient(135deg, #1a1a0a 0%, #252518 50%, #1a1a0a 100%); width:100%; height:100%; padding:20px; display:flex; flex-direction:column; gap:10px; position:relative; }
     .mockup-topbar { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
@@ -180,6 +183,7 @@
       .project-card { grid-template-columns: 48px 1fr; }
       .project-card::before { left: -24px; right: -24px; }
       .project-right { display: none; }
+      .mobile-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 12px; font-weight: 500; color: var(--pink); border: 1.5px solid var(--pink); padding: 8px 16px; border-radius: 100px; align-self: flex-start; letter-spacing: 0.02em; }
       .about-section { grid-template-columns: 1fr; padding: 80px 24px; }
       .contact-section { padding: 80px 24px; }
       footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
@@ -245,6 +249,7 @@
   <div>
 
     <!-- 01 -->
+    <!-- 01 Twilio Customer Intelligence -->
     <a class="project-card reveal" href="project-twilio-strategy.html">
       <span class="project-num">01</span>
       <div class="project-info">
@@ -256,48 +261,62 @@
           <span class="tag">Systems Thinking</span>
         </div>
         <div class="project-impact">
-          <div class="impact-item">
-            <span class="impact-num">35K+</span>
-            <span class="impact-label">Active users</span>
-          </div>
-          <div class="impact-item">
-            <span class="impact-num">6</span>
-            <span class="impact-label">Products shipped</span>
-          </div>
+          <div class="impact-item"><span class="impact-num">35K+</span><span class="impact-label">Active users</span></div>
+          <div class="impact-item"><span class="impact-num">6</span><span class="impact-label">Products shipped</span></div>
         </div>
+        <span class="mobile-cta">View case study ↗</span>
       </div>
       <div class="project-right">
         <div class="project-thumb-wrap">
-          <div class="twilio-bg project-thumb">
-            <div class="mockup-topbar">
-              <div class="mockup-dot" style="background:var(--pink)"></div>
-              <span class="mockup-title">Messaging &amp; Email Observability</span>
+          <!-- Laptop mockup with dashboard inside -->
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#f5efe8 0%,#ede4d8 100%);display:flex;align-items:center;justify-content:center;padding:16px 12px 8px;">
+            <div style="width:100%;max-width:280px;">
+              <!-- Screen -->
+              <div style="background:#1a1a12;border-radius:8px 8px 0 0;padding:6px 8px 0;border:2.5px solid #2a2a1a;border-bottom:none;position:relative;">
+                <!-- Browser chrome -->
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:5px;">
+                  <div style="width:5px;height:5px;border-radius:50%;background:#F22F46;opacity:.8;"></div>
+                  <div style="width:5px;height:5px;border-radius:50%;background:#8B8427;opacity:.8;"></div>
+                  <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);"></div>
+                  <div style="flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;margin-left:4px;"></div>
+                </div>
+                <!-- Dashboard content -->
+                <div style="display:flex;gap:4px;height:80px;">
+                  <div style="width:28%;display:flex;flex-direction:column;gap:3px;">
+                    <div style="background:rgba(242,47,70,.15);border-left:2px solid #F22F46;border-radius:2px;padding:3px 4px;flex:1;">
+                      <div style="height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-bottom:2px;"></div>
+                      <div style="height:3px;background:rgba(255,255,255,.08);border-radius:2px;width:60%;"></div>
+                    </div>
+                    <div style="background:rgba(255,255,255,.04);border-radius:2px;padding:3px 4px;flex:1;">
+                      <div style="height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin-bottom:2px;"></div>
+                      <div style="height:3px;background:rgba(255,255,255,.06);border-radius:2px;width:70%;"></div>
+                    </div>
+                  </div>
+                  <div style="flex:1;background:rgba(255,255,255,.03);border-radius:2px;padding:5px 6px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;">
+                    <div style="display:flex;align-items:flex-end;gap:2px;height:50px;">
+                      <div style="flex:1;background:rgba(242,47,70,.35);border-radius:1px 1px 0 0;" style="height:40%"></div>
+                      <div style="flex:1;height:65%;background:rgba(242,47,70,.5);border-radius:1px 1px 0 0;"></div>
+                      <div style="flex:1;height:30%;background:rgba(255,255,255,.08);border-radius:1px 1px 0 0;"></div>
+                      <div style="flex:1;height:85%;background:rgba(242,47,70,.65);border-radius:1px 1px 0 0;"></div>
+                      <div style="flex:1;height:50%;background:rgba(242,47,70,.4);border-radius:1px 1px 0 0;"></div>
+                      <div style="flex:1;height:70%;background:rgba(242,47,70,.55);border-radius:1px 1px 0 0;"></div>
+                      <div style="flex:1;height:95%;background:rgba(242,47,70,.7);border-radius:1px 1px 0 0;"></div>
+                    </div>
+                    <div style="height:1px;background:rgba(255,255,255,.08);"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Laptop base -->
+              <div style="background:#2a2a1a;height:5px;border-radius:0 0 3px 3px;"></div>
+              <div style="background:#222218;height:3px;border-radius:0 0 6px 6px;margin:0 8px;"></div>
             </div>
-            <div class="mockup-row">
-              <div class="mockup-bar" style="width:35%;background:rgba(200,55,90,0.5)"></div>
-              <div class="mockup-bar" style="width:20%"></div>
-            </div>
-            <div class="mockup-row">
-              <div class="mockup-bar" style="width:60%"></div>
-            </div>
-            <div class="mockup-chart">
-              <div class="m-col" style="height:45%;background:rgba(200,55,90,0.45)"></div>
-              <div class="m-col" style="height:70%;background:rgba(200,55,90,0.55)"></div>
-              <div class="m-col" style="height:30%;background:rgba(255,255,255,0.1)"></div>
-              <div class="m-col" style="height:85%;background:rgba(200,55,90,0.65)"></div>
-              <div class="m-col" style="height:50%;background:rgba(200,55,90,0.4)"></div>
-              <div class="m-col" style="height:65%;background:rgba(200,55,90,0.5)"></div>
-              <div class="m-col" style="height:95%;background:rgba(200,55,90,0.7)"></div>
-              <div class="m-col" style="height:55%;background:rgba(200,55,90,0.4)"></div>
-            </div>
-            <div class="mockup-label">Customer Intelligence Suite</div>
           </div>
         </div>
         <span class="arr">↗</span>
       </div>
     </a>
 
-    <!-- 02 -->
+    <!-- 02 Messaging Insights -->
     <a class="project-card reveal reveal-delay-1" href="project-twilio-insights.html">
       <span class="project-num">02</span>
       <div class="project-info">
@@ -309,38 +328,42 @@
           <span class="tag">B2B SaaS</span>
         </div>
         <div class="project-impact">
-          <div class="impact-item">
-            <span class="impact-num">125K</span>
-            <span class="impact-label">Quarterly users</span>
-          </div>
-          <div class="impact-item">
-            <span class="impact-num">−30m</span>
-            <span class="impact-label">Troubleshoot time</span>
-          </div>
+          <div class="impact-item"><span class="impact-num">125K</span><span class="impact-label">Quarterly users</span></div>
+          <div class="impact-item"><span class="impact-num">−30m</span><span class="impact-label">Troubleshoot time</span></div>
         </div>
+        <span class="mobile-cta">View case study ↗</span>
       </div>
       <div class="project-right">
         <div class="project-thumb-wrap">
-          <div class="alerts-bg project-thumb">
-            <div class="alert-row">
-              <div class="a-dot"></div>
-              <div class="a-lines"><div class="a-line"></div><div class="a-line s"></div></div>
-              <span class="a-badge">Warning</span>
-            </div>
-            <div class="alert-row dim">
-              <div class="a-dot dim"></div>
-              <div class="a-lines"><div class="a-line"></div><div class="a-line s"></div></div>
-              <span class="a-badge dim">Resolved</span>
-            </div>
-            <div class="alert-row">
-              <div class="a-dot"></div>
-              <div class="a-lines"><div class="a-line"></div><div class="a-line s"></div></div>
-              <span class="a-badge">Critical</span>
-            </div>
-            <div class="alert-row dim">
-              <div class="a-dot dim"></div>
-              <div class="a-lines"><div class="a-line"></div><div class="a-line s"></div></div>
-              <span class="a-badge dim">Resolved</span>
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0808 0%,#2a0f0f 100%);display:flex;align-items:center;justify-content:center;padding:16px 12px 8px;">
+            <div style="width:100%;max-width:280px;">
+              <div style="background:#120808;border-radius:8px 8px 0 0;padding:6px 8px 8px;border:2.5px solid #2a1010;border-bottom:none;">
+                <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+                  <div style="width:5px;height:5px;border-radius:50%;background:#F22F46;opacity:.8;"></div>
+                  <div style="width:5px;height:5px;border-radius:50%;background:#8B8427;opacity:.8;"></div>
+                  <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.15);"></div>
+                  <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;margin-left:4px;"></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:3px;">
+                  <div style="background:rgba(242,47,70,.12);border:1px solid rgba(242,47,70,.3);border-radius:3px;padding:4px 6px;display:flex;align-items:center;gap:5px;">
+                    <div style="width:5px;height:5px;border-radius:50%;background:#F22F46;"></div>
+                    <div style="flex:1;height:3px;background:rgba(255,255,255,.12);border-radius:2px;"></div>
+                    <div style="font-size:5px;background:rgba(242,47,70,.3);color:#F22F46;padding:1px 4px;border-radius:2px;font-family:var(--sans);letter-spacing:.05em;">Critical</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:3px;padding:4px 6px;display:flex;align-items:center;gap:5px;">
+                    <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);"></div>
+                    <div style="flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:2px;"></div>
+                    <div style="font-size:5px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.3);padding:1px 4px;border-radius:2px;font-family:var(--sans);">Resolved</div>
+                  </div>
+                  <div style="background:rgba(242,47,70,.08);border:1px solid rgba(242,47,70,.2);border-radius:3px;padding:4px 6px;display:flex;align-items:center;gap:5px;">
+                    <div style="width:5px;height:5px;border-radius:50%;background:rgba(242,47,70,.7);"></div>
+                    <div style="flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;"></div>
+                    <div style="font-size:5px;background:rgba(242,47,70,.2);color:#F22F46;padding:1px 4px;border-radius:2px;font-family:var(--sans);">Warning</div>
+                  </div>
+                </div>
+              </div>
+              <div style="background:#1e0e0e;height:5px;border-radius:0 0 3px 3px;"></div>
+              <div style="background:#180c0c;height:3px;border-radius:0 0 6px 6px;margin:0 8px;"></div>
             </div>
           </div>
         </div>
@@ -359,12 +382,51 @@
           <div class="impact-item"><span class="impact-num">2.5x</span><span class="impact-label">Conversion rate</span></div>
           <div class="impact-item"><span class="impact-num">−72%</span><span class="impact-label">Time to convert</span></div>
         </div>
+        <span class="mobile-cta">View case study ↗</span>
       </div>
       <div class="project-right">
-        <div class="project-thumb-wrap" style="background:var(--dark);">
-          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
-            <span style="font-size:64px;font-weight:900;color:rgba(139,132,39,0.2);font-family:var(--sans);">Z</span>
-            <span style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);font-family:var(--sans);">Zubale · 2022</span>
+        <div class="project-thumb-wrap">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#e8f0ff 0%,#c8d8ff 100%);display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 8px;">
+            <!-- Phone 1 (slightly tilted) -->
+            <div style="transform:rotate(-4deg) translateY(6px);flex-shrink:0;">
+              <div style="width:54px;background:#fff;border-radius:10px;border:2px solid #ddd;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.15);">
+                <div style="background:#2233FF;height:8px;display:flex;align-items:center;justify-content:center;"><div style="width:12px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
+                <div style="padding:4px;background:#f4f6ff;">
+                  <div style="background:#2233FF;border-radius:3px;height:20px;margin-bottom:3px;display:flex;align-items:center;justify-content:center;"><div style="width:20px;height:3px;background:rgba(255,255,255,.6);border-radius:2px;"></div></div>
+                  <div style="height:3px;background:#e0e4ff;border-radius:2px;margin-bottom:2px;"></div>
+                  <div style="height:3px;background:#e0e4ff;border-radius:2px;width:70%;margin-bottom:4px;"></div>
+                  <div style="background:#2233FF;border-radius:3px;height:10px;display:flex;align-items:center;justify-content:center;"><div style="width:16px;height:2px;background:rgba(255,255,255,.7);border-radius:2px;"></div></div>
+                </div>
+                <div style="background:#eee;height:3px;margin:0 auto;width:16px;border-radius:0 0 4px 4px;"></div>
+              </div>
+            </div>
+            <!-- Phone 2 (front, straight) -->
+            <div style="flex-shrink:0;">
+              <div style="width:60px;background:#fff;border-radius:11px;border:2px solid #ccc;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.2);">
+                <div style="background:#1a28cc;height:9px;display:flex;align-items:center;justify-content:center;"><div style="width:14px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
+                <div style="padding:5px;background:#fff;">
+                  <div style="height:3px;background:#2233FF;border-radius:2px;margin-bottom:3px;width:60%;"></div>
+                  <div style="height:22px;background:linear-gradient(135deg,#e8ecff,#d0d8ff);border-radius:4px;margin-bottom:3px;"></div>
+                  <div style="height:3px;background:#eee;border-radius:2px;margin-bottom:2px;"></div>
+                  <div style="height:3px;background:#eee;border-radius:2px;width:75%;margin-bottom:4px;"></div>
+                  <div style="background:#2233FF;border-radius:3px;height:9px;"></div>
+                </div>
+                <div style="background:#ddd;height:3px;margin:0 auto;width:18px;border-radius:0 0 5px 5px;"></div>
+              </div>
+            </div>
+            <!-- Phone 3 (right, tilted) -->
+            <div style="transform:rotate(4deg) translateY(6px);flex-shrink:0;">
+              <div style="width:54px;background:#fff;border-radius:10px;border:2px solid #ddd;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.15);">
+                <div style="background:#2233FF;height:8px;display:flex;align-items:center;justify-content:center;"><div style="width:12px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
+                <div style="padding:4px;background:#f4f6ff;">
+                  <div style="height:3px;background:#c0c8ff;border-radius:2px;margin-bottom:2px;"></div>
+                  <div style="height:3px;background:#c0c8ff;border-radius:2px;width:80%;margin-bottom:3px;"></div>
+                  <div style="height:14px;background:linear-gradient(135deg,#d0d8ff,#b8c4ff);border-radius:3px;margin-bottom:3px;"></div>
+                  <div style="background:#2233FF;border-radius:3px;height:10px;opacity:.7;"></div>
+                </div>
+                <div style="background:#eee;height:3px;margin:0 auto;width:16px;border-radius:0 0 4px 4px;"></div>
+              </div>
+            </div>
           </div>
         </div>
         <span class="arr">↗</span>
@@ -378,10 +440,39 @@
         <span class="project-company"><span class="company-dot" style="background:#FFE600"></span>Mercado Libre · 2023</span>
         <h3 class="project-name">Live<br><em>Commerce</em></h3>
         <div class="project-tags"><span class="tag">Interaction Design</span><span class="tag">Live Video</span><span class="tag">E-commerce</span></div>
+        <span class="mobile-cta">View case study ↗</span>
       </div>
       <div class="project-right">
         <div class="project-thumb-wrap">
-          <img src="Pantalla_inicial.png" alt="MeLi Live Commerce" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1600 0%,#2a2400 100%);display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 8px;">
+            <!-- Phone with MeLi screen -->
+            <div style="transform:rotate(-3deg) translateY(4px);flex-shrink:0;">
+              <div style="width:52px;background:#111;border-radius:10px;border:2px solid #333;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.4);">
+                <div style="background:#FFE600;height:7px;display:flex;align-items:center;padding:0 4px;"><div style="width:10px;height:2px;background:rgba(0,0,0,.2);border-radius:2px;"></div></div>
+                <div style="background:#111;padding:3px;height:65px;display:flex;flex-direction:column;gap:2px;">
+                  <div style="background:#222;border-radius:2px;flex:2;"></div>
+                  <div style="background:#1a1a1a;border-radius:2px;padding:3px;flex:1;display:flex;gap:2px;">
+                    <div style="width:18px;background:#FFE600;border-radius:2px;border:1px solid #FFD000;"></div>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:1px;justify-content:center;"><div style="height:2px;background:#444;border-radius:1px;"></div><div style="height:2px;background:#333;border-radius:1px;width:70%;"></div></div>
+                  </div>
+                </div>
+                <div style="background:#222;height:3px;margin:0 auto;width:14px;border-radius:0 0 4px 4px;"></div>
+              </div>
+            </div>
+            <div style="flex-shrink:0;">
+              <div style="width:60px;background:#111;border-radius:11px;border:2px solid #2a2a2a;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.5);">
+                <div style="background:#FFE600;height:9px;display:flex;align-items:center;padding:0 5px;gap:3px;"><div style="width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.2);"></div><div style="font-size:5px;color:rgba(0,0,0,.5);font-family:var(--sans);font-weight:700;">● VIVO</div></div>
+                <div style="background:#111;padding:3px;height:72px;position:relative;">
+                  <div style="background:#222;border-radius:3px;height:32px;margin-bottom:3px;display:flex;align-items:center;justify-content:center;"><div style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);"></div></div>
+                  <div style="display:flex;gap:2px;">
+                    <div style="width:22px;background:#FFE600;border-radius:2px;border:1.5px solid #FFD000;height:26px;"></div>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:2px;"><div style="background:#222;border-radius:2px;height:12px;"></div><div style="background:#1e1e1e;border-radius:2px;height:12px;"></div></div>
+                  </div>
+                </div>
+                <div style="background:#222;height:3px;margin:0 auto;width:18px;border-radius:0 0 5px 5px;"></div>
+              </div>
+            </div>
+          </div>
         </div>
         <span class="arr">↗</span>
       </div>
@@ -398,20 +489,35 @@
           <div class="impact-item"><span class="impact-num">16%</span><span class="impact-label">Support tickets targeted</span></div>
           <div class="impact-item"><span class="impact-num">17</span><span class="impact-label">Users tested</span></div>
         </div>
+        <span class="mobile-cta">View case study ↗</span>
       </div>
       <div class="project-right">
-        <div class="project-thumb-wrap" style="background:#1a0510;">
-          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
-            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-              <div style="width:18px;height:18px;border-radius:50%;background:#C0186C;display:flex;align-items:center;justify-content:center;"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div style="width:24px;height:2px;background:#C0186C;border-radius:2px;"></div>
-              <div style="width:18px;height:18px;border-radius:50%;background:#C0186C;display:flex;align-items:center;justify-content:center;"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div style="width:24px;height:2px;background:rgba(192,24,108,0.4);border-radius:2px;"></div>
-              <div style="width:18px;height:18px;border-radius:50%;background:rgba(192,24,108,0.35);border:2px solid #C0186C;animation:pulse 2s infinite;"></div>
-              <div style="width:24px;height:2px;background:rgba(255,255,255,0.08);border-radius:2px;"></div>
-              <div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.12);"></div>
+        <div class="project-thumb-wrap">
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#fce8f3 0%,#f5c8e3 100%);display:flex;align-items:center;justify-content:center;padding:12px 8px;">
+            <div style="flex-shrink:0;">
+              <div style="width:68px;background:#fff;border-radius:12px;border:2px solid #ddd;overflow:hidden;box-shadow:0 12px 28px rgba(192,24,108,.2);">
+                <div style="background:#C0186C;height:9px;display:flex;align-items:center;justify-content:center;"><div style="width:14px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
+                <div style="padding:5px;background:#fff;">
+                  <!-- ETA header -->
+                  <div style="background:#fce8f3;border-radius:3px;padding:3px 4px;margin-bottom:4px;"><div style="height:3px;background:#C0186C;border-radius:2px;width:60%;margin-bottom:1px;"></div><div style="height:2px;background:#e0a0c0;border-radius:2px;width:40%;"></div></div>
+                  <!-- Horizontal tracker -->
+                  <div style="display:flex;align-items:center;gap:2px;margin-bottom:4px;padding:0 2px;">
+                    <div style="width:10px;height:10px;border-radius:50%;background:#C0186C;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;border-radius:50%;background:#fff;"></div></div>
+                    <div style="flex:1;height:2px;background:#C0186C;border-radius:1px;"></div>
+                    <div style="width:10px;height:10px;border-radius:50%;background:#C0186C;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;border-radius:50%;background:#fff;"></div></div>
+                    <div style="flex:1;height:2px;background:rgba(192,24,108,.25);border-radius:1px;"></div>
+                    <div style="width:10px;height:10px;border-radius:50%;background:rgba(192,24,108,.2);border:2px solid #C0186C;flex-shrink:0;"></div>
+                    <div style="flex:1;height:2px;background:rgba(0,0,0,.08);border-radius:1px;"></div>
+                    <div style="width:10px;height:10px;border-radius:50%;background:#eee;flex-shrink:0;"></div>
+                  </div>
+                  <!-- Content lines -->
+                  <div style="height:2px;background:#eee;border-radius:2px;margin-bottom:2px;"></div>
+                  <div style="height:2px;background:#eee;border-radius:2px;width:75%;margin-bottom:2px;"></div>
+                  <div style="height:8px;background:#f5e8f0;border-radius:2px;margin-top:3px;"></div>
+                </div>
+                <div style="background:#ddd;height:3px;margin:0 auto;width:18px;border-radius:0 0 5px 5px;"></div>
+              </div>
             </div>
-            <span style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(192,24,108,0.7);font-family:var(--sans);margin-top:4px;">En camino · ETA 6:35 am</span>
           </div>
         </div>
         <span class="arr">↗</span>
