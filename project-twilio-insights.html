@@ -103,6 +103,11 @@
     .results-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:32px 0;border-radius:16px;overflow:hidden;}
     .result-card{background:var(--dark);padding:32px 28px;display:flex;flex-direction:column;gap:6px;}
     .result-num{font-family:var(--serif);font-size:36px;font-weight:900;color:var(--gold);letter-spacing:-1.5px;line-height:1;}
+    .confidential{filter:blur(5px);user-select:none;transition:filter .3s;cursor:default;}
+    .confidential-wrap{position:relative;display:inline-block;}
+    .confidential-wrap .conf-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(26,26,18,0.85);padding:2px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;transition:opacity .3s;}
+    .confidential-wrap:hover .conf-label{opacity:0;}
+    .confidential-wrap:hover .confidential{filter:blur(0);}
     .result-label{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5;}
 
     /* NEXT */
@@ -119,7 +124,12 @@
     .reveal.visible{opacity:1;transform:translateY(0);}
     .d1{transition-delay:.1s;} .d2{transition-delay:.2s;}
 
+    
     @media(max-width:900px){
+      .cursor,.cursor-ring{display:none;}
+      body{cursor:auto;}
+      .hero{padding-top:90px;}
+
       nav{padding:18px 24px;}
       .hero{padding:110px 24px 52px;}
       .meta-grid{grid-template-columns:1fr 1fr;gap:20px;}
@@ -159,7 +169,7 @@
   <div class="meta-grid">
     <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Senior Product Designer — end-to-end redesign</span></div>
     <div class="meta-item"><span class="meta-label">Focus areas</span><span class="meta-value">Data viz · Filters · Navigation · Design systems</span></div>
-    <div class="meta-item"><span class="meta-label">Users</span><span class="meta-value">35,000+ daily active users monitoring SMS & email campaigns</span></div>
+    <div class="meta-item"><span class="meta-label">Users</span><span class="meta-value"><span class="confidential-wrap"><span class="confidential">35,000+</span><span class="conf-label">hover</span></span> daily active users monitoring SMS & email campaigns</span></div>
     <div class="meta-item"><span class="meta-label">Impact</span><span class="meta-value">Chart pattern adopted across Twilio's design org</span></div>
   </div>
 </section>
@@ -295,7 +305,7 @@
 
   <div class="results-row reveal d2">
     <div class="result-card">
-      <span class="result-num">35K+</span>
+      <span class="result-num"><span class="confidential-wrap"><span class="confidential">35K+</span><span class="conf-label">hover to reveal</span></span></span>
       <span class="result-label">Daily active users impacted by the redesign</span>
     </div>
     <div class="result-card">
