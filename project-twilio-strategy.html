@@ -39,7 +39,6 @@
     .badge-year{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.08em;}
     .hero-title{font-family:var(--serif);font-size:clamp(48px,7vw,100px);font-weight:900;line-height:.9;letter-spacing:-2.5px;margin-bottom:48px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
     .hero-title em{font-style:italic;color:var(--gold);}
-    .hero-summary{font-size:16px;line-height:1.7;color:var(--mid);max-width:600px;margin-bottom:40px;font-weight:300;opacity:0;animation:fadeUp .8s var(--ease) .3s forwards;}
     .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.08);opacity:0;animation:fadeUp .8s var(--ease) .35s forwards;}
     .meta-item{display:flex;flex-direction:column;gap:5px;}
     .meta-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
@@ -76,12 +75,6 @@
     .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:56px 0;border-radius:16px;overflow:hidden;}
     .stat-block{background:#1a1a0d;padding:44px 36px;display:flex;flex-direction:column;gap:8px;}
     .stat-num{font-family:var(--serif);font-size:clamp(36px,5vw,60px);font-weight:900;color:#c4bb50;letter-spacing:-1.5px;line-height:1;}
-    .confidential{filter:blur(5px);user-select:none;transition:filter .3s;cursor:default;position:relative;}
-    .confidential:hover{filter:blur(0);}
-    .confidential-wrap{position:relative;display:inline-block;}
-    .confidential-wrap .conf-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(240,239,216,0.9);padding:2px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;opacity:1;transition:opacity .3s;}
-    .confidential-wrap:hover .conf-label{opacity:0;}
-    .confidential-wrap:hover .confidential{filter:blur(0);}
     .stat-label{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.4;}
 
     /* QUOTE */
@@ -114,6 +107,14 @@
     .journey-step{flex:1;display:flex;flex-direction:column;gap:10px;position:relative;padding-top:44px;padding-right:12px;}
     .step-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);position:absolute;top:15px;left:0;}
     .step-dot.dim{background:rgba(139,132,39,0.3);}
+    .step-dot.active{background:var(--gold);}
+    .step-product{font-size:10px;color:var(--gold);letter-spacing:.08em;margin-top:4px;font-weight:500;}
+    .journey-step.dim{opacity:.4;}
+    .confidential{filter:blur(5px);user-select:none;transition:filter .3s;cursor:default;}
+    .confidential-wrap{position:relative;display:inline-block;}
+    .confidential-wrap .conf-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(26,26,18,0.85);padding:2px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;transition:opacity .3s;}
+    .confidential-wrap:hover .conf-label{opacity:0;}
+    .confidential-wrap:hover .confidential{filter:blur(0);}
     .step-num{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(139,132,39,0.5);}
     .step-name{font-size:12px;font-weight:500;color:rgba(255,255,255,0.75);}
     .step-desc{font-size:10px;color:rgba(255,255,255,0.28);line-height:1.5;}
@@ -147,12 +148,7 @@
     .reveal.visible{opacity:1;transform:translateY(0);}
     .d1{transition-delay:.1s;} .d2{transition-delay:.2s;}
 
-    
     @media(max-width:900px){
-      .cursor,.cursor-ring{display:none;}
-      body{cursor:auto;}
-      .hero{padding-top:90px;}
-
       nav{padding:18px 24px;}
       .hero{padding:110px 24px 52px;}
       .meta-grid{grid-template-columns:1fr 1fr;gap:20px;}
@@ -197,199 +193,144 @@
     <span class="badge-year">2024 – 2026</span>
   </div>
   <h1 class="hero-title">Customer<br><em>Intelligence</em><br>Strategy</h1>
-  <p class="hero-summary">How I led end-to-end design for a suite of monitoring and troubleshooting tools at Twilio — from defining strategy and running discovery, to shipping 6 products used by 35K+ engineers daily to keep their SMS and email messaging healthy.</p>
+  <p class="hero-summary">How I helped define the strategic vision for Twilio's observability suite — mapping the full troubleshooting journey, leading cross-functional discovery, and aligning design, product, and engineering around a system that shifts users from reactive firefighting to proactive control.</p>
   <div class="meta-grid">
-    <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Product Designer L3 — strategy, research & design</span></div>
+    <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Product Designer L3 — research, strategy & systems thinking</span></div>
     <div class="meta-item"><span class="meta-label">Team</span><span class="meta-value">Staff PD · PM · Engineering · Data Science · UXR</span></div>
-    <div class="meta-item"><span class="meta-label">Scope</span><span class="meta-value">Messaging & Email Observability — Logs, Insights, Intelligence</span></div>
-    <div class="meta-item"><span class="meta-label">Impact</span><span class="meta-value">35K+ active users · 6 products · −30 min troubleshoot time</span></div>
+    <div class="meta-item"><span class="meta-label">Scope</span><span class="meta-value">Messaging & Email Observability — full journey definition</span></div>
+    <div class="meta-item"><span class="meta-label">Methods</span><span class="meta-value">User interviews · JTBD · Journey mapping · 10+ workshops</span></div>
   </div>
 </section>
-
 
 <!-- OVERVIEW -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">Overview</span>
-    <h2>How we mapped the full<br><em>observability journey</em></h2>
-    <p class="body">Twilio customers rely on messaging and email as the backbone of their product. When something breaks, every minute counts. But before this initiative, <strong>troubleshooting was reactive, manual, and fragmented</strong> across disconnected tools.</p>
-    <p class="body">I partnered with a Staff Product Designer to lead a comprehensive customer journey initiative: mapping how Twilio's users detect, investigate, fix, and optimize their communications across Logs, Insights, and Intelligence.</p>
+    <span class="section-tag">The Situation</span>
+    <h2>Twilio customers were<br><em>flying blind</em></h2>
+    <p class="body">Twilio's messaging infrastructure powers billions of messages across SMS, email, and WhatsApp. When something breaks — a carrier filtering spike, a sudden drop in deliverability, a fraud wave — every minute without visibility translates into failed OTPs, missed alerts, and lost revenue for their customers.</p>
+    <p class="body">Before this initiative, <strong>troubleshooting was entirely reactive</strong>. There was no proactive detection, no guided diagnosis, and no clear path from "something's wrong" to "here's what to do." Users cobbled together answers from disconnected logs, manual CSV exports, and Twilio support tickets.</p>
+    <p class="body">My work here was not about designing screens — it was about <strong>defining what the system should be</strong>: which products to build, how they connect, and what job each one does in the user's troubleshooting journey.</p>
   </div>
 
   <div class="stat-row reveal">
-    <div class="stat-block"><span class="stat-num"><span class="confidential-wrap"><span class="confidential">35K+</span><span class="conf-label">hover to reveal</span></span></span><span class="stat-label">accounts using Messaging Insights every quarter</span></div>
-    <div class="stat-block"><span class="stat-num"><span class="confidential-wrap"><span class="confidential">125K</span><span class="conf-label">hover to reveal</span></span></span><span class="stat-label">parent accounts visiting Messaging Logs every quarter</span></div>
-    <div class="stat-block"><span class="stat-num"><span class="confidential-wrap"><span class="confidential">−30m</span><span class="conf-label">hover to reveal</span></span></span><span class="stat-label">reduction in average troubleshooting time post-launch</span></div>
+    <div class="stat-block">
+      <span class="stat-num"><span class="confidential-wrap"><span class="confidential">35K+</span><span class="conf-label">hover to reveal</span></span></span>
+      <span class="stat-label">Accounts using Messaging Insights every quarter</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num"><span class="confidential-wrap"><span class="confidential">125K</span><span class="conf-label">hover to reveal</span></span></span>
+      <span class="stat-label">Parent accounts visiting Messaging Logs every quarter</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num"><span class="confidential-wrap"><span class="confidential">−30m</span><span class="conf-label">hover to reveal</span></span></span>
+      <span class="stat-label">Reduction in average troubleshooting time post-launch</span>
+    </div>
   </div>
 
   <hr>
 
   <div class="reveal">
-    <span class="section-tag">The Problem</span>
-    <h2>Reactive by default,<br><em>blind by design</em></h2>
-    <p class="body">Through extensive customer research, we uncovered a critical pattern: <strong>customers only found out about issues after they happened.</strong> No proactive detection, no guided diagnosis, no clear path from alert to resolution.</p>
+    <span class="section-tag">Research · What we heard</span>
+    <h2>The same pain,<br><em>across every persona</em></h2>
+    <p class="body">We ran interviews across 6 customer persona types — from on-call engineers to marketing leads to ISV platform owners. The core frustration was consistent: <strong>no one could tell what was happening until it was already a problem.</strong></p>
   </div>
 
   <div class="insight-grid reveal">
     <div class="insight-card">
+      <span class="insight-tag">On-call Engineer</span>
+      <blockquote>"If the AI bot said it seems like all T-Mobile messages are failing for this reason — that would have saved us 20–30 minutes."</blockquote>
+    </div>
+    <div class="insight-card">
       <span class="insight-tag">Engineering Manager</span>
       <blockquote>"Determining where that problem started is a big challenge… Maybe it's AT&T, maybe it was our partner. It's really hard to isolate."</blockquote>
-      <cite>Enterprise Customer</cite>
     </div>
     <div class="insight-card">
-      <span class="insight-tag">On-Call Engineer</span>
-      <blockquote>"If the AI bot said it seems like all T-mobile messages are failing for this reason — that would have saved us 20–30 minutes."</blockquote>
-      <cite>Engineering Manager at Enterprise</cite>
+      <span class="insight-tag">High-volume sender</span>
+      <blockquote>"We're always every day looking at carrier filtering, opening tickets to understand why it was filtered and if we can appeal it."</blockquote>
     </div>
     <div class="insight-card">
-      <span class="insight-tag">Support Engineer</span>
-      <blockquote>"We're always every day looking at our carrier filtering, opening tickets to understand why it was filtered and if we can appeal it."</blockquote>
-      <cite>High-volume messaging customer</cite>
-    </div>
-    <div class="insight-card">
-      <span class="insight-tag">Marketing Lead</span>
+      <span class="insight-tag">ISV Platform Owner</span>
       <blockquote>"She must check each market's sub-account individually — complex and time-consuming across their numerous markets."</blockquote>
-      <cite>ISV Customer</cite>
     </div>
   </div>
 
   <hr>
 
   <div class="reveal">
-    <span class="section-tag">My Approach</span>
-    <h2>From research to<br><em>strategic vision</em></h2>
+    <span class="section-tag">Strategic Framework</span>
+    <h2>Defining the<br><em>troubleshooting journey</em></h2>
+    <p class="body">The core output of this strategy work was a <strong>7-step observability journey</strong> — a shared framework that aligned design, product, and engineering around what users actually need at each stage of monitoring and troubleshooting. This journey became the north star for every product decision that followed.</p>
+    <p class="body">Each step maps to a specific product or feature. The question was no longer "what should we build?" but "which step of the journey is broken, and what's the minimum intervention that fixes it?"</p>
+  </div>
+</div>
+
+<!-- JOURNEY FRAMEWORK — wide -->
+<div class="content wide">
+  <div class="journey-viz reveal">
+    <div class="journey-title-sm">Messaging Observability Journey — from detection to optimization</div>
+    <div class="journey-steps">
+      <div class="journey-step active"><div class="step-dot active"></div><span class="step-num">01</span><span class="step-name">Detect</span><span class="step-desc">Intelligent Alerts proactively notify on anomalies via ML</span><span class="step-product">→ Intelligent Alerts</span></div>
+      <div class="journey-step active"><div class="step-dot active"></div><span class="step-num">02</span><span class="step-name">Monitor</span><span class="step-desc">Dashboards show delivery, engagement, and fraud trends over time</span><span class="step-product">→ Messaging Insights</span></div>
+      <div class="journey-step active"><div class="step-dot active"></div><span class="step-num">03</span><span class="step-name">Investigate</span><span class="step-desc">AI assistant surfaces root causes from logs and traffic data instantly</span><span class="step-product">→ AI Assistant</span></div>
+      <div class="journey-step active"><div class="step-dot active"></div><span class="step-num">04</span><span class="step-name">Diagnose</span><span class="step-desc">Drill into error codes, carriers, subaccounts — Health Score gives the full picture</span><span class="step-product">→ Health Score</span></div>
+      <div class="journey-step active"><div class="step-dot active"></div><span class="step-num">05</span><span class="step-name">Fix</span><span class="step-desc">Personalized recommendations guide resolution with step-by-step actions</span><span class="step-product">→ Recommendations</span></div>
+      <div class="journey-step"><div class="step-dot"></div><span class="step-num">06</span><span class="step-name">Validate</span><span class="step-desc">Review Insights and Logs to confirm the fix worked and metrics recovered</span><span class="step-product">→ Messaging Logs</span></div>
+      <div class="journey-step dim"><div class="step-dot dim"></div><span class="step-num">07</span><span class="step-name">Optimize</span><span class="step-desc">Traffic optimization, A/B testing, Engagement Suite for long-term performance</span><span class="step-product">→ Engagement Suite</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MY CONTRIBUTION -->
+<div class="content">
+  <div class="reveal">
+    <span class="section-tag">My Contribution</span>
+    <h2>Strategy, alignment,<br><em>and a shared language</em></h2>
+    <p class="body">My role in this project was to bring structure to a complex, multi-team problem. I led the design strategy work — not just the visuals, but the thinking that shaped what got built.</p>
   </div>
 
   <div class="phase-grid reveal">
     <div class="phase-card">
       <span class="phase-num">01</span>
-      <span class="phase-name">Discovery</span>
-      <p class="phase-desc">Customer interviews across 6 persona types. Synthesized pain points, JTBD, and use cases for monitoring & troubleshooting.</p>
-      <div class="phase-tools"><span class="phase-tool">User interviews</span><span class="phase-tool">JTBD</span><span class="phase-tool">Marvin</span></div>
+      <span class="phase-name">Discovery & Research</span>
+      <p class="phase-desc">Ran and synthesized customer interviews across 6 persona types. Mapped pain points, jobs-to-be-done, and opportunity areas for the full observability space.</p>
+      <div class="phase-tools"><span class="phase-tool">User interviews</span><span class="phase-tool">JTBD</span><span class="phase-tool">Marvin</span><span class="phase-tool">Amplitude</span></div>
     </div>
     <div class="phase-card">
       <span class="phase-num">02</span>
-      <span class="phase-name">Journey Mapping</span>
-      <p class="phase-desc">Mapped the full observability journey. Led 10+ cross-functional workshops with design, PM and engineering teams.</p>
+      <span class="phase-name">Journey Mapping & Workshops</span>
+      <p class="phase-desc">Led 10+ cross-functional workshops to map the full troubleshooting journey and align Messaging, Email, Voice, Workbench, and Sierra teams around a unified IA and product vision.</p>
       <div class="phase-tools"><span class="phase-tool">Smaply</span><span class="phase-tool">FigJam</span><span class="phase-tool">10+ workshops</span></div>
     </div>
     <div class="phase-card">
       <span class="phase-num">03</span>
-      <span class="phase-name">Strategic Design</span>
-      <p class="phase-desc">Defined the intelligent troubleshooting system: Alerts, AI assistant, Health Score, Recommendations — shipped as the CDE suite.</p>
-      <div class="phase-tools"><span class="phase-tool">Figma</span><span class="phase-tool">Prototyping</span><span class="phase-tool">Amplitude</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- HEALTH SCORE — image left, text right -->
-<div class="split reveal">
-  <div class="split-img">
-    <img src="img-health-score.png" alt="Messaging Insights — Health Score overview"/>
-  </div>
-  <div class="split-text">
-    <span class="cap-badge">Shipped · GA</span>
-    <h3>Health Score &<br><em>Messaging Insights</em></h3>
-    <p>The Health Score gives customers a single number (0–100) reflecting their overall messaging deliverability. Top issues and recommended actions are surfaced directly in context — no manual digging required.</p>
-    <p>35,000 parent accounts actively use this view every quarter to monitor their messaging performance and spot issues early.</p>
-  </div>
-</div>
-
-<!-- AI ASSISTANT — text left, image right -->
-<div class="split reverse reveal">
-  <div class="split-img">
-    <img src="img-ai-assistant.png" alt="Intelligent Discovery AI assistant"/>
-  </div>
-  <div class="split-text">
-    <span class="cap-badge">Beta · AI-powered</span>
-    <h3>Intelligent Discovery<br><em>AI Assistant</em></h3>
-    <p>The AI assistant analyzes traffic patterns in Messaging Logs and Insights, surfacing root causes and actionable recommendations in a conversational panel — no CSV exports or manual analysis needed.</p>
-    <p>Customers can ask questions like "Why are my messages failing?" and get a structured breakdown by error code, phone number, or carrier in seconds.</p>
-  </div>
-</div>
-
-<!-- ALERTS — image left, text right -->
-<div class="split reveal">
-  <div class="split-img">
-    <img src="img-alert-email.png" alt="Intelligent Alert email notification"/>
-  </div>
-  <div class="split-text">
-    <span class="cap-badge">Proactive detection</span>
-    <h3>Intelligent Alerts —<br><em>proactive by design</em></h3>
-    <p>Customers receive a detailed notification the moment an anomaly is detected — via email, webhook, or Slack — with full context: error code, carrier, threshold, impact level, and a direct link to troubleshoot.</p>
-    <p>This was the key shift from reactive to proactive: customers no longer had to discover problems themselves.</p>
-  </div>
-</div>
-
-<!-- ALERT DETAILS — text left, image right -->
-<div class="split reverse reveal">
-  <div class="split-img">
-    <img src="img-alert-details.png" alt="Alert details in Twilio console"/>
-  </div>
-  <div class="split-text">
-    <span class="cap-badge">Shipped · GA</span>
-    <h3>Alert Details —<br><em>in-console diagnosis</em></h3>
-    <p>The in-console alert detail view shows the dynamic threshold model, error description, possible causes, and step-by-step solutions — all in one place. Customers can also provide feedback directly on whether the alert was helpful.</p>
-  </div>
-</div>
-
-<!-- JOURNEY FRAMEWORK -->
-<div class="content wide">
-  <div class="reveal">
-    <span class="section-tag">Journey Framework</span>
-    <h2 style="max-width:520px">A 7-step<br><em>observability</em> journey</h2>
-  </div>
-  <div class="journey-viz reveal d1">
-    <div class="journey-title-sm">Messaging Monitoring Journey — Troubleshooting Flow</div>
-    <div class="journey-steps">
-      <div class="journey-step"><div class="step-dot"></div><span class="step-num">01</span><span class="step-name">Detect / Alert</span><span class="step-desc">Intelligent Alerts notify proactively on anomalies</span></div>
-      <div class="journey-step"><div class="step-dot"></div><span class="step-num">02</span><span class="step-name">Monitor Trends</span><span class="step-desc">Insights dashboards show patterns over time</span></div>
-      <div class="journey-step"><div class="step-dot"></div><span class="step-num">03</span><span class="step-name">Investigate</span><span class="step-desc">AI assistant surfaces root causes instantly</span></div>
-      <div class="journey-step"><div class="step-dot"></div><span class="step-num">04</span><span class="step-name">Root Cause</span><span class="step-desc">Error codes, carriers, subaccounts — drill down fast</span></div>
-      <div class="journey-step"><div class="step-dot"></div><span class="step-num">05</span><span class="step-name">Fix</span><span class="step-desc">Personalized recommendations guide resolution</span></div>
-      <div class="journey-step"><div class="step-dot"></div><span class="step-num">06</span><span class="step-name">Validate</span><span class="step-desc">Review Insights & Logs to confirm fix worked</span></div>
-      <div class="journey-step"><div class="step-dot dim"></div><span class="step-num">07</span><span class="step-name">Optimize</span><span class="step-desc">Traffic optimization, A/B testing, scale</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- STRATEGIC OPPORTUNITIES -->
-<div class="content">
-  <div class="reveal">
-    <span class="section-tag">Strategic Opportunities</span>
-    <h2>5 opportunities for<br><em>platform growth</em></h2>
-  </div>
-  <div class="opp-grid reveal">
-    <div class="opp-card"><span class="opp-num">01</span><span class="opp-title">Unified Intelligent Troubleshooting</span><span class="opp-desc">Consistent Alerts, AI assistant, Health Score and Recommendations across Messaging, Email, and Voice.</span></div>
-    <div class="opp-card"><span class="opp-num">02</span><span class="opp-title">Cross-channel Engagement Insights</span><span class="opp-desc">Compare engagement across SMS, RCS, WhatsApp, and Email in a single unified view.</span></div>
-    <div class="opp-card"><span class="opp-num">03</span><span class="opp-title">Cross-functional Collaboration</span><span class="opp-desc">10+ UX workshops to align Messaging, Email, Voice, Workbench, and Sierra around a unified IA.</span></div>
-    <div class="opp-card"><span class="opp-num">04</span><span class="opp-title">Data Viz & Insights Patterns</span><span class="opp-desc">Defined chart guidelines and Insights patterns for a new design system at scale.</span></div>
-  </div>
-
-  <hr>
-
-  <div class="results-box reveal">
-    <span class="section-tag">Results & Impact</span>
-    <h2>After launch:<br><em>what changed</em></h2>
-    <div class="results-grid">
-      <div class="result-item"><div class="result-icon">📉</div><div class="result-text"><h4>Reduced troubleshooting time</h4><p>From 20–30 minutes of manual investigation to guided, self-served diagnosis in minutes.</p></div></div>
-      <div class="result-item"><div class="result-icon">🔔</div><div class="result-text"><h4>Proactive anomaly detection</h4><p>Intelligent Alerts notify customers before issues escalate — reactive becomes proactive.</p></div></div>
-      <div class="result-item"><div class="result-icon">🤖</div><div class="result-text"><h4>AI-powered recommendations</h4><p>Personalized fix suggestions via AI assistant increased self-serve resolution.</p></div></div>
-      <div class="result-item"><div class="result-icon">🗺️</div><div class="result-text"><h4>Org-wide alignment</h4><p>The journey map became a shared reference across product, engineering and design.</p></div></div>
+      <span class="phase-name">Product Definition</span>
+      <p class="phase-desc">Translated the journey into a prioritized product roadmap — defining what each product does, how they connect, and which step of the journey each one addresses. This became the foundation for the CDE suite.</p>
+      <div class="phase-tools"><span class="phase-tool">Figma</span><span class="phase-tool">Product strategy</span><span class="phase-tool">Design system</span></div>
     </div>
   </div>
 
   <div class="pull-quote reveal">
-    <p>"Every week once we get the Score email, I forward it to leadership as a KPI. Simplicity of the score makes it easy — our goal is to be above 80%."</p>
+    <p>"Every week once we get the Score email, I forward it to leadership as a KPI. The simplicity of the score makes it easy — our goal is to be above 80%."</p>
     <cite>Enterprise customer · What if Media Group</cite>
+  </div>
+
+  <div class="results-box reveal">
+    <span class="section-tag">Strategic Outcomes</span>
+    <h2>From fragmented tools<br>to a <em>coherent system</em></h2>
+    <div class="results-grid">
+      <div class="result-item"><div class="result-icon">🗺️</div><div class="result-text"><h4>A shared journey map</h4><p>The 7-step observability framework became the org-wide reference for product, engineering, and design decisions.</p></div></div>
+      <div class="result-item"><div class="result-icon">🤝</div><div class="result-text"><h4>Cross-team alignment</h4><p>10+ workshops aligned Messaging, Email, Voice, and AI teams around a unified product IA for the first time.</p></div></div>
+      <div class="result-item"><div class="result-icon">🚀</div><div class="result-text"><h4>6 products shipped</h4><p>The strategy directly led to the design and launch of Intelligent Alerts, Insights redesign, Health Score, AI Assistant, and Recommendations.</p></div></div>
+      <div class="result-item"><div class="result-icon">📐</div><div class="result-text"><h4>Chart pattern system</h4><p>Defined data visualization guidelines adopted across Twilio's design org as a shared pattern library.</p></div></div>
+    </div>
   </div>
 </div>
 
 <!-- NEXT -->
 <div class="next reveal">
   <div>
-    <div class="next-label">Next project</div>
-    <h3 class="next-title">Messaging <em>Insights</em> & Alerts</h3>
+    <div class="next-label">Next — see the execution</div>
+    <h3 class="next-title">Intelligent Alerts &<br><em>Messaging Insights</em></h3>
   </div>
   <a href="project-twilio-insights.html" class="next-link">View case study →</a>
 </div>

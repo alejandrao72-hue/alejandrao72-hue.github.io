@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Messaging Insights Redesign — Alejandra Osorio</title>
+  <title>Messaging Insights & Intelligent Alerts — Alejandra Osorio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -20,10 +20,8 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--dark);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;}
-
     .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);}
     .cursor-ring{width:38px;height:38px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;}
-
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;background:rgba(240,239,216,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);}
     .nav-logo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--dark);text-decoration:none;}
     .nav-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mid);text-decoration:none;transition:color .2s;}
@@ -31,84 +29,98 @@
 
     /* HERO */
     .hero{padding:130px 56px 64px;border-bottom:1px solid rgba(0,0,0,0.08);}
-    .company-badge{display:inline-flex;align-items:center;gap:10px;background:var(--dark);border-radius:100px;padding:7px 16px 7px 12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) .1s forwards;}
-    .twilio-dot{width:8px;height:8px;border-radius:50%;background:var(--twilio);flex-shrink:0;}
-    .badge-name{font-size:12px;font-weight:600;color:white;letter-spacing:.04em;}
-    .badge-sep{width:1px;height:14px;background:rgba(255,255,255,0.2);}
+    .company-badge{display:inline-flex;align-items:center;gap:10px;background:var(--dark);border-radius:100px;padding:7px 16px 7px 10px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) .1s forwards;}
+    .twilio-icon{width:22px;height:22px;background:var(--twilio);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .twilio-name{font-size:12px;font-weight:500;color:rgba(255,255,255,0.9);letter-spacing:.04em;}
+    .badge-sep{width:1px;height:14px;background:rgba(255,255,255,0.15);}
     .badge-year{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.08em;}
-    .hero-title{font-family:var(--serif);font-size:clamp(44px,7vw,96px);font-weight:900;line-height:.9;letter-spacing:-2.5px;margin-bottom:48px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
+    .hero-title{font-family:var(--serif);font-size:clamp(36px,5.5vw,82px);font-weight:900;line-height:.92;letter-spacing:-2px;margin-bottom:24px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
     .hero-title em{font-style:italic;color:var(--gold);}
     .hero-summary{font-size:16px;line-height:1.7;color:var(--mid);max-width:600px;margin-bottom:40px;font-weight:300;opacity:0;animation:fadeUp .8s var(--ease) .3s forwards;}
-    .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.08);opacity:0;animation:fadeUp .8s var(--ease) .35s forwards;}
+    .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.08);opacity:0;animation:fadeUp .8s var(--ease) .4s forwards;}
     .meta-item{display:flex;flex-direction:column;gap:5px;}
     .meta-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
     .meta-value{font-size:14px;color:var(--dark);line-height:1.45;}
 
+    /* JOURNEY POSITION STRIP */
+    .journey-strip{background:var(--dark);padding:20px 56px;display:flex;align-items:center;gap:0;border-bottom:1px solid rgba(255,255,255,0.04);}
+    .js-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-right:32px;white-space:nowrap;flex-shrink:0;}
+    .js-steps{display:flex;align-items:center;gap:0;flex:1;overflow-x:auto;}
+    .js-step{display:flex;align-items:center;gap:10px;padding:0 20px;border-left:1px solid rgba(255,255,255,0.06);}
+    .js-step:first-child{border-left:none;padding-left:0;}
+    .js-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.1);flex-shrink:0;}
+    .js-text{font-size:11px;color:rgba(255,255,255,0.25);white-space:nowrap;}
+    .js-step.active .js-dot{background:var(--twilio);}
+    .js-step.active .js-text{color:rgba(255,255,255,0.85);font-weight:500;}
+    .js-step.done .js-dot{background:rgba(255,255,255,0.3);}
+    .js-step.done .js-text{color:rgba(255,255,255,0.4);}
+
+    /* PRODUCT HEADER */
+    .product-header{background:var(--dark);padding:56px 56px 48px;border-top:1px solid rgba(255,255,255,0.04);}
+    .ph-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,47,70,0.7);margin-bottom:12px;display:block;}
+    .ph-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:900;color:white;line-height:1;letter-spacing:-1px;margin-bottom:14px;}
+    .ph-title em{font-style:italic;color:var(--gold);}
+    .ph-desc{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.65;max-width:600px;}
+    .ph-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;}
+    .ph-pill{font-size:11px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);padding:4px 14px;border-radius:100px;}
+
+    /* VIDEO */
+    .video-block{background:#08080a;padding:48px 56px;}
+    .video-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,47,70,0.6);margin-bottom:12px;display:block;}
+    .video-wrap{border-radius:14px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.7);max-width:1000px;}
+    video{width:100%;display:block;}
+
     /* CONTENT */
-    .content{max-width:760px;margin:0 auto;padding:80px 56px;}
-    .content.wide{max-width:none;padding:72px 56px;}
+    .content{max-width:780px;margin:0 auto;padding:80px 56px;}
+    .content.wide{max-width:none;padding:64px 56px;}
     .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
-    h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,46px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:20px;}
+    h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,44px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:20px;}
     h2 em{font-style:italic;color:var(--gold);}
     p.body{font-size:16px;line-height:1.8;color:var(--mid);margin-bottom:16px;font-weight:300;}
     p.body strong{color:var(--dark);font-weight:500;}
-    hr{border:none;border-top:1px solid rgba(0,0,0,0.07);margin:56px 0;}
-
-    /* VIDEO BLOCK */
-    .video-block{background:var(--dark);padding:64px 56px;opacity:0;animation:fadeIn 1s var(--ease) .5s forwards;}
-    .video-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,47,70,0.7);margin-bottom:20px;display:block;}
-    .video-title{font-family:var(--serif);font-size:clamp(22px,3vw,36px);font-weight:700;color:var(--white);letter-spacing:-.5px;margin-bottom:32px;}
-    .video-title em{font-style:italic;color:var(--gold);}
-    .video-wrap{border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.5);max-width:960px;margin:0 auto;}
-    video{width:100%;display:block;}
-
-    /* CONTEXT STRIP */
-    .context-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
-    .context-card{background:var(--white);border:1px solid rgba(0,0,0,0.07);padding:28px 28px 24px;}
-    .context-icon{font-size:18px;margin-bottom:10px;display:block;}
-    .context-card h4{font-family:var(--serif);font-size:18px;font-weight:700;letter-spacing:-.3px;margin-bottom:8px;}
-    .context-card p{font-size:13px;color:var(--mid);line-height:1.6;}
-
-    /* FULL IMAGE */
-    .full-img{margin:40px 0;border-radius:16px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);}
-    .full-img img{width:100%;display:block;}
-    .img-caption{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:10px;}
+    hr{border:none;border-top:1px solid rgba(0,0,0,0.07);margin:48px 0;}
 
     /* SPLIT */
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:72px 56px;border-bottom:1px solid rgba(0,0,0,0.06);}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:64px 56px;border-bottom:1px solid rgba(0,0,0,0.06);}
     .split.reverse{direction:rtl;}
     .split.reverse>*{direction:ltr;}
-    .split-img{border-radius:16px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,0.1);}
-    .split-img img{width:100%;display:block;}
+    .split-img{border-radius:14px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,0.1);background:#f8f8f4;}
+    .split-img img{width:100%;display:block;max-height:480px;object-fit:cover;object-position:top;}
     .split-text{display:flex;flex-direction:column;gap:14px;}
-    .split-text .cap-badge{display:inline-block;font-size:10px;background:rgba(139,132,39,0.12);color:var(--gold-dark);padding:4px 12px;border-radius:100px;align-self:flex-start;}
-    .split-text h3{font-family:var(--serif);font-size:clamp(20px,2.5vw,30px);font-weight:700;letter-spacing:-.5px;line-height:1.1;}
+    .cap-badge{display:inline-block;font-size:10px;background:rgba(139,132,39,0.12);color:var(--gold-dark);padding:4px 12px;border-radius:100px;align-self:flex-start;letter-spacing:.04em;}
+    .split-text h3{font-family:var(--serif);font-size:clamp(20px,2.3vw,30px);font-weight:700;letter-spacing:-.4px;line-height:1.1;}
     .split-text h3 em{font-style:italic;color:var(--gold);}
     .split-text p{font-size:14px;line-height:1.75;color:var(--mid);}
 
-    /* IMPACT LIST */
-    .impact-list{display:flex;flex-direction:column;gap:0;margin:32px 0;}
-    .impact-item{display:flex;align-items:flex-start;gap:20px;padding:20px 0;border-top:1px solid rgba(0,0,0,0.07);}
-    .impact-item:last-child{border-bottom:1px solid rgba(0,0,0,0.07);}
-    .impact-num{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--gold);flex-shrink:0;width:24px;}
-    .impact-item h4{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:3px;}
-    .impact-item p{font-size:13px;color:var(--muted);line-height:1.6;}
+    /* FULL IMAGE */
+    .full-img{margin:32px 0;border-radius:14px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);}
+    .full-img img{width:100%;display:block;}
+    .img-caption{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:10px;}
 
-    /* HIGHLIGHT BOX */
-    .highlight-box{background:var(--gold-light);border-left:3px solid var(--gold);border-radius:0 16px 16px 0;padding:36px 40px;margin:40px 0;}
-    .highlight-box p{font-family:var(--serif);font-size:clamp(16px,1.8vw,22px);font-style:italic;line-height:1.55;color:var(--dark);margin-bottom:10px;}
-    .highlight-box cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
+    /* DESIGN DECISIONS */
+    .decisions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:32px 0;border-radius:16px;overflow:hidden;}
+    .decision-card{background:var(--white);border:1px solid rgba(0,0,0,0.07);padding:28px;display:flex;flex-direction:column;gap:8px;}
+    .decision-num{font-family:var(--serif);font-size:36px;font-weight:900;color:rgba(139,132,39,0.14);letter-spacing:-1.5px;line-height:1;}
+    .decision-card h4{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--dark);letter-spacing:-.3px;}
+    .decision-card p{font-size:13px;color:var(--muted);line-height:1.6;}
 
-    /* RESULTS */
-    .results-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:32px 0;border-radius:16px;overflow:hidden;}
-    .result-card{background:var(--dark);padding:32px 28px;display:flex;flex-direction:column;gap:6px;}
-    .result-num{font-family:var(--serif);font-size:36px;font-weight:900;color:var(--gold);letter-spacing:-1.5px;line-height:1;}
+    /* CONFIDENTIAL */
     .confidential{filter:blur(5px);user-select:none;transition:filter .3s;cursor:default;}
     .confidential-wrap{position:relative;display:inline-block;}
     .confidential-wrap .conf-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(26,26,18,0.85);padding:2px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;transition:opacity .3s;}
     .confidential-wrap:hover .conf-label{opacity:0;}
     .confidential-wrap:hover .confidential{filter:blur(0);}
-    .result-label{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5;}
+
+    /* QUOTE */
+    .pull-quote{padding:40px 48px;background:var(--gold-light);border-left:3px solid var(--gold);margin:40px 0;border-radius:0 16px 16px 0;}
+    .pull-quote p{font-family:var(--serif);font-size:clamp(16px,2vw,22px);font-style:italic;line-height:1.55;color:var(--dark);margin-bottom:12px;}
+    .pull-quote cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
+
+    /* RESULTS */
+    .results-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:32px 0;border-radius:16px;overflow:hidden;}
+    .result-card{background:var(--dark);padding:32px 28px;display:flex;flex-direction:column;gap:6px;}
+    .result-num{font-family:var(--serif);font-size:36px;font-weight:900;color:var(--gold);letter-spacing:-1.5px;line-height:1;}
+    .result-label{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;}
 
     /* NEXT */
     .next{padding:72px 56px;border-top:1px solid rgba(0,0,0,0.08);display:flex;justify-content:space-between;align-items:center;}
@@ -119,27 +131,25 @@
     .next-link:hover{background:var(--gold);transform:translateY(-2px);}
 
     @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
     .reveal.visible{opacity:1;transform:translateY(0);}
     .d1{transition-delay:.1s;} .d2{transition-delay:.2s;}
 
-    
     @media(max-width:900px){
       .cursor,.cursor-ring{display:none;}
       body{cursor:auto;}
-      .hero{padding-top:90px;}
-
+      .hero{padding:90px 24px 48px;}
       nav{padding:18px 24px;}
-      .hero{padding:110px 24px 52px;}
       .meta-grid{grid-template-columns:1fr 1fr;gap:20px;}
       .content{padding:56px 24px;}
-      .content.wide{padding:56px 24px;}
-      .video-block{padding:40px 24px;}
+      .content.wide{padding:48px 24px;}
+      .journey-strip{padding:16px 24px;flex-direction:column;align-items:flex-start;gap:12px;}
+      .product-header{padding:40px 24px 36px;}
+      .video-block{padding:36px 24px;}
       .split{grid-template-columns:1fr;padding:48px 24px;gap:32px;}
       .split.reverse{direction:ltr;}
-      .context-strip,.results-row{grid-template-columns:1fr;}
-      .next{flex-direction:column;gap:28px;align-items:flex-start;padding:56px 24px;}
+      .decisions-grid,.results-row{grid-template-columns:1fr;}
+      .next{flex-direction:column;gap:24px;align-items:flex-start;padding:56px 24px;}
     }
   </style>
 </head>
@@ -159,162 +169,208 @@
 <!-- HERO -->
 <section class="hero">
   <div class="company-badge">
-    <span class="twilio-dot"></span>
-    <span class="badge-name">Twilio</span>
+    <div class="twilio-icon">
+      <svg viewBox="0 0 24 24" fill="none" width="14" height="14">
+        <circle cx="12" cy="12" r="9" stroke="white" stroke-width="2"/>
+        <circle cx="8.5" cy="8.5" r="1.8" fill="white"/>
+        <circle cx="15.5" cy="8.5" r="1.8" fill="white"/>
+        <circle cx="8.5" cy="15.5" r="1.8" fill="white"/>
+        <circle cx="15.5" cy="15.5" r="1.8" fill="white"/>
+      </svg>
+    </div>
+    <span class="twilio-name">Twilio</span>
     <div class="badge-sep"></div>
-    <span class="badge-year">2024 – 2025</span>
+    <span class="badge-year">2024 – 2026</span>
   </div>
-  <h1 class="hero-title">Messaging<br><em>Insights</em><br>Redesign</h1>
-  <p class="hero-summary">A focused redesign of Twilio's Messaging Insights — improving how 35K+ daily users filter data, interact with charts, and navigate across dashboards. The chart pattern I designed became a standard component adopted across Twilio's design org.</p>
+  <h1 class="hero-title">Messaging <em>Insights</em><br>& Intelligent Alerts</h1>
+  <p class="hero-summary">Two distinct products that live at different points in the troubleshooting journey — one detects anomalies in real time before users notice them, the other gives them the full picture to investigate and understand what happened. This is the execution story: the design decisions, the patterns, and the craft behind both.</p>
   <div class="meta-grid">
-    <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Senior Product Designer — end-to-end redesign</span></div>
-    <div class="meta-item"><span class="meta-label">Focus areas</span><span class="meta-value">Data viz · Filters · Navigation · Design systems</span></div>
-    <div class="meta-item"><span class="meta-label">Users</span><span class="meta-value"><span class="confidential-wrap"><span class="confidential">35,000+</span><span class="conf-label">hover</span></span> daily active users monitoring SMS & email campaigns</span></div>
-    <div class="meta-item"><span class="meta-label">Impact</span><span class="meta-value">Chart pattern adopted across Twilio's design org</span></div>
+    <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Senior Product Designer — interaction design, data viz & design systems</span></div>
+    <div class="meta-item"><span class="meta-label">Products</span><span class="meta-value">Intelligent Alerts · Messaging Insights (6 dashboards) · Health Score</span></div>
+    <div class="meta-item"><span class="meta-label">Users</span><span class="meta-value"><span class="confidential-wrap"><span class="confidential">35,000+</span><span class="conf-label">hover</span></span> daily active users — engineers & ops teams</span></div>
+    <div class="meta-item"><span class="meta-label">Highlight</span><span class="meta-value">Chart interaction pattern adopted org-wide across Twilio design</span></div>
   </div>
 </section>
 
-<!-- PROTOTYPE VIDEO -->
+<!-- JOURNEY POSITION -->
+<div class="journey-strip">
+  <span class="js-label">Journey context</span>
+  <div class="js-steps">
+    <div class="js-step active"><div class="js-dot"></div><span class="js-text">01 · Detect — Intelligent Alerts</span></div>
+    <div class="js-step active"><div class="js-dot"></div><span class="js-text">02 · Monitor — Messaging Insights</span></div>
+    <div class="js-step done"><div class="js-dot"></div><span class="js-text">03 · Investigate — AI Assistant</span></div>
+    <div class="js-step done"><div class="js-dot"></div><span class="js-text">04 · Diagnose — Health Score</span></div>
+    <div class="js-step done"><div class="js-dot"></div><span class="js-text">05 · Fix — Recommendations</span></div>
+  </div>
+</div>
+
+<!-- FRAMING -->
+<div class="content reveal">
+  <span class="section-tag">How these two products fit together</span>
+  <h2>Different moments,<br><em>one continuous journey</em></h2>
+  <p class="body"><strong>Intelligent Alerts</strong> operates in real time. It monitors traffic continuously using ML models, detects when something anomalous happens — a spike in error 30001, an unusual drop in delivery rate — and notifies you immediately. It's the product that tells you <em>there's a fire</em>.</p>
+  <p class="body"><strong>Messaging Insights</strong> is where you go to understand that fire. It's a suite of 6 dashboards that aggregate the last 7 days of messaging data across delivery, engagement, OTP conversions, risk, and fraud. It tells you <em>what happened, why, and where</em>. The Health Score, also part of Insights, is a weekly retrospective — a snapshot of how your messaging performed across 5 dimensions — not a live monitor.</p>
+  <p class="body">My job was to design them as distinct, purposeful products — with their own UX logic — while making sure the handoff between them felt seamless.</p>
+</div>
+
+<!-- ======================== -->
+<!-- PART 1: INTELLIGENT ALERTS -->
+<!-- ======================== -->
+
+<div class="product-header">
+  <span class="ph-tag">Product 01 · Real-time anomaly detection</span>
+  <div class="ph-title">Intelligent <em>Alerts</em></div>
+  <p class="ph-desc">An ML-powered system that dynamically configures thresholds based on each account's historical traffic, detects anomalies in error code volumes, and proactively notifies users — before their customers notice a problem.</p>
+  <div class="ph-pills">
+    <span class="ph-pill">Real-time</span>
+    <span class="ph-pill">Machine learning</span>
+    <span class="ph-pill">Proactive · Not reactive</span>
+    <span class="ph-pill">Email + in-console</span>
+  </div>
+</div>
+
 <div class="video-block">
-  <span class="video-label">Interactive prototype</span>
-  <div class="video-title">See the redesign <em>in action</em></div>
+  <span class="video-label">Prototype · Intelligent Alerts</span>
   <div class="video-wrap">
-    <video controls playsinline preload="metadata" poster="">
+    <video controls playsinline preload="metadata">
+      <source src="alerts-prototype.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<div class="content wide reveal">
+  <div class="full-img">
+    <img src="insights-intelligent-alerts.png" alt="Intelligent Alerts dashboard — 329 total anomalies categorized by urgency, top impacted accounts, and ML-powered recommendations"/>
+  </div>
+  <p class="img-caption">Intelligent Alerts overview — anomalies categorized by impact level, with recommended reviews surfaced by the ML model</p>
+</div>
+
+<div class="split reveal">
+  <div class="split-img">
+    <img src="img-alert-email.png" alt="Intelligent Alert email notification — fully contextual, direct link to console"/>
+  </div>
+  <div class="split-text">
+    <span class="cap-badge">Notification design · Email</span>
+    <h3>The alert that<br><em>starts the investigation</em></h3>
+    <p>The email is step zero of the troubleshooting flow — often the first thing a user sees when something goes wrong. I designed it to be <strong>fully actionable without opening the console</strong>: error code, severity, carrier, threshold breach, and timestamp, all in a single glance.</p>
+    <p>The design principle: by the time users click through to the console, they already know what they're dealing with. The click is to investigate deeper — not to find out what happened.</p>
+  </div>
+</div>
+
+<div class="split reverse reveal">
+  <div class="split-img">
+    <img src="img-alert-details.png" alt="Alert detail — anomaly timeline, threshold model, possible causes, resolution steps"/>
+  </div>
+  <div class="split-text">
+    <span class="cap-badge">In-console · Alert detail view</span>
+    <h3>From anomaly<br>to <em>root cause in one screen</em></h3>
+    <p>The in-console detail picks up where the email left off — showing the full anomaly timeline, the dynamic threshold that triggered it, ranked possible causes, and step-by-step resolution guidance.</p>
+    <p>Information hierarchy was the key design decision here: <em>what happened</em> → <em>why it matters</em> → <em>what to do</em>. Users can also submit accuracy feedback, which feeds back into the ML model over time.</p>
+  </div>
+</div>
+
+<!-- ======================== -->
+<!-- PART 2: MESSAGING INSIGHTS -->
+<!-- ======================== -->
+
+<div class="product-header" style="margin-top:2px;">
+  <span class="ph-tag">Product 02 · 7-day retrospective investigation</span>
+  <div class="ph-title">Messaging <em>Insights</em></div>
+  <p class="ph-desc">A suite of 6 redesigned dashboards for monitoring and investigating messaging performance — the place users go when an alert fires, or proactively to understand the health of their traffic over time.</p>
+  <div class="ph-pills">
+    <span class="ph-pill">Last 7 days</span>
+    <span class="ph-pill">6 dashboards</span>
+    <span class="ph-pill">Delivery · Engagement · Fraud · OTP · Scheduling · Links</span>
+  </div>
+</div>
+
+<div class="video-block">
+  <span class="video-label">Prototype · Messaging Insights dashboards</span>
+  <div class="video-wrap">
+    <video controls playsinline preload="metadata">
       <source src="insights-prototype.mp4" type="video/mp4">
     </video>
   </div>
 </div>
 
-<!-- CONTEXT -->
-<div class="content">
-  <div class="reveal">
-    <span class="section-tag">The Challenge</span>
-    <h2>Data-heavy product,<br><em>overwhelmed users</em></h2>
-    <p class="body">Messaging Insights serves engineers and operations teams who live inside the product daily — monitoring deliverability rates, hunting for error spikes, and troubleshooting why campaigns underperformed. The existing experience had the right data but made it <strong>hard to find, filter, and act on</strong>.</p>
-    <p class="body">My job was to redesign the product to reduce cognitive load, improve how users interact with charts and filters, and ship a chart pattern the entire Twilio design org could reuse.</p>
-  </div>
-
-  <div class="context-strip reveal d1">
-    <div class="context-card">
-      <span class="context-icon">📊</span>
-      <h4>6 dashboards</h4>
-      <p>Overview, Delivery & Error, Responses, OTP, Scheduled, and Link Shortening — each rebuilt with consistent patterns.</p>
-    </div>
-    <div class="context-card">
-      <span class="context-icon">🔍</span>
-      <h4>Complex filtering</h4>
-      <p>Users filter by date range, sender, error code, country, and channel simultaneously. Filters needed a full rethink.</p>
-    </div>
-    <div class="context-card">
-      <span class="context-icon">⚡</span>
-      <h4>High-stakes monitoring</h4>
-      <p>A missed error spike can mean thousands of undelivered messages. The interface needed to surface anomalies faster.</p>
-    </div>
-  </div>
-</div>
-
-<!-- HEALTH SCORE SPLIT -->
 <div class="split reveal">
   <div class="split-img">
-    <img src="img-health-score.png" alt="Messaging Health Score dashboard — 5 subscores with actionable recommendations"/>
+    <img src="img-health-score.png" alt="Health Score — 5 subscores, weekly snapshot, with product recommendations in context"/>
   </div>
   <div class="split-text">
-    <span class="cap-badge">Health Score · Overview</span>
-    <h3>A score that<br><em>tells you what to do</em></h3>
-    <p>Redesigned the Health Score overview to surface the 5 subscores — Sent Rate, Compliance, Fraud, Latency, and Engagement — in a scannable, prioritized format. Added product recommendations directly in context, so users know exactly which Twilio features can improve their score without leaving the page.</p>
+    <span class="cap-badge">Overview · Health Score · Weekly retrospective</span>
+    <h3>A weekly diagnostic,<br><em>not a live monitor</em></h3>
+    <p>The Health Score is a retrospective snapshot — not real-time. It refreshes weekly and scores your messaging across 5 dimensions: Sent Rate, Compliance, Fraud, Latency, and Engagement. This distinction from Intelligent Alerts is intentional and explicit in the design.</p>
+    <p>I added product recommendations directly beneath each subscore — so "your Fraud score is low" connects immediately to "here's the Twilio product that fixes it," without leaving the page. It closes the loop between diagnosis and action.</p>
   </div>
 </div>
 
-<!-- DELIVERY ERRORS SPLIT -->
 <div class="split reverse reveal">
   <div class="split-img">
-    <img src="img-delivery-errors.png" alt="Delivery and error dashboard with interactive chart deep-dives"/>
+    <img src="insights-engagement.png" alt="Engagement dashboard — Sankey diagram, OTP conversion rates by country, Link Shortening CTR"/>
   </div>
   <div class="split-text">
-    <span class="cap-badge">Delivery & Error · Charts</span>
-    <h3>Charts you can<br><em>actually interact with</em></h3>
-    <p>The original charts were static. I redesigned the interaction model so users can click into any data point, drill down by error code or country, and get a contextualized explanation — all without leaving the dashboard. This became the <strong>chart pattern adopted by the broader Twilio design team</strong>.</p>
+    <span class="cap-badge">Dashboard · Engagement</span>
+    <h3>Engagement data<br><em>that drives decisions</em></h3>
+    <p>The Engagement dashboard surfaces OTP conversion rates, link click-through performance, and a Sankey diagram showing how delivered messages flow into measurable outcomes. I redesigned the hierarchy so critical KPIs are immediately scannable at the top, with drill-down available below.</p>
+    <p>The Engagement Suite add-on is surfaced inline with real account data — giving users the context to understand its value without a separate sales flow.</p>
   </div>
 </div>
 
-<!-- ALERT DETAILS SPLIT -->
 <div class="split reveal">
   <div class="split-img">
-    <img src="img-alert-details.png" alt="Intelligent Alert detail view with error breakdown and recommendations"/>
+    <img src="insights-risk-fraud.png" alt="Risk and Fraud dashboard — SMS Pumping Protection blocked attempts and estimated cost savings"/>
   </div>
   <div class="split-text">
-    <span class="cap-badge">Intelligent Alerts · Detail view</span>
-    <h3>From alert to<br><em>resolution in one screen</em></h3>
-    <p>Redesigned the alert detail page to show not just what happened, but why — with error breakdowns, possible causes, and actionable next steps. Users no longer need to cross-reference multiple tabs to diagnose a spike.</p>
+    <span class="cap-badge">Dashboard · Risk & Fraud</span>
+    <h3>Making protection<br><em>financially visible</em></h3>
+    <p>The Risk & Fraud dashboard shows the output of SMS Pumping Protection — blocked attempts, cost savings, and traffic over time. A key design decision: making the monetary value of protection explicit and prominent. "Your protection prevented $21,400 in SMS pumping spend" turns an invisible security layer into a concrete, reportable business metric.</p>
   </div>
 </div>
 
-<!-- AI ASSISTANT SPLIT -->
-<div class="split reverse reveal">
-  <div class="split-img">
-    <img src="img-ai-assistant.png" alt="Intelligent Discovery AI Assistant — natural language troubleshooting inside Messaging Insights"/>
-  </div>
-  <div class="split-text">
-    <span class="cap-badge">AI Assistant · Navigation</span>
-    <h3>Natural language<br><em>troubleshooting</em></h3>
-    <p>Designed the entry points and conversation UI for the Intelligent Discovery AI Assistant — integrated directly into the Insights console. Users can ask in plain language what's wrong with their messaging traffic and get back specific, data-driven answers.</p>
-  </div>
+<!-- CRAFT SECTION -->
+<div class="content reveal">
+  <span class="section-tag">Design decisions that scaled</span>
+  <h2>Patterns built for<br><em>the whole org</em></h2>
+  <p class="body">Beyond the individual features, the Insights redesign produced design decisions that became standards across Twilio's broader design organization.</p>
 </div>
 
-<!-- WHAT I DID -->
-<div class="content">
-  <div class="reveal">
-    <span class="section-tag">My Contribution</span>
-    <h2>Four areas,<br><em>one cohesive redesign</em></h2>
-  </div>
-  <div class="impact-list reveal d1">
-    <div class="impact-item">
-      <span class="impact-num">01</span>
-      <div>
-        <h4>Filter system redesign</h4>
-        <p>Rebuilt how users apply, combine, and clear filters across all dashboards — reducing the steps needed to isolate a problem from 6 to 2.</p>
-      </div>
+<div class="content wide">
+  <div class="decisions-grid reveal">
+    <div class="decision-card">
+      <span class="decision-num">01</span>
+      <h4>Reusable chart interaction pattern</h4>
+      <p>Defined a chart component with hover tooltips, click-to-drill-down, and toggle series. This pattern was adopted org-wide as the standard data visualization approach across Twilio's design system — not just Insights.</p>
     </div>
-    <div class="impact-item">
-      <span class="impact-num">02</span>
-      <div>
-        <h4>Chart interaction pattern</h4>
-        <p>Defined a reusable chart component with hover states, click-to-drill-down, and contextual tooltips. Adopted by the Twilio design org as a shared pattern across products.</p>
-      </div>
+    <div class="decision-card">
+      <span class="decision-num">02</span>
+      <h4>Filter system rebuild</h4>
+      <p>Rebuilt how filters are applied, combined, and persisted across all 6 dashboards. Reduced the steps to isolate a specific error from 6 interactions to 2, and maintained filter state across dashboard tab navigation.</p>
     </div>
-    <div class="impact-item">
-      <span class="impact-num">03</span>
-      <div>
-        <h4>Navigation & information architecture</h4>
-        <p>Restructured the sidebar and dashboard hierarchy so users can orient themselves faster and jump between related views without losing context.</p>
-      </div>
-    </div>
-    <div class="impact-item">
-      <span class="impact-num">04</span>
-      <div>
-        <h4>Health Score + recommendations</h4>
-        <p>Integrated product recommendations into the Health Score view — connecting the "what's wrong" with "how to fix it" in a single, actionable surface.</p>
-      </div>
+    <div class="decision-card">
+      <span class="decision-num">03</span>
+      <h4>Journey-aware tab order</h4>
+      <p>Restructured the 6 dashboard tabs to follow how engineers actually investigate — Overview → Delivery → Engagement → Risk. The order is a UX decision, not a product list: it mirrors the natural troubleshooting sequence.</p>
     </div>
   </div>
 
-  <div class="highlight-box reveal d1">
-    <p>"The chart pattern I designed for Insights became the standard component used across Twilio's dashboards — a small design decision with outsized organizational impact."</p>
-    <cite>Alejandra Osorio · Senior Product Designer · Twilio</cite>
+  <div class="pull-quote reveal d1">
+    <p>"Every week once we get the Score email, I forward it to leadership as a KPI. The simplicity of the score makes it easy — our goal is to be above 80%."</p>
+    <cite>Enterprise customer · What if Media Group</cite>
   </div>
 
   <div class="results-row reveal d2">
     <div class="result-card">
       <span class="result-num"><span class="confidential-wrap"><span class="confidential">35K+</span><span class="conf-label">hover to reveal</span></span></span>
-      <span class="result-label">Daily active users impacted by the redesign</span>
+      <span class="result-label">Daily active users on the redesigned Insights suite</span>
     </div>
     <div class="result-card">
       <span class="result-num">6</span>
-      <span class="result-label">Dashboards redesigned with consistent patterns</span>
+      <span class="result-label">Dashboards redesigned with a consistent interaction model</span>
     </div>
     <div class="result-card">
       <span class="result-num">1</span>
-      <span class="result-label">Chart pattern adopted org-wide by Twilio design</span>
+      <span class="result-label">Chart pattern adopted across Twilio's design org</span>
     </div>
   </div>
 </div>
