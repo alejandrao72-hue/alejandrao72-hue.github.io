@@ -73,6 +73,9 @@
 
     /* STATS */
     .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:56px 0;border-radius:16px;overflow:hidden;}
+    .full-img{margin:40px 0;border-radius:16px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);}
+    .full-img img{width:100%;display:block;}
+    .img-caption{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:10px;}
     .stat-block{background:#1a1a0d;padding:44px 36px;display:flex;flex-direction:column;gap:8px;}
     .stat-num{font-family:var(--serif);font-size:clamp(36px,5vw,60px);font-weight:900;color:#c4bb50;letter-spacing:-1.5px;line-height:1;}
     .stat-label{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.4;}
@@ -212,6 +215,11 @@
     <p class="body">My work here was not about designing screens — it was about <strong>defining what the system should be</strong>: which products to build, how they connect, and what job each one does in the user's troubleshooting journey.</p>
   </div>
 
+  <div class="full-img reveal">
+    <img src="strategy-landscape.png" alt="Messaging & Email Observability ecosystem — Logs, Analytics, Insights & Traffic Intelligence, Content Intelligence"/>
+    <p class="img-caption">The full observability ecosystem — 3 layers, 6+ products, spanning Messaging, Email, and Voice</p>
+  </div>
+
   <div class="stat-row reveal">
     <div class="stat-block">
       <span class="stat-num"><span class="confidential-wrap"><span class="confidential">35K+</span><span class="conf-label">hover to reveal</span></span></span>
@@ -254,6 +262,11 @@
     </div>
   </div>
 
+  <div class="full-img reveal d1">
+    <img src="strategy-personas.png" alt="User personas by JTBD — 6 types mapped across troubleshooting and optimization journeys"/>
+    <p class="img-caption">6 persona types mapped by JTBD — each with a distinct troubleshooting journey</p>
+  </div>
+
   <hr>
 
   <div class="reveal">
@@ -277,6 +290,16 @@
       <div class="journey-step"><div class="step-dot"></div><span class="step-num">06</span><span class="step-name">Validate</span><span class="step-desc">Review Insights and Logs to confirm the fix worked and metrics recovered</span><span class="step-product">→ Messaging Logs</span></div>
       <div class="journey-step dim"><div class="step-dot dim"></div><span class="step-num">07</span><span class="step-name">Optimize</span><span class="step-desc">Traffic optimization, A/B testing, Engagement Suite for long-term performance</span><span class="step-product">→ Engagement Suite</span></div>
     </div>
+  </div>
+
+  <div class="full-img reveal d1" style="margin-top:40px;">
+    <img src="strategy-intelligent-system.png" alt="Intelligent troubleshooting system — Intelligent Alerts, Health Score, AI Assistant on Logs, AI Assistant on Insights, Recommendations, Add-on enablement, Feedback loop"/>
+    <p class="img-caption">The intelligent troubleshooting system — 7 interconnected capabilities enabling self-serve resolution</p>
+  </div>
+
+  <div class="full-img reveal d1" style="margin-top:24px;">
+    <img src="strategy-insights-overview.png" alt="Messaging Insights — 6 dashboards: Overview & Health Score, Delivery & Errors, Engagement, Trust & Compliance, Risk & Fraud, Latency & Scale"/>
+    <p class="img-caption">Messaging Insights — 6 dashboards covering the full monitoring spectrum</p>
   </div>
 </div>
 
@@ -309,6 +332,11 @@
     </div>
   </div>
 
+  <div class="full-img reveal d1">
+    <img src="strategy-use-case-delivery.png" alt="Deliverability & Compliance use case — how Alerts, Insights dashboards, and Logs work together for a single customer need"/>
+    <p class="img-caption">Journey in action — Alerts, Insights, and Logs working together for the deliverability & compliance use case</p>
+  </div>
+
   <div class="pull-quote reveal">
     <p>"Every week once we get the Score email, I forward it to leadership as a KPI. The simplicity of the score makes it easy — our goal is to be above 80%."</p>
     <cite>Enterprise customer · What if Media Group</cite>
@@ -317,6 +345,9 @@
   <div class="results-box reveal">
     <span class="section-tag">Strategic Outcomes</span>
     <h2>From fragmented tools<br>to a <em>coherent system</em></h2>
+    <div class="full-img" style="margin:28px 0 36px;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
+      <img src="strategy-before-after.png" alt="Before vs After CDE launch — reactive manual troubleshooting vs proactive intelligent system with Alerts, AI assistant, Health Score, Recommendations"/>
+    </div>
     <div class="results-grid">
       <div class="result-item"><div class="result-icon">🗺️</div><div class="result-text"><h4>A shared journey map</h4><p>The 7-step observability framework became the org-wide reference for product, engineering, and design decisions.</p></div></div>
       <div class="result-item"><div class="result-icon">🤝</div><div class="result-text"><h4>Cross-team alignment</h4><p>10+ workshops aligned Messaging, Email, Voice, and AI teams around a unified product IA for the first time.</p></div></div>
