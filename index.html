@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -25,169 +26,188 @@
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--dark); font-family: var(--sans); font-weight: 300; overflow-x: hidden; cursor: none; }
 
-    /* CURSOR */
-    .cursor { width: 10px; height: 10px; background: var(--pink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.25s var(--ease), height 0.25s var(--ease); }
-    .cursor-ring { width: 38px; height: 38px; border: 1.5px solid var(--pink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s var(--ease), height 0.3s var(--ease); opacity: 0.5; }
+```
+/* CURSOR */
+.cursor { width: 10px; height: 10px; background: var(--pink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.25s var(--ease), height 0.25s var(--ease); }
+.cursor-ring { width: 38px; height: 38px; border: 1.5px solid var(--pink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: width 0.3s var(--ease), height 0.3s var(--ease); opacity: 0.5; }
 
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 28px 56px; transition: all 0.3s; }
-    .nav-logo { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--dark); text-decoration: none; letter-spacing: -0.3px; }
-    .nav-links { display: flex; gap: 40px; align-items: center; }
-    .nav-links a { font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--pink); }
-    .nav-cta { background: var(--pink) !important; color: var(--white) !important; padding: 10px 22px; border-radius: 100px; font-size: 12px !important; transition: background 0.2s !important; }
-    .nav-cta:hover { background: var(--pink-dark) !important; }
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 28px 56px; transition: all 0.3s; }
+.nav-logo { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--dark); text-decoration: none; letter-spacing: -0.3px; }
+.nav-links { display: flex; gap: 40px; align-items: center; }
+.nav-links a { font-size: 13px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--pink); }
+.nav-cta { background: var(--pink) !important; color: var(--white) !important; padding: 10px 22px; border-radius: 100px; font-size: 12px !important; transition: background 0.2s !important; }
+.nav-cta:hover { background: var(--pink-dark) !important; }
 
-    /* HERO */
-    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 56px 80px; position: relative; overflow: hidden; }
-    .hero-bg-text { position: absolute; top: 50%; left: -10px; transform: translateY(-52%); font-family: var(--serif); font-size: clamp(160px, 20vw, 320px); font-weight: 900; color: transparent; -webkit-text-stroke: 1px rgba(200,55,90,0.07); white-space: nowrap; pointer-events: none; user-select: none; line-height: 1; }
-    .hero-tag { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pink); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s var(--ease) 0.2s forwards; }
-    .hero-name { font-family: var(--serif); font-size: clamp(60px, 9vw, 128px); font-weight: 900; line-height: 0.9; letter-spacing: -3px; color: var(--dark); margin-bottom: 40px; opacity: 0; animation: fadeUp 0.9s var(--ease) 0.35s forwards; }
-    .hero-name em { font-style: italic; color: var(--pink); }
-    .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; opacity: 0; animation: fadeUp 0.9s var(--ease) 0.55s forwards; }
-    .hero-bio { max-width: 420px; font-size: 16px; line-height: 1.7; color: var(--mid); font-weight: 300; }
-    .hero-bio strong { color: var(--dark); font-weight: 500; }
-    .hero-meta { text-align: right; display: flex; flex-direction: column; gap: 4px; }
-    .hero-meta span { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-    .hero-meta strong { font-size: 14px; color: var(--mid); font-weight: 400; }
-    .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeIn 1s ease 1.2s forwards; }
-    .scroll-hint span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
-    .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--pink), transparent); }
+/* HERO — espacio reducido */
+.hero { padding: 100px 56px 56px; position: relative; overflow: hidden; }
+.hero-bg-text { position: absolute; top: 50%; left: -10px; transform: translateY(-52%); font-family: var(--serif); font-size: clamp(160px, 20vw, 320px); font-weight: 900; color: transparent; -webkit-text-stroke: 1px rgba(200,55,90,0.07); white-space: nowrap; pointer-events: none; user-select: none; line-height: 1; }
+.hero-tag { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pink); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s var(--ease) 0.2s forwards; }
+.hero-name { font-family: var(--serif); font-size: clamp(60px, 9vw, 128px); font-weight: 900; line-height: 0.9; letter-spacing: -3px; color: var(--dark); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.9s var(--ease) 0.35s forwards; }
+.hero-name em { font-style: italic; color: var(--pink); }
+.hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; opacity: 0; animation: fadeUp 0.9s var(--ease) 0.55s forwards; }
+.hero-bio { max-width: 420px; font-size: 16px; line-height: 1.7; color: var(--mid); font-weight: 300; }
+.hero-bio strong { color: var(--dark); font-weight: 500; }
+.hero-meta { text-align: right; display: flex; flex-direction: column; gap: 4px; }
+.hero-meta span { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.hero-meta strong { font-size: 14px; color: var(--mid); font-weight: 400; }
 
-    /* COMPANIES */
-    .companies-section { padding: 56px 56px; display: flex; align-items: center; gap: 60px; border-top: 1px solid rgba(0,0,0,0.07); border-bottom: 1px solid rgba(0,0,0,0.07); }
-    .companies-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; min-width: 120px; }
-    .companies-logos { display: flex; gap: 48px; align-items: center; flex-wrap: wrap; }
-    .company-name { font-family: var(--serif); font-size: 20px; font-weight: 700; color: rgba(0,0,0,0.13); transition: color 0.3s; letter-spacing: -0.3px; cursor: default; }
-    .company-name:hover { color: var(--pink); }
+/* COMPANIES */
+.companies-section { padding: 56px 56px; display: flex; align-items: center; gap: 60px; border-top: 1px solid rgba(0,0,0,0.07); border-bottom: 1px solid rgba(0,0,0,0.07); }
+.companies-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; min-width: 120px; }
+.companies-logos { display: flex; gap: 48px; align-items: center; flex-wrap: wrap; }
+.company-name { font-family: var(--serif); font-size: 20px; font-weight: 700; color: rgba(0,0,0,0.13); transition: color 0.3s; letter-spacing: -0.3px; cursor: default; }
+.company-name:hover { color: var(--pink); }
 
-    /* WORK */
-    .work-section { padding: 120px 56px; }
-    .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 72px; }
-    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 16px; }
-    .work-title { font-family: var(--serif); font-size: clamp(40px, 5vw, 68px); font-weight: 700; line-height: 1; letter-spacing: -1.5px; }
-    .work-title em { font-style: italic; color: var(--pink); }
-    .work-count { font-size: 13px; color: var(--muted); }
+/* WORK */
+.work-section { padding: 120px 56px; }
+.work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 72px; }
+.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 16px; }
+.work-title { font-family: var(--serif); font-size: clamp(40px, 5vw, 68px); font-weight: 700; line-height: 1; letter-spacing: -1.5px; }
+.work-title em { font-style: italic; color: var(--pink); }
+.work-count { font-size: 13px; color: var(--muted); }
 
-    /* PROJECT CARDS */
-    .project-card {
-      display: grid; grid-template-columns: 72px 1fr 360px; gap: 40px;
-      align-items: center; padding: 44px 0;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      cursor: pointer; text-decoration: none; color: inherit;
-      position: relative;
-    }
-    .project-card:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
-    .project-card::before { content: ''; position: absolute; left: -56px; right: -56px; top: 0; bottom: 0; background: var(--pink-light); opacity: 0; transition: opacity 0.35s; z-index: -1; }
-    .project-card:hover::before { opacity: 1; }
-    .project-card:hover .project-num { color: var(--pink); }
-    .project-card:hover .project-thumb { transform: scale(1.04); }
-    .project-card:hover .arr { transform: translate(5px, -5px); opacity: 1; }
+/* PROJECT CARDS */
+.project-card {
+  display: grid; grid-template-columns: 72px 1fr 360px; gap: 40px;
+  align-items: center; padding: 44px 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  cursor: pointer; text-decoration: none; color: inherit;
+  position: relative;
+}
+.project-card:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+.project-card::before { content: ''; position: absolute; left: -56px; right: -56px; top: 0; bottom: 0; background: var(--pink-light); opacity: 0; transition: opacity 0.35s; z-index: -1; }
+.project-card:hover::before { opacity: 1; }
+.project-card:hover .project-num { color: var(--pink); }
+.project-card:hover .project-thumb { transform: scale(1.04); }
+.project-card:hover .arr { transform: translate(5px, -5px); opacity: 1; }
 
-    .project-num { font-family: var(--serif); font-size: 13px; color: var(--muted); transition: color 0.3s; align-self: flex-start; padding-top: 6px; }
-    .project-info { display: flex; flex-direction: column; gap: 14px; }
-    .project-company { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-    .company-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); display: inline-block; }
-    .project-name { font-family: var(--serif); font-size: clamp(26px, 3.2vw, 46px); font-weight: 700; line-height: 1.02; letter-spacing: -1px; }
-    .project-name em { font-style: italic; }
-    .project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-    .tag { font-size: 11px; font-weight: 400; letter-spacing: 0.04em; color: var(--muted); border: 1px solid rgba(0,0,0,0.11); padding: 4px 12px; border-radius: 100px; }
-    .project-impact { display: flex; gap: 28px; }
-    .impact-item { display: flex; flex-direction: column; gap: 2px; }
-    .impact-num { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--dark); letter-spacing: -0.5px; }
-    .impact-label { font-size: 11px; color: var(--muted); }
+.project-num { font-family: var(--serif); font-size: 13px; color: var(--muted); transition: color 0.3s; align-self: flex-start; padding-top: 6px; }
+.project-info { display: flex; flex-direction: column; gap: 14px; }
+.project-company { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+.company-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); display: inline-block; }
+.project-name { font-family: var(--serif); font-size: clamp(26px, 3.2vw, 46px); font-weight: 700; line-height: 1.02; letter-spacing: -1px; }
+.project-name em { font-style: italic; }
+.project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.tag { font-size: 11px; font-weight: 400; letter-spacing: 0.04em; color: var(--muted); border: 1px solid rgba(0,0,0,0.11); padding: 4px 12px; border-radius: 100px; }
+.project-impact { display: flex; gap: 28px; }
+.impact-item { display: flex; flex-direction: column; gap: 2px; }
+.impact-num { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--dark); letter-spacing: -0.5px; }
+.impact-label { font-size: 11px; color: var(--muted); }
 
-    .project-right { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
-    .project-thumb-wrap { width: 100%; aspect-ratio: 16/10; border-radius: 14px; overflow: hidden; background: var(--dark); }
-    .project-thumb { width: 100%; height: 100%; transition: transform 0.5s var(--ease); }
-    .arr { font-size: 22px; color: var(--pink); opacity: 0.35; transition: transform 0.3s var(--ease), opacity 0.3s; }
+.project-right { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+.project-thumb-wrap { width: 100%; aspect-ratio: 16/10; border-radius: 14px; overflow: hidden; background: var(--dark); }
+.project-thumb { width: 100%; height: 100%; transition: transform 0.5s var(--ease); }
+.arr { font-size: 22px; color: var(--pink); opacity: 0.35; transition: transform 0.3s var(--ease), opacity 0.3s; }
 
-    /* Mobile CTA — hidden on desktop, shown on mobile */
-    .mobile-cta { display: none; }
+/* Mobile CTA */
+.mobile-cta { display: none; }
 
-    /* Thumb mockups */
-    .twilio-bg { background: linear-gradient(135deg, #1a1a0a 0%, #252518 50%, #1a1a0a 100%); width:100%; height:100%; padding:20px; display:flex; flex-direction:column; gap:10px; position:relative; }
-    .mockup-topbar { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-    .mockup-dot { width:7px; height:7px; border-radius:50%; }
-    .mockup-title { font-size:9px; letter-spacing:0.08em; color:rgba(255,255,255,0.5); font-family:var(--sans); }
-    .mockup-row { display:flex; gap:6px; }
-    .mockup-bar { height:7px; border-radius:4px; background:rgba(255,255,255,0.1); }
-    .mockup-chart { display:flex; align-items:flex-end; gap:5px; height:60px; padding-top:8px; }
-    .m-col { flex:1; border-radius:3px 3px 0 0; }
-    .mockup-label { position:absolute; bottom:14px; left:20px; font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); font-family:var(--sans); }
+/* Thumb mockups */
+.twilio-bg { background: linear-gradient(135deg, #1a1a0a 0%, #252518 50%, #1a1a0a 100%); width:100%; height:100%; padding:20px; display:flex; flex-direction:column; gap:10px; position:relative; }
+.mockup-topbar { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.mockup-dot { width:7px; height:7px; border-radius:50%; }
+.mockup-title { font-size:9px; letter-spacing:0.08em; color:rgba(255,255,255,0.5); font-family:var(--sans); }
+.mockup-row { display:flex; gap:6px; }
+.mockup-bar { height:7px; border-radius:4px; background:rgba(255,255,255,0.1); }
+.mockup-chart { display:flex; align-items:flex-end; gap:5px; height:60px; padding-top:8px; }
+.m-col { flex:1; border-radius:3px 3px 0 0; }
+.mockup-label { position:absolute; bottom:14px; left:20px; font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); font-family:var(--sans); }
 
-    .alerts-bg { background: linear-gradient(135deg, #141408 0%, #1e1e08 50%, #1a1500 100%); width:100%; height:100%; padding:20px; display:flex; flex-direction:column; gap:9px; }
-    .alert-row { background:rgba(255,255,255,0.04); border:1px solid rgba(139,132,39,0.35); border-radius:8px; padding:10px 12px; display:flex; align-items:center; gap:9px; }
-    .alert-row.dim { border-color:rgba(255,255,255,0.06); }
-    .a-dot { width:7px; height:7px; border-radius:50%; background:var(--pink); flex-shrink:0; }
-    .a-dot.dim { background:rgba(255,255,255,0.15); }
-    .a-lines { display:flex; flex-direction:column; gap:4px; flex:1; }
-    .a-line { height:5px; border-radius:3px; background:rgba(255,255,255,0.12); }
-    .a-line.s { width:55%; }
-    .a-badge { font-size:7px; letter-spacing:0.05em; background:rgba(139,132,39,0.25); color:#c4bb50; padding:2px 6px; border-radius:4px; white-space:nowrap; font-family:var(--sans); }
-    .a-badge.dim { background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.3); }
+.alerts-bg { background: linear-gradient(135deg, #141408 0%, #1e1e08 50%, #1a1500 100%); width:100%; height:100%; padding:20px; display:flex; flex-direction:column; gap:9px; }
+.alert-row { background:rgba(255,255,255,0.04); border:1px solid rgba(139,132,39,0.35); border-radius:8px; padding:10px 12px; display:flex; align-items:center; gap:9px; }
+.alert-row.dim { border-color:rgba(255,255,255,0.06); }
+.a-dot { width:7px; height:7px; border-radius:50%; background:var(--pink); flex-shrink:0; }
+.a-dot.dim { background:rgba(255,255,255,0.15); }
+.a-lines { display:flex; flex-direction:column; gap:4px; flex:1; }
+.a-line { height:5px; border-radius:3px; background:rgba(255,255,255,0.12); }
+.a-line.s { width:55%; }
+.a-badge { font-size:7px; letter-spacing:0.05em; background:rgba(139,132,39,0.25); color:#c4bb50; padding:2px 6px; border-radius:4px; white-space:nowrap; font-family:var(--sans); }
+.a-badge.dim { background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.3); }
 
-    .coming-soon-bg { background:#1a1a1a; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
-    .cs-text { font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.2); font-family:var(--sans); }
+/* ABOUT */
+.about-section { padding: 120px 56px; background: #1a1a0d; color: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 24px; }
+.about-title { font-family: var(--serif); font-size: clamp(36px, 4vw, 58px); font-weight: 700; line-height: 1.05; letter-spacing: -1px; margin-bottom: 28px; }
+.about-title em { font-style: italic; color: var(--pink); }
+.about-bio { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.6); font-weight: 300; margin-bottom: 36px; }
+.about-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--pink); color: var(--white); text-decoration: none; font-size: 13px; font-weight: 500; padding: 14px 28px; border-radius: 100px; transition: background 0.2s, transform 0.2s; }
+.about-cta:hover { background: var(--pink-dark); transform: translateY(-2px); }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.skill-block { padding: 28px; border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; gap: 8px; transition: border-color 0.3s, background 0.3s; }
+.skill-block:hover { border-color: rgba(200,55,90,0.35); background: rgba(200,55,90,0.04); }
+.skill-icon { font-size: 20px; }
+.skill-name { font-size: 14px; font-weight: 500; color: var(--white); margin-top: 4px; }
+.skill-desc { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.5; }
 
-    /* ABOUT */
-    .about-section { padding: 120px 56px; background: #1a1a0d; color: var(--white); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .about-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 24px; }
-    .about-title { font-family: var(--serif); font-size: clamp(36px, 4vw, 58px); font-weight: 700; line-height: 1.05; letter-spacing: -1px; margin-bottom: 28px; }
-    .about-title em { font-style: italic; color: var(--pink); }
-    .about-bio { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.6); font-weight: 300; margin-bottom: 36px; }
-    .about-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--pink); color: var(--white); text-decoration: none; font-size: 13px; font-weight: 500; padding: 14px 28px; border-radius: 100px; transition: background 0.2s, transform 0.2s; }
-    .about-cta:hover { background: var(--pink-dark); transform: translateY(-2px); }
-    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-    .skill-block { padding: 28px; border: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; gap: 8px; transition: border-color 0.3s, background 0.3s; }
-    .skill-block:hover { border-color: rgba(200,55,90,0.35); background: rgba(200,55,90,0.04); }
-    .skill-icon { font-size: 20px; }
-    .skill-name { font-size: 14px; font-weight: 500; color: var(--white); margin-top: 4px; }
-    .skill-desc { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.5; }
+/* CONTACT */
+.contact-section { padding: 120px 56px; text-align: center; position: relative; overflow: hidden; }
+.contact-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(200,55,90,0.05) 0%, transparent 70%); pointer-events: none; }
+.contact-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 20px; }
+.contact-title { font-family: var(--serif); font-size: clamp(52px, 8vw, 112px); font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin-bottom: 48px; }
+.contact-title em { font-style: italic; color: var(--pink); }
+.contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.contact-link { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 100px; font-size: 13px; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+.contact-link.primary { background: var(--pink); color: var(--white); }
+.contact-link.primary:hover { background: var(--pink-dark); transform: translateY(-2px); }
+.contact-link.secondary { border: 1.5px solid rgba(0,0,0,0.14); color: var(--mid); }
+.contact-link.secondary:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-2px); }
 
-    /* CONTACT */
-    .contact-section { padding: 120px 56px; text-align: center; position: relative; overflow: hidden; }
-    .contact-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(200,55,90,0.05) 0%, transparent 70%); pointer-events: none; }
-    .contact-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pink); margin-bottom: 20px; }
-    .contact-title { font-family: var(--serif); font-size: clamp(52px, 8vw, 112px); font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin-bottom: 48px; }
-    .contact-title em { font-style: italic; color: var(--pink); }
-    .contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-    .contact-link { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 100px; font-size: 13px; font-weight: 500; text-decoration: none; transition: all 0.2s; }
-    .contact-link.primary { background: var(--pink); color: var(--white); }
-    .contact-link.primary:hover { background: var(--pink-dark); transform: translateY(-2px); }
-    .contact-link.secondary { border: 1.5px solid rgba(0,0,0,0.14); color: var(--mid); }
-    .contact-link.secondary:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-2px); }
+/* FOOTER */
+footer { padding: 28px 56px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.06); }
+footer span { font-size: 12px; color: var(--muted); }
+footer a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+footer a:hover { color: var(--pink); }
 
-    /* FOOTER */
-    footer { padding: 28px 56px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.06); }
-    footer span { font-size: 12px; color: var(--muted); }
-    footer a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--pink); }
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.22s; }
+.reveal-delay-3 { transition-delay: 0.32s; }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.12s; }
-    .reveal-delay-2 { transition-delay: 0.22s; }
-    .reveal-delay-3 { transition-delay: 0.32s; }
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .hero { padding: 80px 24px 48px; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; }
+  .hero-meta { text-align: left; }
+  .companies-section { padding: 40px 24px; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .work-section { padding: 80px 24px; }
 
-    @media (max-width: 900px) {
-      nav { padding: 20px 24px; }
-      .hero { padding: 0 24px 64px; }
-      .hero-bottom { flex-direction: column; align-items: flex-start; }
-      .hero-meta { text-align: left; }
-      .companies-section { padding: 40px 24px; flex-direction: column; align-items: flex-start; gap: 20px; }
-      .work-section { padding: 80px 24px; }
-      .project-card { grid-template-columns: 48px 1fr; }
-      .project-card::before { left: -24px; right: -24px; }
-      .project-right { display: none; }
-      .mobile-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 12px; font-weight: 500; color: var(--pink); border: 1.5px solid var(--pink); padding: 8px 16px; border-radius: 100px; align-self: flex-start; letter-spacing: 0.02em; }
-      .about-section { grid-template-columns: 1fr; padding: 80px 24px; }
-      .contact-section { padding: 80px 24px; }
-      footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
-    }
+  /* En mobile: 2 columnas — num + info, sin thumb en grid */
+  .project-card { grid-template-columns: 48px 1fr; gap: 16px; padding: 32px 0; }
+  .project-card::before { left: -24px; right: -24px; }
+
+  /* Thumb visible en mobile, debajo del texto */
+  .project-right { display: flex; width: 100%; grid-column: 1 / -1; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .project-thumb-wrap { width: 100%; aspect-ratio: 16/10; }
+  .arr { display: none; }
+
+  /* CTA mobile — sin emoji, solo texto */
+  .mobile-cta { 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 6px; 
+    margin-top: 4px; 
+    font-size: 12px; 
+    font-weight: 500; 
+    color: var(--pink); 
+    border: 1.5px solid var(--pink); 
+    padding: 8px 18px; 
+    border-radius: 100px; 
+    align-self: flex-start; 
+    letter-spacing: 0.02em; 
+  }
+
+  .about-section { grid-template-columns: 1fr; padding: 80px 24px; }
+  .contact-section { padding: 80px 24px; }
+  footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
+}
+```
+
   </style>
 </head>
 <body>
@@ -196,6 +216,7 @@
 <div class="cursor-ring" id="cursorRing"></div>
 
 <!-- NAV -->
+
 <nav id="nav">
   <a href="#" class="nav-logo">AO.</a>
   <div class="nav-links">
@@ -206,6 +227,7 @@
 </nav>
 
 <!-- HERO -->
+
 <section class="hero">
   <div class="hero-bg-text">design</div>
   <div class="hero-tag">Product Designer · Bogotá, Colombia</div>
@@ -224,6 +246,7 @@
 </section>
 
 <!-- COMPANIES -->
+
 <div class="companies-section">
   <span class="companies-label">Experience at</span>
   <div class="companies-logos">
@@ -237,6 +260,7 @@
 </div>
 
 <!-- WORK -->
+
 <section class="work-section" id="work">
   <div class="work-header reveal">
     <div>
@@ -248,286 +272,276 @@
 
   <div>
 
-    <!-- 01 -->
-    <!-- 01 Twilio Customer Intelligence -->
-    <a class="project-card reveal" href="project-twilio-strategy.html">
-      <span class="project-num">01</span>
-      <div class="project-info">
-        <span class="project-company"><span class="company-dot" style="background:#F22F46"></span>Twilio · 2024–2026</span>
-        <h3 class="project-name">Customer<br><em>Intelligence</em><br>Strategy</h3>
-        <div class="project-tags">
-          <span class="tag">UX Strategy</span>
-          <span class="tag">Product Discovery</span>
-          <span class="tag">Systems Thinking</span>
-        </div>
-        <div class="project-impact">
-          <div class="impact-item"><span class="impact-num">35K+</span><span class="impact-label">Active users</span></div>
-          <div class="impact-item"><span class="impact-num">6</span><span class="impact-label">Products shipped</span></div>
-        </div>
-        <span class="mobile-cta">View case study ↗</span>
-      </div>
-      <div class="project-right">
-        <div class="project-thumb-wrap">
-          <!-- Laptop mockup with dashboard inside -->
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#f5efe8 0%,#ede4d8 100%);display:flex;align-items:center;justify-content:center;padding:16px 12px 8px;">
-            <div style="width:100%;max-width:280px;">
-              <!-- Screen -->
-              <div style="background:#1a1a12;border-radius:8px 8px 0 0;padding:6px 8px 0;border:2.5px solid #2a2a1a;border-bottom:none;position:relative;">
-                <!-- Browser chrome -->
-                <div style="display:flex;align-items:center;gap:4px;margin-bottom:5px;">
-                  <div style="width:5px;height:5px;border-radius:50%;background:#F22F46;opacity:.8;"></div>
-                  <div style="width:5px;height:5px;border-radius:50%;background:#8B8427;opacity:.8;"></div>
-                  <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);"></div>
-                  <div style="flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;margin-left:4px;"></div>
+```
+<!-- 01 Twilio Customer Intelligence -->
+<a class="project-card reveal" href="project-twilio-strategy.html">
+  <span class="project-num">01</span>
+  <div class="project-info">
+    <span class="project-company"><span class="company-dot" style="background:#F22F46"></span>Twilio · 2024–2026</span>
+    <h3 class="project-name">Customer<br><em>Intelligence</em><br>Strategy</h3>
+    <div class="project-tags">
+      <span class="tag">UX Strategy</span>
+      <span class="tag">Product Discovery</span>
+      <span class="tag">Systems Thinking</span>
+    </div>
+    <div class="project-impact">
+      <div class="impact-item"><span class="impact-num">35K+</span><span class="impact-label">Active users</span></div>
+      <div class="impact-item"><span class="impact-num">6</span><span class="impact-label">Products shipped</span></div>
+    </div>
+    <span class="mobile-cta">View case study</span>
+  </div>
+  <div class="project-right">
+    <div class="project-thumb-wrap">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#f5efe8 0%,#ede4d8 100%);display:flex;align-items:center;justify-content:center;padding:16px 12px 8px;">
+        <div style="width:100%;max-width:280px;">
+          <div style="background:#1a1a12;border-radius:8px 8px 0 0;padding:6px 8px 0;border:2.5px solid #2a2a1a;border-bottom:none;position:relative;">
+            <div style="display:flex;align-items:center;gap:4px;margin-bottom:5px;">
+              <div style="width:5px;height:5px;border-radius:50%;background:#F22F46;opacity:.8;"></div>
+              <div style="width:5px;height:5px;border-radius:50%;background:#8B8427;opacity:.8;"></div>
+              <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);"></div>
+              <div style="flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;margin-left:4px;"></div>
+            </div>
+            <div style="display:flex;gap:4px;height:80px;">
+              <div style="width:28%;display:flex;flex-direction:column;gap:3px;">
+                <div style="background:rgba(242,47,70,.15);border-left:2px solid #F22F46;border-radius:2px;padding:3px 4px;flex:1;">
+                  <div style="height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-bottom:2px;"></div>
+                  <div style="height:3px;background:rgba(255,255,255,.08);border-radius:2px;width:60%;"></div>
                 </div>
-                <!-- Dashboard content -->
-                <div style="display:flex;gap:4px;height:80px;">
-                  <div style="width:28%;display:flex;flex-direction:column;gap:3px;">
-                    <div style="background:rgba(242,47,70,.15);border-left:2px solid #F22F46;border-radius:2px;padding:3px 4px;flex:1;">
-                      <div style="height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-bottom:2px;"></div>
-                      <div style="height:3px;background:rgba(255,255,255,.08);border-radius:2px;width:60%;"></div>
-                    </div>
-                    <div style="background:rgba(255,255,255,.04);border-radius:2px;padding:3px 4px;flex:1;">
-                      <div style="height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin-bottom:2px;"></div>
-                      <div style="height:3px;background:rgba(255,255,255,.06);border-radius:2px;width:70%;"></div>
-                    </div>
-                  </div>
-                  <div style="flex:1;background:rgba(255,255,255,.03);border-radius:2px;padding:5px 6px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;">
-                    <div style="display:flex;align-items:flex-end;gap:2px;height:50px;">
-                      <div style="flex:1;background:rgba(242,47,70,.35);border-radius:1px 1px 0 0;" style="height:40%"></div>
-                      <div style="flex:1;height:65%;background:rgba(242,47,70,.5);border-radius:1px 1px 0 0;"></div>
-                      <div style="flex:1;height:30%;background:rgba(255,255,255,.08);border-radius:1px 1px 0 0;"></div>
-                      <div style="flex:1;height:85%;background:rgba(242,47,70,.65);border-radius:1px 1px 0 0;"></div>
-                      <div style="flex:1;height:50%;background:rgba(242,47,70,.4);border-radius:1px 1px 0 0;"></div>
-                      <div style="flex:1;height:70%;background:rgba(242,47,70,.55);border-radius:1px 1px 0 0;"></div>
-                      <div style="flex:1;height:95%;background:rgba(242,47,70,.7);border-radius:1px 1px 0 0;"></div>
-                    </div>
-                    <div style="height:1px;background:rgba(255,255,255,.08);"></div>
-                  </div>
+                <div style="background:rgba(255,255,255,.04);border-radius:2px;padding:3px 4px;flex:1;">
+                  <div style="height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin-bottom:2px;"></div>
+                  <div style="height:3px;background:rgba(255,255,255,.06);border-radius:2px;width:70%;"></div>
                 </div>
               </div>
-              <!-- Laptop base -->
-              <div style="background:#2a2a1a;height:5px;border-radius:0 0 3px 3px;"></div>
-              <div style="background:#222218;height:3px;border-radius:0 0 6px 6px;margin:0 8px;"></div>
+              <div style="flex:1;background:rgba(255,255,255,.03);border-radius:2px;padding:5px 6px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;">
+                <div style="display:flex;align-items:flex-end;gap:2px;height:50px;">
+                  <div style="flex:1;height:40%;background:rgba(242,47,70,.35);border-radius:1px 1px 0 0;"></div>
+                  <div style="flex:1;height:65%;background:rgba(242,47,70,.5);border-radius:1px 1px 0 0;"></div>
+                  <div style="flex:1;height:30%;background:rgba(255,255,255,.08);border-radius:1px 1px 0 0;"></div>
+                  <div style="flex:1;height:85%;background:rgba(242,47,70,.65);border-radius:1px 1px 0 0;"></div>
+                  <div style="flex:1;height:50%;background:rgba(242,47,70,.4);border-radius:1px 1px 0 0;"></div>
+                  <div style="flex:1;height:70%;background:rgba(242,47,70,.55);border-radius:1px 1px 0 0;"></div>
+                  <div style="flex:1;height:95%;background:rgba(242,47,70,.7);border-radius:1px 1px 0 0;"></div>
+                </div>
+                <div style="height:1px;background:rgba(255,255,255,.08);"></div>
+              </div>
             </div>
           </div>
+          <div style="background:#2a2a1a;height:5px;border-radius:0 0 3px 3px;"></div>
+          <div style="background:#222218;height:3px;border-radius:0 0 6px 6px;margin:0 8px;"></div>
         </div>
-        <span class="arr">↗</span>
       </div>
-    </a>
+    </div>
+    <span class="arr">↗</span>
+  </div>
+</a>
 
-    <!-- 02 Messaging Insights -->
-    <a class="project-card reveal reveal-delay-1" href="project-twilio-insights.html">
-      <span class="project-num">02</span>
-      <div class="project-info">
-        <span class="project-company"><span class="company-dot" style="background:#F22F46"></span>Twilio · 2024–2026</span>
-        <h3 class="project-name">Messaging<br><em>Insights</em><br>&amp; Alerts</h3>
-        <div class="project-tags">
-          <span class="tag">Interaction Design</span>
-          <span class="tag">AI Features</span>
-          <span class="tag">B2B SaaS</span>
-        </div>
-        <div class="project-impact">
-          <div class="impact-item"><span class="impact-num">125K</span><span class="impact-label">Quarterly users</span></div>
-          <div class="impact-item"><span class="impact-num">−30m</span><span class="impact-label">Troubleshoot time</span></div>
-        </div>
-        <span class="mobile-cta">View case study ↗</span>
-      </div>
-      <div class="project-right">
-        <div class="project-thumb-wrap">
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0808 0%,#2a0f0f 100%);display:flex;align-items:center;justify-content:center;padding:16px 12px 8px;">
-            <div style="width:100%;max-width:280px;">
-              <div style="background:#120808;border-radius:8px 8px 0 0;padding:6px 8px 8px;border:2.5px solid #2a1010;border-bottom:none;">
-                <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
-                  <div style="width:5px;height:5px;border-radius:50%;background:#F22F46;opacity:.8;"></div>
-                  <div style="width:5px;height:5px;border-radius:50%;background:#8B8427;opacity:.8;"></div>
-                  <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.15);"></div>
-                  <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;margin-left:4px;"></div>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:3px;">
-                  <div style="background:rgba(242,47,70,.12);border:1px solid rgba(242,47,70,.3);border-radius:3px;padding:4px 6px;display:flex;align-items:center;gap:5px;">
-                    <div style="width:5px;height:5px;border-radius:50%;background:#F22F46;"></div>
-                    <div style="flex:1;height:3px;background:rgba(255,255,255,.12);border-radius:2px;"></div>
-                    <div style="font-size:5px;background:rgba(242,47,70,.3);color:#F22F46;padding:1px 4px;border-radius:2px;font-family:var(--sans);letter-spacing:.05em;">Critical</div>
-                  </div>
-                  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:3px;padding:4px 6px;display:flex;align-items:center;gap:5px;">
-                    <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);"></div>
-                    <div style="flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:2px;"></div>
-                    <div style="font-size:5px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.3);padding:1px 4px;border-radius:2px;font-family:var(--sans);">Resolved</div>
-                  </div>
-                  <div style="background:rgba(242,47,70,.08);border:1px solid rgba(242,47,70,.2);border-radius:3px;padding:4px 6px;display:flex;align-items:center;gap:5px;">
-                    <div style="width:5px;height:5px;border-radius:50%;background:rgba(242,47,70,.7);"></div>
-                    <div style="flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;"></div>
-                    <div style="font-size:5px;background:rgba(242,47,70,.2);color:#F22F46;padding:1px 4px;border-radius:2px;font-family:var(--sans);">Warning</div>
-                  </div>
-                </div>
+<!-- 02 Messaging Insights -->
+<a class="project-card reveal reveal-delay-1" href="project-twilio-insights.html">
+  <span class="project-num">02</span>
+  <div class="project-info">
+    <span class="project-company"><span class="company-dot" style="background:#F22F46"></span>Twilio · 2024–2026</span>
+    <h3 class="project-name">Messaging<br><em>Insights</em><br>&amp; Alerts</h3>
+    <div class="project-tags">
+      <span class="tag">Interaction Design</span>
+      <span class="tag">AI Features</span>
+      <span class="tag">B2B SaaS</span>
+    </div>
+    <div class="project-impact">
+      <div class="impact-item"><span class="impact-num">125K</span><span class="impact-label">Quarterly users</span></div>
+      <div class="impact-item"><span class="impact-num">−30m</span><span class="impact-label">Troubleshoot time</span></div>
+    </div>
+    <span class="mobile-cta">View case study</span>
+  </div>
+  <div class="project-right">
+    <div class="project-thumb-wrap">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0808 0%,#2a0f0f 100%);display:flex;align-items:center;justify-content:center;padding:16px 12px 8px;">
+        <div style="width:100%;max-width:280px;">
+          <div style="background:#120808;border-radius:8px 8px 0 0;padding:6px 8px 8px;border:2.5px solid #2a1010;border-bottom:none;">
+            <div style="display:flex;align-items:center;gap:4px;margin-bottom:6px;">
+              <div style="width:5px;height:5px;border-radius:50%;background:#F22F46;opacity:.8;"></div>
+              <div style="width:5px;height:5px;border-radius:50%;background:#8B8427;opacity:.8;"></div>
+              <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.15);"></div>
+              <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;margin-left:4px;"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:3px;">
+              <div style="background:rgba(242,47,70,.12);border:1px solid rgba(242,47,70,.3);border-radius:3px;padding:4px 6px;display:flex;align-items:center;gap:5px;">
+                <div style="width:5px;height:5px;border-radius:50%;background:#F22F46;"></div>
+                <div style="flex:1;height:3px;background:rgba(255,255,255,.12);border-radius:2px;"></div>
+                <div style="font-size:5px;background:rgba(242,47,70,.3);color:#F22F46;padding:1px 4px;border-radius:2px;font-family:var(--sans);letter-spacing:.05em;">Critical</div>
               </div>
-              <div style="background:#1e0e0e;height:5px;border-radius:0 0 3px 3px;"></div>
-              <div style="background:#180c0c;height:3px;border-radius:0 0 6px 6px;margin:0 8px;"></div>
+              <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:3px;padding:4px 6px;display:flex;align-items:center;gap:5px;">
+                <div style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);"></div>
+                <div style="flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:2px;"></div>
+                <div style="font-size:5px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.3);padding:1px 4px;border-radius:2px;font-family:var(--sans);">Resolved</div>
+              </div>
+              <div style="background:rgba(242,47,70,.08);border:1px solid rgba(242,47,70,.2);border-radius:3px;padding:4px 6px;display:flex;align-items:center;gap:5px;">
+                <div style="width:5px;height:5px;border-radius:50%;background:rgba(242,47,70,.7);"></div>
+                <div style="flex:1;height:3px;background:rgba(255,255,255,.1);border-radius:2px;"></div>
+                <div style="font-size:5px;background:rgba(242,47,70,.2);color:#F22F46;padding:1px 4px;border-radius:2px;font-family:var(--sans);">Warning</div>
+              </div>
             </div>
           </div>
+          <div style="background:#1e0e0e;height:5px;border-radius:0 0 3px 3px;"></div>
+          <div style="background:#180c0c;height:3px;border-radius:0 0 6px 6px;margin:0 8px;"></div>
         </div>
-        <span class="arr">↗</span>
       </div>
-    </a>
+    </div>
+    <span class="arr">↗</span>
+  </div>
+</a>
 
-    <!-- 03 Zubale Onboarding -->
-    <a class="project-card reveal reveal-delay-2" href="project-zubale-onboarding.html">
-      <span class="project-num">03</span>
-      <div class="project-info">
-        <span class="project-company"><span class="company-dot" style="background:#2233FF"></span>Zubale · 2022</span>
-        <h3 class="project-name">Onboarding<br><em>Revamp</em></h3>
-        <div class="project-tags"><span class="tag">Mobile Design</span><span class="tag">UX Research</span><span class="tag">Growth</span></div>
-        <div class="project-impact">
-          <div class="impact-item"><span class="impact-num">2.5x</span><span class="impact-label">Conversion rate</span></div>
-          <div class="impact-item"><span class="impact-num">−72%</span><span class="impact-label">Time to convert</span></div>
-        </div>
-        <span class="mobile-cta">View case study ↗</span>
-      </div>
-      <div class="project-right">
-        <div class="project-thumb-wrap">
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#e8f0ff 0%,#c8d8ff 100%);display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 8px;">
-            <!-- Phone 1 (slightly tilted) -->
-            <div style="transform:rotate(-4deg) translateY(6px);flex-shrink:0;">
-              <div style="width:54px;background:#fff;border-radius:10px;border:2px solid #ddd;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.15);">
-                <div style="background:#2233FF;height:8px;display:flex;align-items:center;justify-content:center;"><div style="width:12px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
-                <div style="padding:4px;background:#f4f6ff;">
-                  <div style="background:#2233FF;border-radius:3px;height:20px;margin-bottom:3px;display:flex;align-items:center;justify-content:center;"><div style="width:20px;height:3px;background:rgba(255,255,255,.6);border-radius:2px;"></div></div>
-                  <div style="height:3px;background:#e0e4ff;border-radius:2px;margin-bottom:2px;"></div>
-                  <div style="height:3px;background:#e0e4ff;border-radius:2px;width:70%;margin-bottom:4px;"></div>
-                  <div style="background:#2233FF;border-radius:3px;height:10px;display:flex;align-items:center;justify-content:center;"><div style="width:16px;height:2px;background:rgba(255,255,255,.7);border-radius:2px;"></div></div>
-                </div>
-                <div style="background:#eee;height:3px;margin:0 auto;width:16px;border-radius:0 0 4px 4px;"></div>
-              </div>
+<!-- 03 Zubale Onboarding -->
+<a class="project-card reveal reveal-delay-2" href="project-zubale-onboarding.html">
+  <span class="project-num">03</span>
+  <div class="project-info">
+    <span class="project-company"><span class="company-dot" style="background:#2233FF"></span>Zubale · 2022</span>
+    <h3 class="project-name">Onboarding<br><em>Revamp</em></h3>
+    <div class="project-tags"><span class="tag">Mobile Design</span><span class="tag">UX Research</span><span class="tag">Growth</span></div>
+    <div class="project-impact">
+      <div class="impact-item"><span class="impact-num">2.5x</span><span class="impact-label">Conversion rate</span></div>
+      <div class="impact-item"><span class="impact-num">−72%</span><span class="impact-label">Time to convert</span></div>
+    </div>
+    <span class="mobile-cta">View case study</span>
+  </div>
+  <div class="project-right">
+    <div class="project-thumb-wrap">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#e8f0ff 0%,#c8d8ff 100%);display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 8px;">
+        <div style="transform:rotate(-4deg) translateY(6px);flex-shrink:0;">
+          <div style="width:54px;background:#fff;border-radius:10px;border:2px solid #ddd;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.15);">
+            <div style="background:#2233FF;height:8px;display:flex;align-items:center;justify-content:center;"><div style="width:12px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
+            <div style="padding:4px;background:#f4f6ff;">
+              <div style="background:#2233FF;border-radius:3px;height:20px;margin-bottom:3px;display:flex;align-items:center;justify-content:center;"><div style="width:20px;height:3px;background:rgba(255,255,255,.6);border-radius:2px;"></div></div>
+              <div style="height:3px;background:#e0e4ff;border-radius:2px;margin-bottom:2px;"></div>
+              <div style="height:3px;background:#e0e4ff;border-radius:2px;width:70%;margin-bottom:4px;"></div>
+              <div style="background:#2233FF;border-radius:3px;height:10px;display:flex;align-items:center;justify-content:center;"><div style="width:16px;height:2px;background:rgba(255,255,255,.7);border-radius:2px;"></div></div>
             </div>
-            <!-- Phone 2 (front, straight) -->
-            <div style="flex-shrink:0;">
-              <div style="width:60px;background:#fff;border-radius:11px;border:2px solid #ccc;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.2);">
-                <div style="background:#1a28cc;height:9px;display:flex;align-items:center;justify-content:center;"><div style="width:14px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
-                <div style="padding:5px;background:#fff;">
-                  <div style="height:3px;background:#2233FF;border-radius:2px;margin-bottom:3px;width:60%;"></div>
-                  <div style="height:22px;background:linear-gradient(135deg,#e8ecff,#d0d8ff);border-radius:4px;margin-bottom:3px;"></div>
-                  <div style="height:3px;background:#eee;border-radius:2px;margin-bottom:2px;"></div>
-                  <div style="height:3px;background:#eee;border-radius:2px;width:75%;margin-bottom:4px;"></div>
-                  <div style="background:#2233FF;border-radius:3px;height:9px;"></div>
-                </div>
-                <div style="background:#ddd;height:3px;margin:0 auto;width:18px;border-radius:0 0 5px 5px;"></div>
-              </div>
-            </div>
-            <!-- Phone 3 (right, tilted) -->
-            <div style="transform:rotate(4deg) translateY(6px);flex-shrink:0;">
-              <div style="width:54px;background:#fff;border-radius:10px;border:2px solid #ddd;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.15);">
-                <div style="background:#2233FF;height:8px;display:flex;align-items:center;justify-content:center;"><div style="width:12px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
-                <div style="padding:4px;background:#f4f6ff;">
-                  <div style="height:3px;background:#c0c8ff;border-radius:2px;margin-bottom:2px;"></div>
-                  <div style="height:3px;background:#c0c8ff;border-radius:2px;width:80%;margin-bottom:3px;"></div>
-                  <div style="height:14px;background:linear-gradient(135deg,#d0d8ff,#b8c4ff);border-radius:3px;margin-bottom:3px;"></div>
-                  <div style="background:#2233FF;border-radius:3px;height:10px;opacity:.7;"></div>
-                </div>
-                <div style="background:#eee;height:3px;margin:0 auto;width:16px;border-radius:0 0 4px 4px;"></div>
-              </div>
-            </div>
+            <div style="background:#eee;height:3px;margin:0 auto;width:16px;border-radius:0 0 4px 4px;"></div>
           </div>
         </div>
-        <span class="arr">↗</span>
+        <div style="flex-shrink:0;">
+          <div style="width:60px;background:#fff;border-radius:11px;border:2px solid #ccc;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.2);">
+            <div style="background:#1a28cc;height:9px;display:flex;align-items:center;justify-content:center;"><div style="width:14px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
+            <div style="padding:5px;background:#fff;">
+              <div style="height:3px;background:#2233FF;border-radius:2px;margin-bottom:3px;width:60%;"></div>
+              <div style="height:22px;background:linear-gradient(135deg,#e8ecff,#d0d8ff);border-radius:4px;margin-bottom:3px;"></div>
+              <div style="height:3px;background:#eee;border-radius:2px;margin-bottom:2px;"></div>
+              <div style="height:3px;background:#eee;border-radius:2px;width:75%;margin-bottom:4px;"></div>
+              <div style="background:#2233FF;border-radius:3px;height:9px;"></div>
+            </div>
+            <div style="background:#ddd;height:3px;margin:0 auto;width:18px;border-radius:0 0 5px 5px;"></div>
+          </div>
+        </div>
+        <div style="transform:rotate(4deg) translateY(6px);flex-shrink:0;">
+          <div style="width:54px;background:#fff;border-radius:10px;border:2px solid #ddd;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.15);">
+            <div style="background:#2233FF;height:8px;display:flex;align-items:center;justify-content:center;"><div style="width:12px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
+            <div style="padding:4px;background:#f4f6ff;">
+              <div style="height:3px;background:#c0c8ff;border-radius:2px;margin-bottom:2px;"></div>
+              <div style="height:3px;background:#c0c8ff;border-radius:2px;width:80%;margin-bottom:3px;"></div>
+              <div style="height:14px;background:linear-gradient(135deg,#d0d8ff,#b8c4ff);border-radius:3px;margin-bottom:3px;"></div>
+              <div style="background:#2233FF;border-radius:3px;height:10px;opacity:.7;"></div>
+            </div>
+            <div style="background:#eee;height:3px;margin:0 auto;width:16px;border-radius:0 0 4px 4px;"></div>
+          </div>
+        </div>
       </div>
-    </a>
+    </div>
+    <span class="arr">↗</span>
+  </div>
+</a>
 
-    <!-- 04 MeLi Live Commerce -->
-    <a href="project-meli-video.html" class="project-card reveal reveal-delay-3">
-      <span class="project-num">04</span>
-      <div class="project-info">
-        <span class="project-company"><span class="company-dot" style="background:#FFE600"></span>Mercado Libre · 2023</span>
-        <h3 class="project-name">Live<br><em>Commerce</em></h3>
-        <div class="project-tags"><span class="tag">Interaction Design</span><span class="tag">Live Video</span><span class="tag">E-commerce</span></div>
-        <span class="mobile-cta">View case study ↗</span>
-      </div>
-      <div class="project-right">
-        <div class="project-thumb-wrap">
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1600 0%,#2a2400 100%);display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 8px;">
-            <!-- Phone with MeLi screen -->
-            <div style="transform:rotate(-3deg) translateY(4px);flex-shrink:0;">
-              <div style="width:52px;background:#111;border-radius:10px;border:2px solid #333;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.4);">
-                <div style="background:#FFE600;height:7px;display:flex;align-items:center;padding:0 4px;"><div style="width:10px;height:2px;background:rgba(0,0,0,.2);border-radius:2px;"></div></div>
-                <div style="background:#111;padding:3px;height:65px;display:flex;flex-direction:column;gap:2px;">
-                  <div style="background:#222;border-radius:2px;flex:2;"></div>
-                  <div style="background:#1a1a1a;border-radius:2px;padding:3px;flex:1;display:flex;gap:2px;">
-                    <div style="width:18px;background:#FFE600;border-radius:2px;border:1px solid #FFD000;"></div>
-                    <div style="flex:1;display:flex;flex-direction:column;gap:1px;justify-content:center;"><div style="height:2px;background:#444;border-radius:1px;"></div><div style="height:2px;background:#333;border-radius:1px;width:70%;"></div></div>
-                  </div>
-                </div>
-                <div style="background:#222;height:3px;margin:0 auto;width:14px;border-radius:0 0 4px 4px;"></div>
+<!-- 04 MeLi Live Commerce -->
+<a href="project-meli-video.html" class="project-card reveal reveal-delay-3">
+  <span class="project-num">04</span>
+  <div class="project-info">
+    <span class="project-company"><span class="company-dot" style="background:#FFE600"></span>Mercado Libre · 2023</span>
+    <h3 class="project-name">Live<br><em>Commerce</em></h3>
+    <div class="project-tags"><span class="tag">Interaction Design</span><span class="tag">Live Video</span><span class="tag">E-commerce</span></div>
+    <span class="mobile-cta">View case study</span>
+  </div>
+  <div class="project-right">
+    <div class="project-thumb-wrap">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1600 0%,#2a2400 100%);display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 8px;">
+        <div style="transform:rotate(-3deg) translateY(4px);flex-shrink:0;">
+          <div style="width:52px;background:#111;border-radius:10px;border:2px solid #333;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.4);">
+            <div style="background:#FFE600;height:7px;display:flex;align-items:center;padding:0 4px;"><div style="width:10px;height:2px;background:rgba(0,0,0,.2);border-radius:2px;"></div></div>
+            <div style="background:#111;padding:3px;height:65px;display:flex;flex-direction:column;gap:2px;">
+              <div style="background:#222;border-radius:2px;flex:2;"></div>
+              <div style="background:#1a1a1a;border-radius:2px;padding:3px;flex:1;display:flex;gap:2px;">
+                <div style="width:18px;background:#FFE600;border-radius:2px;border:1px solid #FFD000;"></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:1px;justify-content:center;"><div style="height:2px;background:#444;border-radius:1px;"></div><div style="height:2px;background:#333;border-radius:1px;width:70%;"></div></div>
               </div>
             </div>
-            <div style="flex-shrink:0;">
-              <div style="width:60px;background:#111;border-radius:11px;border:2px solid #2a2a2a;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.5);">
-                <div style="background:#FFE600;height:9px;display:flex;align-items:center;padding:0 5px;gap:3px;"><div style="width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.2);"></div><div style="font-size:5px;color:rgba(0,0,0,.5);font-family:var(--sans);font-weight:700;">● VIVO</div></div>
-                <div style="background:#111;padding:3px;height:72px;position:relative;">
-                  <div style="background:#222;border-radius:3px;height:32px;margin-bottom:3px;display:flex;align-items:center;justify-content:center;"><div style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);"></div></div>
-                  <div style="display:flex;gap:2px;">
-                    <div style="width:22px;background:#FFE600;border-radius:2px;border:1.5px solid #FFD000;height:26px;"></div>
-                    <div style="flex:1;display:flex;flex-direction:column;gap:2px;"><div style="background:#222;border-radius:2px;height:12px;"></div><div style="background:#1e1e1e;border-radius:2px;height:12px;"></div></div>
-                  </div>
-                </div>
-                <div style="background:#222;height:3px;margin:0 auto;width:18px;border-radius:0 0 5px 5px;"></div>
-              </div>
-            </div>
+            <div style="background:#222;height:3px;margin:0 auto;width:14px;border-radius:0 0 4px 4px;"></div>
           </div>
         </div>
-        <span class="arr">↗</span>
+        <div style="flex-shrink:0;">
+          <div style="width:60px;background:#111;border-radius:11px;border:2px solid #2a2a2a;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.5);">
+            <div style="background:#FFE600;height:9px;display:flex;align-items:center;padding:0 5px;gap:3px;"><div style="width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.2);"></div><div style="font-size:5px;color:rgba(0,0,0,.5);font-family:var(--sans);font-weight:700;">● VIVO</div></div>
+            <div style="background:#111;padding:3px;height:72px;position:relative;">
+              <div style="background:#222;border-radius:3px;height:32px;margin-bottom:3px;display:flex;align-items:center;justify-content:center;"><div style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);"></div></div>
+              <div style="display:flex;gap:2px;">
+                <div style="width:22px;background:#FFE600;border-radius:2px;border:1.5px solid #FFD000;height:26px;"></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:2px;"><div style="background:#222;border-radius:2px;height:12px;"></div><div style="background:#1e1e1e;border-radius:2px;height:12px;"></div></div>
+              </div>
+            </div>
+            <div style="background:#222;height:3px;margin:0 auto;width:18px;border-radius:0 0 5px 5px;"></div>
+          </div>
+        </div>
       </div>
-    </a>
+    </div>
+    <span class="arr">↗</span>
+  </div>
+</a>
 
-    <!-- 05 Merqueo Status Tracker -->
-    <a href="project-merqueo-tracker.html" class="project-card reveal reveal-delay-3">
-      <span class="project-num">05</span>
-      <div class="project-info">
-        <span class="project-company"><span class="company-dot" style="background:#C0186C"></span>Merqueo · 2020</span>
-        <h3 class="project-name">Order Status<br><em>Tracker</em></h3>
-        <div class="project-tags"><span class="tag">UX Research</span><span class="tag">Mobile Design</span><span class="tag">E-commerce</span></div>
-        <div class="project-impact">
-          <div class="impact-item"><span class="impact-num">16%</span><span class="impact-label">Support tickets targeted</span></div>
-          <div class="impact-item"><span class="impact-num">17</span><span class="impact-label">Users tested</span></div>
-        </div>
-        <span class="mobile-cta">View case study ↗</span>
-      </div>
-      <div class="project-right">
-        <div class="project-thumb-wrap">
-          <div style="width:100%;height:100%;background:linear-gradient(135deg,#fce8f3 0%,#f5c8e3 100%);display:flex;align-items:center;justify-content:center;padding:12px 8px;">
-            <div style="flex-shrink:0;">
-              <div style="width:68px;background:#fff;border-radius:12px;border:2px solid #ddd;overflow:hidden;box-shadow:0 12px 28px rgba(192,24,108,.2);">
-                <div style="background:#C0186C;height:9px;display:flex;align-items:center;justify-content:center;"><div style="width:14px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
-                <div style="padding:5px;background:#fff;">
-                  <!-- ETA header -->
-                  <div style="background:#fce8f3;border-radius:3px;padding:3px 4px;margin-bottom:4px;"><div style="height:3px;background:#C0186C;border-radius:2px;width:60%;margin-bottom:1px;"></div><div style="height:2px;background:#e0a0c0;border-radius:2px;width:40%;"></div></div>
-                  <!-- Horizontal tracker -->
-                  <div style="display:flex;align-items:center;gap:2px;margin-bottom:4px;padding:0 2px;">
-                    <div style="width:10px;height:10px;border-radius:50%;background:#C0186C;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;border-radius:50%;background:#fff;"></div></div>
-                    <div style="flex:1;height:2px;background:#C0186C;border-radius:1px;"></div>
-                    <div style="width:10px;height:10px;border-radius:50%;background:#C0186C;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;border-radius:50%;background:#fff;"></div></div>
-                    <div style="flex:1;height:2px;background:rgba(192,24,108,.25);border-radius:1px;"></div>
-                    <div style="width:10px;height:10px;border-radius:50%;background:rgba(192,24,108,.2);border:2px solid #C0186C;flex-shrink:0;"></div>
-                    <div style="flex:1;height:2px;background:rgba(0,0,0,.08);border-radius:1px;"></div>
-                    <div style="width:10px;height:10px;border-radius:50%;background:#eee;flex-shrink:0;"></div>
-                  </div>
-                  <!-- Content lines -->
-                  <div style="height:2px;background:#eee;border-radius:2px;margin-bottom:2px;"></div>
-                  <div style="height:2px;background:#eee;border-radius:2px;width:75%;margin-bottom:2px;"></div>
-                  <div style="height:8px;background:#f5e8f0;border-radius:2px;margin-top:3px;"></div>
-                </div>
-                <div style="background:#ddd;height:3px;margin:0 auto;width:18px;border-radius:0 0 5px 5px;"></div>
+<!-- 05 Merqueo Status Tracker -->
+<a href="project-merqueo-tracker.html" class="project-card reveal reveal-delay-3">
+  <span class="project-num">05</span>
+  <div class="project-info">
+    <span class="project-company"><span class="company-dot" style="background:#C0186C"></span>Merqueo · 2020</span>
+    <h3 class="project-name">Order Status<br><em>Tracker</em></h3>
+    <div class="project-tags"><span class="tag">UX Research</span><span class="tag">Mobile Design</span><span class="tag">E-commerce</span></div>
+    <div class="project-impact">
+      <div class="impact-item"><span class="impact-num">16%</span><span class="impact-label">Support tickets targeted</span></div>
+      <div class="impact-item"><span class="impact-num">17</span><span class="impact-label">Users tested</span></div>
+    </div>
+    <span class="mobile-cta">View case study</span>
+  </div>
+  <div class="project-right">
+    <div class="project-thumb-wrap">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#fce8f3 0%,#f5c8e3 100%);display:flex;align-items:center;justify-content:center;padding:12px 8px;">
+        <div style="flex-shrink:0;">
+          <div style="width:68px;background:#fff;border-radius:12px;border:2px solid #ddd;overflow:hidden;box-shadow:0 12px 28px rgba(192,24,108,.2);">
+            <div style="background:#C0186C;height:9px;display:flex;align-items:center;justify-content:center;"><div style="width:14px;height:2px;background:rgba(255,255,255,.4);border-radius:2px;"></div></div>
+            <div style="padding:5px;background:#fff;">
+              <div style="background:#fce8f3;border-radius:3px;padding:3px 4px;margin-bottom:4px;"><div style="height:3px;background:#C0186C;border-radius:2px;width:60%;margin-bottom:1px;"></div><div style="height:2px;background:#e0a0c0;border-radius:2px;width:40%;"></div></div>
+              <div style="display:flex;align-items:center;gap:2px;margin-bottom:4px;padding:0 2px;">
+                <div style="width:10px;height:10px;border-radius:50%;background:#C0186C;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;border-radius:50%;background:#fff;"></div></div>
+                <div style="flex:1;height:2px;background:#C0186C;border-radius:1px;"></div>
+                <div style="width:10px;height:10px;border-radius:50%;background:#C0186C;flex-shrink:0;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;border-radius:50%;background:#fff;"></div></div>
+                <div style="flex:1;height:2px;background:rgba(192,24,108,.25);border-radius:1px;"></div>
+                <div style="width:10px;height:10px;border-radius:50%;background:rgba(192,24,108,.2);border:2px solid #C0186C;flex-shrink:0;"></div>
+                <div style="flex:1;height:2px;background:rgba(0,0,0,.08);border-radius:1px;"></div>
+                <div style="width:10px;height:10px;border-radius:50%;background:#eee;flex-shrink:0;"></div>
               </div>
+              <div style="height:2px;background:#eee;border-radius:2px;margin-bottom:2px;"></div>
+              <div style="height:2px;background:#eee;border-radius:2px;width:75%;margin-bottom:2px;"></div>
+              <div style="height:8px;background:#f5e8f0;border-radius:2px;margin-top:3px;"></div>
             </div>
+            <div style="background:#ddd;height:3px;margin:0 auto;width:18px;border-radius:0 0 5px 5px;"></div>
           </div>
         </div>
-        <span class="arr">↗</span>
       </div>
-    </a>
+    </div>
+    <span class="arr">↗</span>
+  </div>
+</a>
+```
 
   </div>
 </section>
 
 <!-- ABOUT -->
+
 <section class="about-section" id="about">
   <div class="reveal">
     <div class="about-label">About me</div>
@@ -546,6 +560,7 @@
 </section>
 
 <!-- CONTACT -->
+
 <section class="contact-section" id="contact">
   <div class="contact-bg"></div>
   <div class="contact-label reveal">Available for new opportunities</div>
@@ -557,6 +572,7 @@
 </section>
 
 <!-- FOOTER -->
+
 <footer>
   <span>© 2026 Alejandra Osorio</span>
   <div style="display:flex;gap:24px">
@@ -566,6 +582,7 @@
 </footer>
 
 <!-- CONTACT MODAL -->
+
 <div id="contactModal" style="display:none;position:fixed;inset:0;z-index:1000;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:var(--white);border-radius:24px;padding:48px 52px;max-width:420px;width:90%;position:relative;box-shadow:0 32px 80px rgba(0,0,0,0.2);">
     <button onclick="document.getElementById('contactModal').style.display='none'" style="position:absolute;top:20px;right:20px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1;">✕</button>
@@ -585,7 +602,6 @@
 </div>
 
 <script>
-  // Cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx=0,my=0,rx=0,ry=0;
@@ -600,12 +616,8 @@
     el.addEventListener('mouseenter', () => { cursor.style.width='18px'; cursor.style.height='18px'; ring.style.width='52px'; ring.style.height='52px'; });
     el.addEventListener('mouseleave', () => { cursor.style.width='10px'; cursor.style.height='10px'; ring.style.width='38px'; ring.style.height='38px'; });
   });
-
-  // Scroll reveal
   const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
-
-  // Nav on scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     if(window.scrollY > 50) {
@@ -619,5 +631,6 @@
     }
   });
 </script>
+
 </body>
 </html>
