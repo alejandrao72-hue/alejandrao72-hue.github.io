@@ -24,13 +24,11 @@
     .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);}
     .cursor-ring{width:38px;height:38px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;}
 
-    /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;background:rgba(240,239,216,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);}
     .nav-logo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--dark);text-decoration:none;}
     .nav-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mid);text-decoration:none;transition:color .2s;}
     .nav-back:hover{color:var(--gold);}
 
-    /* HERO */
     .hero{padding:130px 56px 64px;border-bottom:1px solid rgba(0,0,0,0.08);}
     .company-badge{display:inline-flex;align-items:center;gap:10px;background:var(--dark);border-radius:100px;padding:7px 16px 7px 10px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) .1s forwards;}
     .twilio-icon{width:22px;height:22px;background:var(--twilio);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -39,16 +37,15 @@
     .badge-year{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.08em;}
     .hero-title{font-family:var(--serif);font-size:clamp(48px,7vw,100px);font-weight:900;line-height:.9;letter-spacing:-2.5px;margin-bottom:48px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
     .hero-title em{font-style:italic;color:var(--gold);}
+    .hero-summary{font-size:16px;line-height:1.7;color:var(--mid);max-width:600px;margin-bottom:40px;font-weight:300;opacity:0;animation:fadeUp .8s var(--ease) .3s forwards;}
     .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.08);opacity:0;animation:fadeUp .8s var(--ease) .35s forwards;}
     .meta-item{display:flex;flex-direction:column;gap:5px;}
     .meta-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
     .meta-value{font-size:14px;color:var(--dark);line-height:1.45;}
 
-    /* COVER, no overlay, image only */
     .cover{width:100%;overflow:hidden;opacity:0;animation:fadeIn 1s var(--ease) .5s forwards;background:#f0efd8;border-bottom:1px solid rgba(0,0,0,0.06);}
     .cover img{width:100%;display:block;max-height:480px;object-fit:cover;object-position:top center;}
 
-    /* CONTENT BLOCKS */
     .content{max-width:780px;margin:0 auto;padding:88px 56px;}
     .content.wide{max-width:none;padding:72px 56px;}
 
@@ -59,7 +56,6 @@
     p.body strong{color:var(--dark);font-weight:500;}
     hr{border:none;border-top:1px solid rgba(0,0,0,0.07);margin:64px 0;}
 
-    /* SIDE BY SIDE, image left, text right */
     .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:72px 56px;border-bottom:1px solid rgba(0,0,0,0.06);}
     .split.reverse{direction:rtl;}
     .split.reverse > *{direction:ltr;}
@@ -71,7 +67,6 @@
     .split-text h3 em{font-style:italic;color:var(--gold);}
     .split-text p{font-size:15px;line-height:1.75;color:var(--mid);font-weight:300;}
 
-    /* STATS */
     .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:56px 0;border-radius:16px;overflow:hidden;}
     .full-img{margin:40px 0;border-radius:16px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);}
     .full-img img{width:100%;display:block;}
@@ -80,12 +75,10 @@
     .stat-num{font-family:var(--serif);font-size:clamp(36px,5vw,60px);font-weight:900;color:#c4bb50;letter-spacing:-1.5px;line-height:1;}
     .stat-label{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.4;}
 
-    /* QUOTE */
     .pull-quote{padding:48px 56px;background:var(--gold-light);border-left:3px solid var(--gold);margin:48px 0;border-radius:0 16px 16px 0;}
     .pull-quote p{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-style:italic;line-height:1.5;color:var(--dark);margin-bottom:14px;}
     .pull-quote cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
 
-    /* PHASE GRID */
     .phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
     .phase-card{padding:32px;border:1px solid rgba(0,0,0,0.08);background:var(--white);display:flex;flex-direction:column;gap:10px;transition:border-color .3s,background .3s;}
     .phase-card:hover{border-color:var(--gold);background:var(--gold-light);}
@@ -95,14 +88,12 @@
     .phase-tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;}
     .phase-tool{font-size:10px;background:rgba(139,132,39,0.1);color:var(--gold-dark);padding:3px 10px;border-radius:100px;}
 
-    /* INSIGHT QUOTES */
     .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:40px 0;}
     .insight-card{padding:28px;background:var(--white);border-radius:14px;border:1px solid rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:10px;}
     .insight-card blockquote{font-family:var(--serif);font-size:15px;font-style:italic;line-height:1.6;color:var(--dark);}
     .insight-card cite{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
     .insight-tag{font-size:10px;background:rgba(139,132,39,0.1);color:var(--gold-dark);padding:3px 10px;border-radius:100px;display:inline-block;align-self:flex-start;}
 
-    /* JOURNEY VIZ */
     .journey-viz{background:#1a1a0d;border-radius:20px;padding:48px;margin:40px 0;overflow-x:auto;}
     .journey-title-sm{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(196,187,80,0.5);margin-bottom:32px;}
     .journey-steps{display:flex;position:relative;min-width:600px;}
@@ -122,14 +113,12 @@
     .step-name{font-size:12px;font-weight:500;color:rgba(255,255,255,0.75);}
     .step-desc{font-size:10px;color:rgba(255,255,255,0.28);line-height:1.5;}
 
-    /* OPP */
     .opp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:40px 0;}
     .opp-card{padding:32px;background:#1a1a0d;border-radius:14px;display:flex;flex-direction:column;gap:10px;}
     .opp-num{font-family:var(--serif);font-size:32px;font-weight:900;color:rgba(196,187,80,0.25);line-height:1;}
     .opp-title{font-size:16px;font-weight:500;color:rgba(255,255,255,0.82);line-height:1.3;}
     .opp-desc{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.6;}
 
-    /* RESULTS */
     .results-box{background:var(--gold-light);border-radius:20px;padding:56px;margin:40px 0;}
     .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px;}
     .result-item{display:flex;gap:14px;align-items:flex-start;}
@@ -137,7 +126,20 @@
     .result-text h4{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:3px;}
     .result-text p{font-size:13px;color:var(--muted);line-height:1.5;margin:0;}
 
-    /* NEXT */
+    /* IDA SECTION */
+    .ida-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;border-radius:16px;overflow:hidden;margin-top:40px;}
+    .ida-card{background:var(--white);border:1px solid rgba(0,0,0,0.07);overflow:hidden;}
+    .ida-card-img{overflow:hidden;max-height:300px;}
+    .ida-card-img img{width:100%;display:block;object-fit:cover;object-position:top;transition:transform .5s var(--ease);}
+    .ida-card:hover .ida-card-img img{transform:scale(1.03);}
+    .ida-card-text{padding:20px 24px 24px;}
+    .ida-card-label{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+    .ida-card-desc{font-size:13px;color:var(--mid);line-height:1.65;margin:0;}
+    .ida-principle{margin-top:20px;padding:24px 28px;background:#1a1a0d;border-radius:12px;display:flex;gap:16px;align-items:flex-start;}
+    .ida-principle-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px;}
+    .ida-principle-title{font-size:13px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:5px;}
+    .ida-principle-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.65;margin:0;}
+
     .next{padding:72px 56px;border-top:1px solid rgba(0,0,0,0.08);display:flex;justify-content:space-between;align-items:center;}
     .next-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
     .next-title{font-family:var(--serif);font-size:clamp(26px,3.5vw,44px);font-weight:700;letter-spacing:-.8px;}
@@ -160,7 +162,7 @@
       .split{grid-template-columns:1fr;padding:48px 24px;gap:32px;}
       .split.reverse{direction:ltr;}
       .stat-row{grid-template-columns:1fr;}
-      .phase-grid,.insight-grid,.opp-grid,.results-grid{grid-template-columns:1fr;}
+      .phase-grid,.insight-grid,.opp-grid,.results-grid,.ida-grid{grid-template-columns:1fr;}
       .next{flex-direction:column;gap:28px;align-items:flex-start;padding:56px 24px;}
       .pull-quote{padding:32px 28px;}
     }
@@ -216,7 +218,7 @@
   </div>
 
   <div class="full-img reveal">
-    <img src="strategy-landscape.png" alt="Messaging & Email Observability ecosystem: Logs, Analytics, Insights & Traffic Intelligence, Content Intelligence"/>
+    <img src="strategy-landscape.png" alt="Messaging & Email Observability ecosystem"/>
     <p class="img-caption">The full observability ecosystem: 3 layers, 6+ products, spanning Messaging, Email, and Voice</p>
   </div>
 
@@ -263,7 +265,7 @@
   </div>
 
   <div class="full-img reveal d1">
-    <img src="strategy-personas.png" alt="User personas by JTBD: 6 types mapped across troubleshooting and optimization journeys"/>
+    <img src="strategy-personas.png" alt="User personas by JTBD"/>
     <p class="img-caption">6 persona types mapped by JTBD: each with a distinct troubleshooting journey</p>
   </div>
 
@@ -277,7 +279,7 @@
   </div>
 </div>
 
-<!-- JOURNEY FRAMEWORK, wide -->
+<!-- JOURNEY FRAMEWORK -->
 <div class="content wide">
   <div class="journey-viz reveal">
     <div class="journey-title-sm">Messaging Observability Journey, from detection to optimization</div>
@@ -293,14 +295,75 @@
   </div>
 
   <div class="full-img reveal d1" style="margin-top:40px;">
-    <img src="strategy-intelligent-system.png" alt="Intelligent troubleshooting system: Intelligent Alerts, Health Score, AI Assistant on Logs, AI Assistant on Insights, Recommendations, Add-on enablement, Feedback loop"/>
+    <img src="strategy-intelligent-system.png" alt="Intelligent troubleshooting system"/>
     <p class="img-caption">The intelligent troubleshooting system: 7 interconnected capabilities enabling self-serve resolution</p>
   </div>
 
   <div class="full-img reveal d1" style="margin-top:24px;">
-    <img src="strategy-insights-overview.png" alt="Messaging Insights: 6 dashboards: Overview & Health Score, Delivery & Errors, Engagement, Trust & Compliance, Risk & Fraud, Latency & Scale"/>
+    <img src="strategy-insights-overview.png" alt="Messaging Insights: 6 dashboards"/>
     <p class="img-caption">Messaging Insights: 6 dashboards covering the full monitoring spectrum</p>
   </div>
+
+  <!-- IDA SECTION -->
+  <div style="margin-top:80px;" class="reveal">
+    <span class="section-tag">AI in the Journey · Intelligent Discovery Assistant</span>
+    <h2>Designing for<br><em>AI-first</em> troubleshooting</h2>
+    <p class="body" style="max-width:680px;">One of the most consequential products in the strategy was the <strong>Intelligent Discovery Assistant (IDA)</strong> — an AI chat layer embedded directly inside the troubleshooting journey. Rather than routing users to documentation or support tickets, IDA surfaces root-cause analysis, error explanations, and next steps in context, right where the investigation is already happening.</p>
+    <p class="body" style="max-width:680px;">Designing IDA meant answering a harder question than "how does the chat look?" — it meant defining <strong>where AI fits in the workflow</strong>, how it coexists with the existing data, and what level of trust users should place in its answers. The screenshots below show four moments across two surfaces where IDA changes the experience.</p>
+  </div>
+
+  <div class="ida-grid reveal d1">
+
+    <div class="ida-card">
+      <div class="ida-card-img">
+        <img src="IDA.png" alt="Messaging Insights dashboard with Intelligent Discovery panel open"/>
+      </div>
+      <div class="ida-card-text">
+        <div class="ida-card-label">Messaging Insights · AI panel open</div>
+        <p class="ida-card-desc">IDA opens alongside the Insights dashboard and immediately identifies the impacted phone number, the carrier, and the error pattern — without the user typing a single query. It also surfaces a recommended product action to resolve the issue.</p>
+      </div>
+    </div>
+
+    <div class="ida-card">
+      <div class="ida-card-img">
+        <img src="Message Details.png" alt="Message Details without AI panel"/>
+      </div>
+      <div class="ida-card-text">
+        <div class="ida-card-label">Message Details · Before AI</div>
+        <p class="ida-card-desc">The Message Details view shows the raw data: SID, delivery status, tags, and event history. The "Troubleshoot with AI" entry point lives in the top right — present but never intrusive. Users reach for it when the data alone isn't enough.</p>
+      </div>
+    </div>
+
+    <div class="ida-card">
+      <div class="ida-card-img">
+        <img src="Message Details2.png" alt="Message Details with IDA panel open"/>
+      </div>
+      <div class="ida-card-text">
+        <div class="ida-card-label">Message Details · AI panel open</div>
+        <p class="ida-card-desc">Once triggered, IDA explains the specific error — in this case error 30007, carrier-filtered — with context pulled from Help Center articles. It shows data sources and a "Recommended product" section, closing the loop between diagnosis and action.</p>
+      </div>
+    </div>
+
+    <div class="ida-card">
+      <div class="ida-card-img">
+        <img src="Wizard Page.png" alt="List of Messages with filters and Troubleshoot with AI inline"/>
+      </div>
+      <div class="ida-card-text">
+        <div class="ida-card-label">Message Logs · Filtered list view</div>
+        <p class="ida-card-desc">In the log table, "Troubleshoot with AI" appears inline per row — users can trigger IDA directly from a filtered list of undelivered messages without navigating away. This collapses the distance between detection and investigation.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ida-principle reveal d1">
+    <div class="ida-principle-dot"></div>
+    <div>
+      <div class="ida-principle-title">Design principle: AI as a layer, not a destination</div>
+      <p class="ida-principle-desc">IDA was designed to live inside existing workflows — not as a standalone page or separate tool. Every entry point is contextual: the AI already knows which message, which error, which account you're looking at. The result is an assistant that feels less like a chatbot and more like a colleague who read the logs before you walked over.</p>
+    </div>
+  </div>
+
 </div>
 
 <!-- MY CONTRIBUTION -->
@@ -333,7 +396,7 @@
   </div>
 
   <div class="full-img reveal d1">
-    <img src="strategy-use-case-delivery.png" alt="Deliverability & Compliance use case: how Alerts, Insights dashboards, and Logs work together for a single customer need"/>
+    <img src="strategy-use-case-delivery.png" alt="Deliverability & Compliance use case"/>
     <p class="img-caption">Journey in action: Alerts, Insights, and Logs working together for the deliverability & compliance use case</p>
   </div>
 
@@ -346,7 +409,7 @@
     <span class="section-tag">Strategic Outcomes</span>
     <h2>From fragmented tools<br>to a <em>coherent system</em></h2>
     <div class="full-img" style="margin:28px 0 36px;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
-      <img src="strategy-before-after.png" alt="Before vs After CDE launch: reactive manual troubleshooting vs proactive intelligent system with Alerts, AI assistant, Health Score, Recommendations"/>
+      <img src="strategy-before-after.png" alt="Before vs After CDE launch"/>
     </div>
     <div class="results-grid">
       <div class="result-item"><div class="result-icon">🗺️</div><div class="result-text"><h4>A shared journey map</h4><p>The 7-step observability framework became the org-wide reference for product, engineering, and design decisions.</p></div></div>
