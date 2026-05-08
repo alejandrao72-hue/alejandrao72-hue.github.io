@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Status Tracker, Alejandra Osorio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold:#8B8427; --gold-dark:#6a6420; --gold-light:#e8e7cc;
+      --dark:#1a1a12; --mid:#3a3a28; --muted:#8a8a6a;
+      --bg:#f0efd8; --white:#fafaf0;
+      --merqueo:#C0186C;
+      --serif:'Playfair Display',Georgia,serif;
+      --sans:'DM Sans',sans-serif;
+      --ease:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--dark);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;}
+
+    .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);}
+    .cursor-ring{width:38px;height:38px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;background:rgba(240,239,216,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);}
+    .nav-logo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--dark);text-decoration:none;}
+    .nav-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mid);text-decoration:none;transition:color .2s;}
+    .nav-back:hover{color:var(--gold);}
+
+    .hero{padding:130px 56px 64px;border-bottom:1px solid rgba(0,0,0,0.08);}
+    .company-badge{display:inline-flex;align-items:center;gap:10px;background:var(--merqueo);border-radius:100px;padding:7px 16px 7px 12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) .1s forwards;}
+    .merqueo-m{font-size:14px;font-weight:900;color:#fff;font-family:var(--sans);letter-spacing:-.02em;}
+    .merqueo-name{font-size:12px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:.04em;}
+    .badge-sep{width:1px;height:14px;background:rgba(255,255,255,0.25);}
+    .badge-year{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:.08em;}
+    .hero-title{font-family:var(--serif);font-size:clamp(48px,7vw,100px);font-weight:900;line-height:.9;letter-spacing:-2.5px;margin-bottom:48px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
+    .hero-title em{font-style:italic;color:var(--gold);}
+    .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.08);opacity:0;animation:fadeUp .8s var(--ease) .35s forwards;}
+    .meta-item{display:flex;flex-direction:column;gap:5px;}
+    .meta-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+    .meta-value{font-size:14px;color:var(--dark);line-height:1.45;}
+
+    .cover-hero{width:100%;background:var(--dark);padding:64px 56px;display:flex;align-items:center;gap:64px;opacity:0;animation:fadeIn 1s var(--ease) .5s forwards;}
+    .cover-left{flex:1;}
+    .cover-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--merqueo);margin-bottom:16px;opacity:.8;}
+    .cover-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:900;color:var(--white);line-height:1;letter-spacing:-1.5px;margin-bottom:16px;}
+    .cover-title em{font-style:italic;color:var(--gold);}
+    .cover-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.65;max-width:380px;}
+    .cover-right{flex-shrink:0;display:flex;flex-direction:column;gap:10px;min-width:200px;}
+    .cover-stat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 20px;}
+    .cover-stat-num{font-family:var(--serif);font-size:28px;font-weight:900;color:var(--gold);letter-spacing:-1px;line-height:1;}
+    .cover-stat-label{font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;}
+
+    .content{max-width:780px;margin:0 auto;padding:88px 56px;}
+    .content.wide{max-width:none;padding:72px 56px;}
+    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+    h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,50px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:24px;}
+    h2 em{font-style:italic;color:var(--gold);}
+    p.body{font-size:17px;line-height:1.8;color:var(--mid);margin-bottom:18px;font-weight:300;}
+    p.body strong{color:var(--dark);font-weight:500;}
+    hr{border:none;border-top:1px solid rgba(0,0,0,0.07);margin:64px 0;}
+
+    .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
+    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:10px;}
+    .problem-icon{font-size:20px;margin-bottom:4px;}
+    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
+    .problem-card h4{font-size:17px;font-weight:700;color:var(--dark);font-family:var(--serif);letter-spacing:-.3px;}
+    .problem-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:48px 0;border-radius:16px;overflow:hidden;}
+    .stat-block{background:var(--dark);padding:44px 36px;display:flex;flex-direction:column;gap:8px;}
+    .stat-num{font-family:var(--serif);font-size:clamp(36px,5vw,60px);font-weight:900;color:var(--gold);letter-spacing:-1.5px;line-height:1;}
+    .stat-label{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.4;}
+
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:72px 56px;border-bottom:1px solid rgba(0,0,0,0.06);}
+    .split.reverse{direction:rtl;}
+    .split.reverse>*{direction:ltr;}
+    .split-img{border-radius:16px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,0.1);}
+    .split-img img{width:100%;display:block;}
+    .split-text{display:flex;flex-direction:column;gap:16px;}
+    .split-text .cap-badge{display:inline-block;font-size:10px;background:rgba(192,24,108,0.1);color:var(--merqueo);padding:4px 12px;border-radius:100px;align-self:flex-start;}
+    .split-text h3{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:700;letter-spacing:-.5px;line-height:1.1;}
+    .split-text h3 em{font-style:italic;color:var(--gold);}
+    .split-text p{font-size:15px;line-height:1.75;color:var(--mid);}
+
+    .full-img{margin:40px 0;border-radius:16px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);}
+    .full-img img{width:100%;display:block;}
+    .img-caption{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:10px;}
+
+    .process-steps{display:flex;flex-direction:column;gap:0;margin:40px 0;}
+    .process-step{display:grid;grid-template-columns:56px 1fr;gap:24px;padding:28px 0;border-top:1px solid rgba(0,0,0,0.07);align-items:flex-start;}
+    .process-step:last-child{border-bottom:1px solid rgba(0,0,0,0.07);}
+    .step-num{font-family:var(--serif);font-size:32px;font-weight:900;color:rgba(192,24,108,0.18);letter-spacing:-1px;line-height:1;padding-top:4px;}
+    .step-content h4{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--dark);margin-bottom:8px;letter-spacing:-.3px;}
+    .step-content p{font-size:14px;color:var(--mid);line-height:1.65;}
+    .step-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+    .stag{font-size:10px;background:rgba(192,24,108,0.08);color:var(--merqueo);padding:3px 10px;border-radius:100px;}
+
+    .research-quotes{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
+    .quote-card{background:var(--white);border:1px solid rgba(0,0,0,0.07);padding:28px 32px;}
+    .quote-text{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--dark);line-height:1.6;margin-bottom:10px;}
+    .quote-meta{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+
+    .feature-block{background:var(--dark);border-radius:20px;padding:56px;margin:40px 0;}
+    .feature-block .section-tag{color:rgba(192,24,108,0.7);}
+    .feature-block h2{color:var(--white);}
+    .feature-block h2 em{color:var(--gold);}
+    .feature-list{display:flex;flex-direction:column;gap:0;margin-top:32px;}
+    .feature-item{display:flex;align-items:flex-start;gap:20px;padding:20px 0;border-top:1px solid rgba(255,255,255,0.06);}
+    .feature-item:last-child{border-bottom:1px solid rgba(255,255,255,0.06);}
+    .feature-dot{width:6px;height:6px;border-radius:50%;background:var(--merqueo);flex-shrink:0;margin-top:6px;}
+    .feature-item h4{font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:4px;}
+    .feature-item p{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6;}
+
+    .pull-quote{padding:48px 56px;background:var(--gold-light);border-left:3px solid var(--gold);margin:48px 0;border-radius:0 16px 16px 0;}
+    .pull-quote p{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-style:italic;line-height:1.5;color:var(--dark);margin-bottom:14px;}
+    .pull-quote cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
+
+    .results-box{background:var(--gold-light);border-radius:20px;padding:56px;margin:40px 0;}
+    .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px;}
+    .result-item{display:flex;gap:14px;align-items:flex-start;}
+    .result-icon{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+    .result-text h4{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:3px;}
+    .result-text p{font-size:13px;color:var(--muted);line-height:1.5;margin:0;}
+
+    /* SCREENS GALLERY */
+    .screens-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:40px;}
+    .screen-card{display:flex;flex-direction:column;gap:12px;}
+    .screen-card img{width:100%;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.12);display:block;}
+    .screen-label{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--merqueo);}
+    .screen-desc{font-size:12px;color:var(--mid);line-height:1.55;}
+
+    .next{padding:72px 56px;border-top:1px solid rgba(0,0,0,0.08);display:flex;justify-content:space-between;align-items:center;}
+    .next-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+    .next-title{font-family:var(--serif);font-size:clamp(26px,3.5vw,44px);font-weight:700;letter-spacing:-.8px;}
+    .next-title em{font-style:italic;color:var(--gold);}
+    .next-link{display:inline-flex;align-items:center;gap:10px;background:var(--dark);color:var(--white);text-decoration:none;font-size:13px;font-weight:500;padding:14px 28px;border-radius:100px;transition:background .2s,transform .2s;}
+    .next-link:hover{background:var(--gold);transform:translateY(-2px);}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .d1{transition-delay:.1s;} .d2{transition-delay:.2s;}
+
+    @media(max-width:900px){
+      nav{padding:18px 24px;}
+      .hero{padding:110px 24px 52px;}
+      .meta-grid{grid-template-columns:1fr 1fr;gap:20px;}
+      .content{padding:56px 24px;}
+      .content.wide{padding:56px 24px;}
+      .cover-hero{flex-direction:column;padding:40px 24px;gap:32px;}
+      .split{grid-template-columns:1fr;padding:48px 24px;gap:32px;}
+      .split.reverse{direction:ltr;}
+      .problem-grid,.stat-row,.research-quotes,.results-grid{grid-template-columns:1fr;}
+      .screens-grid{grid-template-columns:1fr 1fr;}
+      .next{flex-direction:column;gap:28px;align-items:flex-start;padding:56px 24px;}
+      .feature-block{padding:36px 24px;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">AO.</a>
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to work
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="company-badge">
+    <span class="merqueo-m">M</span>
+    <span class="merqueo-name">Merqueo</span>
+    <div class="badge-sep"></div>
+    <span class="badge-year">2020</span>
+  </div>
+  <h1 class="hero-title">Order Status<br><em>Tracker</em></h1>
+  <div class="meta-grid">
+    <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Product Designer, research, UX strategy & end-to-end design</span></div>
+    <div class="meta-item"><span class="meta-label">Team</span><span class="meta-value">Product · Engineering · Customer Service · Brand</span></div>
+    <div class="meta-item"><span class="meta-label">Methods</span><span class="meta-value">Zendesk analysis · User interviews · 5-second test · Benchmark</span></div>
+    <div class="meta-item"><span class="meta-label">Scope</span><span class="meta-value">Copy redesign + full visual redesign of the order tracking experience</span></div>
+  </div>
+</section>
+
+<!-- COVER -->
+<div class="cover-hero">
+  <div class="cover-left">
+    <div class="cover-tag">Merqueo · Grocery delivery · Colombia</div>
+    <div class="cover-title">Reducing uncertainty<br>one <em>status</em><br>at a time</div>
+    <p class="cover-desc">Users were confused about what was happening with their grocery orders, prompting them to call customer service to find out. A deep research sprint led to a full redesign of how Merqueo communicates order status in real time.</p>
+  </div>
+  <div class="cover-right">
+    <div class="cover-stat-card">
+      <div class="cover-stat-num">16%</div>
+      <div class="cover-stat-label">Of support tickets were about order status</div>
+    </div>
+    <div class="cover-stat-card">
+      <div class="cover-stat-num">17</div>
+      <div class="cover-stat-label">Users tested in 5-second copy test</div>
+    </div>
+    <div class="cover-stat-card">
+      <div class="cover-stat-num">2</div>
+      <div class="cover-stat-label">Design scopes: copy first, then full redesign</div>
+    </div>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<div class="content">
+  <div class="reveal">
+    <span class="section-tag">The Problem</span>
+    <h2>Users didn't know<br>where their <em>order was</em></h2>
+    <p class="body">Merqueo's order tracking screen showed four states (Received, Picked, Dispatched, Delivered) but gave users almost no information about what was actually happening at each step. The result: <strong>16% of all support tickets</strong> were people asking "where is my order?" or "when does it get charged?"</p>
+    <p class="body">Payment confusion was especially severe. Users didn't know when their card would be charged, and seeing unexpected charges triggered panic and support calls, a friction point that impacted both trust and operational costs.</p>
+  </div>
+
+  <div class="problem-grid reveal d1">
+    <div class="problem-card">
+      <span class="problem-icon">😰</span>
+      <span class="problem-type">User pain</span>
+      <h4>No clarity on order status</h4>
+      <p>The screen showed 4 statuses but gave no context about what was happening, when, or what to expect next.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">💳</span>
+      <span class="problem-type">User pain</span>
+      <h4>Payment timing was a mystery</h4>
+      <p>Users didn't know when their card would be charged. Many assumed it was immediate, which caused confusion and disputes.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">📦</span>
+      <span class="problem-type">User pain</span>
+      <h4>Missing items went unexplained</h4>
+      <p>When products were out of stock and removed from an order, users had no visibility until delivery or on their bank statement.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-icon">📞</span>
+      <span class="problem-type">Business impact</span>
+      <h4>16% of support load</h4>
+      <p>Status and payment questions were the top driver of customer service contacts, a direct cost that better communication could reduce.</p>
+    </div>
+  </div>
+
+  <div class="stat-row reveal d1">
+    <div class="stat-block">
+      <span class="stat-num">16%</span>
+      <span class="stat-label">Of all support tickets caused by order status confusion</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num">38K+</span>
+      <span class="stat-label">Monthly support tickets at peak (April 2020)</span>
+    </div>
+    <div class="stat-block">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Competitor apps benchmarked (MeLi, Uber Eats, Rappi, Domicilios)</span>
+    </div>
+  </div>
+</div>
+
+<!-- RESEARCH -->
+<div class="content">
+  <div class="reveal">
+    <span class="section-tag">Research Process</span>
+    <h2>From tickets to<br><em>real insights</em></h2>
+    <p class="body">Before designing anything, I dove into the data. I read 20 Zendesk tickets to understand exactly what users were asking, ran user interviews using a mental model exercise ("how do you imagine the process from order to delivery?"), and benchmarked how MeLi, Uber Eats, Rappi, and Domicilios handled the same problem.</p>
+  </div>
+
+  <div class="process-steps reveal d1">
+    <div class="process-step">
+      <span class="step-num">01</span>
+      <div class="step-content">
+        <h4>Zendesk ticket analysis</h4>
+        <p>Read and categorized 20 support tickets to identify the most common pain points. Payment confusion and order status uncertainty emerged as the top two issues, with users often not knowing when the charge would happen or whether their order was being processed.</p>
+        <div class="step-tags"><span class="stag">Quantitative</span><span class="stag">Support data</span></div>
+      </div>
+    </div>
+    <div class="process-step">
+      <span class="step-num">02</span>
+      <div class="step-content">
+        <h4>Mental model interviews</h4>
+        <p>Asked users to map out how they imagined the order process worked, from purchase to delivery. Responses revealed that users had wildly different mental models, and that their anxiety peaked between placement and payment confirmation.</p>
+        <div class="step-tags"><span class="stag">Qualitative</span><span class="stag">User interviews</span><span class="stag">Mural</span></div>
+      </div>
+    </div>
+    <div class="process-step">
+      <span class="step-num">03</span>
+      <div class="step-content">
+        <h4>Competitive benchmark</h4>
+        <p>Analyzed order tracking in MeLi, Uber Eats, Rappi, and Domicilios, focusing on how each app communicated status, payment timing, and delivery ETA. Uber Eats' real-time map and Rappi's step-by-step progress bar were key references.</p>
+        <div class="step-tags"><span class="stag">Benchmark</span><span class="stag">4 competitors</span></div>
+      </div>
+    </div>
+    <div class="process-step">
+      <span class="step-num">04</span>
+      <div class="step-content">
+        <h4>5-second copy test</h4>
+        <p>Once the first scope (copy improvements) was designed, I ran a 5-second test with 17 users to validate whether the new copy was understood, specifically around payment timing and order state descriptions. The test confirmed copy clarity but revealed delivery time information was being missed.</p>
+        <div class="step-tags"><span class="stag">Usability testing</span><span class="stag">17 testers</span><span class="stag">Copy validation</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal d1" style="margin-top:16px;">
+    <span class="section-tag">What users were actually saying</span>
+  </div>
+  <div class="research-quotes reveal d1">
+    <div class="quote-card">
+      <p class="quote-text">"Estoy preocupada porque no veo el alistamiento de mi pedido, ¿me pueden confirmar si lo van a enviar?"</p>
+      <span class="quote-meta">Zendesk ticket · May 2020</span>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text">"Me aparece que el repartidor está cerca pero no se mueve."</p>
+      <span class="quote-meta">Zendesk ticket · May 2020</span>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text">"Quiero saber el estado real del pedido, lo hice desde la 1:17pm por express."</p>
+      <span class="quote-meta">Zendesk ticket · May 2020</span>
+    </div>
+    <div class="quote-card">
+      <p class="quote-text">"¿En qué momento se descuenta el pago?" Most users assumed it was immediate, but it wasn't.</p>
+      <span class="quote-meta">5-second test insight · July 2020</span>
+    </div>
+  </div>
+</div>
+
+<!-- SCOPE 1: COPY -->
+<div class="split reveal">
+  <div class="split-img">
+    <img src="Estado en validación.png" alt="Nuevo estado 'Estamos verificando tu pedido' con copy claro sobre pago pendiente y botón para editar productos"/>
+  </div>
+  <div class="split-text">
+    <span class="cap-badge">Scope 1 · Copy redesign</span>
+    <h3>Clearer words,<br><em>less anxiety</em></h3>
+    <p>The first scope was fixing the copy: adding context and explanation to each order state. Payment timing was surfaced proactively ("we charge your card once your order is picked"), missing items were communicated inline, and cancellation reasons were made explicit for the first time.</p>
+    <p>Validated with a 5-second test across 17 users, confirming the new copy landed clearly, and showing that delivery time information was landing better at the bottom of the screen than in the tracker itself.</p>
+  </div>
+</div>
+
+<!-- SCOPE 2: VISUAL REDESIGN -->
+<div class="split reverse reveal">
+  <div class="split-img">
+    <img src="Dispatched sin mapa.png" alt="Diseño ganador: tracker horizontal con ilustración del camión Merqueo, ETA prominente y estado 'Tu pedido ha sido despachado'"/>
+  </div>
+  <div class="split-text">
+    <span class="cap-badge">Scope 2 · Visual redesign</span>
+    <h3>A tracker that<br><em>tells the full story</em></h3>
+    <p>The second scope was a complete visual overhaul. The vertical step list was replaced with a horizontal progress tracker with 7 distinct states, each accompanied by a contextual illustration that represented what was happening at that moment.</p>
+    <p>A prominent ETA header sits at the top, a real-time map appears when the delivery is en route, and inline alerts communicate missing items, payment status, and anomalies, before users had to call to find out.</p>
+  </div>
+</div>
+
+<!-- DESIGN SYSTEM -->
+<div class="content wide">
+  <div class="reveal">
+    <span class="section-tag">Design System · 7 States</span>
+    <h2>Every state,<br><em>designed with intent</em></h2>
+    <p class="body" style="max-width:640px">Defined the information architecture for all 7 order states, each with its own illustration, title, description, and optional contextual alerts. The component system was designed so any combination of payment method and order type could be handled consistently.</p>
+  </div>
+  <div class="feature-block reveal d1">
+    <span class="section-tag">The 7 tracker states</span>
+    <h2>From <em>verification</em><br>to delivery</h2>
+    <div class="feature-list">
+      <div class="feature-item"><div class="feature-dot"></div><div><h4>Verificando el pedido</h4><p>Order received, data being verified. Service may reach out if there's an issue.</p></div></div>
+      <div class="feature-item"><div class="feature-dot"></div><div><h4>Programado completado</h4><p>Order confirmed. User can still make changes. Payment timing explained per payment method.</p></div></div>
+      <div class="feature-item"><div class="feature-dot"></div><div><h4>Alistamiento en progreso</h4><p>Picker is assembling the order. Out-of-stock items communicated inline with price adjustment.</p></div></div>
+      <div class="feature-item"><div class="feature-dot"></div><div><h4>Alistamiento completado · Pago exitoso</h4><p>All items picked, payment confirmed. Order ready to ship.</p></div></div>
+      <div class="feature-item"><div class="feature-dot"></div><div><h4>Pedido despachado</h4><p>Delivery driver assigned. Static map preview shown. ETA updated.</p></div></div>
+      <div class="feature-item"><div class="feature-dot"></div><div><h4>Tu pedido va en camino</h4><p>Real-time interactive map with driver location. "N orders before yours" context.</p></div></div>
+      <div class="feature-item"><div class="feature-dot"></div><div><h4>Entregado · ¿Salió todo bien?</h4><p>Delivery confirmed. Inline satisfaction prompt with quick yes/no, no redirect required.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENS GALLERY -->
+<div class="content wide">
+  <div class="reveal">
+    <span class="section-tag">Final Design · All states</span>
+    <h2>The experience,<br><em>state by state</em></h2>
+    <p class="body" style="max-width:640px">Each screen was designed to communicate the right information at the right moment — reducing the uncertainty that was driving users to call support.</p>
+  </div>
+  <div class="screens-grid reveal d1">
+    <div class="screen-card">
+      <img src="Estado en validación.png" alt="Estado: Verificando el pedido"/>
+      <span class="screen-label">Verificando</span>
+      <p class="screen-desc">Order received. Service may reach out. Payment timing explained upfront.</p>
+    </div>
+    <div class="screen-card">
+      <img src="Dispatched sin mapa.png" alt="Estado: Pedido despachado con ilustración del camión"/>
+      <span class="screen-label">Despachado</span>
+      <p class="screen-desc">Driver assigned. Contextual illustration shows the truck en route with delivery stops marked.</p>
+    </div>
+    <div class="screen-card">
+      <img src="En camino 9.png" alt="Estado: En camino con mapa en tiempo real"/>
+      <span class="screen-label">En camino · Mapa</span>
+      <p class="screen-desc">Real-time map shows driver location and the user's address pin.</p>
+    </div>
+    <div class="screen-card">
+      <img src="En camino 5.png" alt="Estado: En camino con contador de entregas previas"/>
+      <span class="screen-label">En camino · Cola</span>
+      <p class="screen-desc">"Hay 2 entregas antes que la tuya" — transparent queue context reduces anxiety while waiting.</p>
+    </div>
+    <div class="screen-card">
+      <img src="Delivered.png" alt="Estado: Entregado con confirmación y rating"/>
+      <span class="screen-label">Entregado</span>
+      <p class="screen-desc">Delivery confirmed. Inline satisfaction prompt — no redirect needed to leave feedback.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PULL QUOTE -->
+<div class="content">
+  <div class="pull-quote reveal">
+    <p>"The research showed that users weren't just confused about status; they were anxious. The solution wasn't more information. It was the right information at the right moment."</p>
+    <cite>Alejandra Osorio · Product Designer · Merqueo · 2020</cite>
+  </div>
+
+  <div class="results-box reveal d1">
+    <span class="section-tag">Outcome</span>
+    <h2>Designed to<br><em>reduce support load</em></h2>
+    <div class="results-grid">
+      <div class="result-item"><div class="result-icon">🔍</div><div class="result-text"><h4>Research-grounded decisions</h4><p>Every design choice was backed by Zendesk data, user interviews, or validated through the 5-second test, nothing was assumed.</p></div></div>
+      <div class="result-item"><div class="result-icon">✍️</div><div class="result-text"><h4>Copy validated before shipping</h4><p>17-user 5-second test confirmed the new copy was understood, and surfaced one key IA insight that changed the final layout.</p></div></div>
+      <div class="result-item"><div class="result-icon">🗺️</div><div class="result-text"><h4>Real-time map introduced</h4><p>First time Merqueo surfaced a live delivery map inside the order tracking experience, a major leap in transparency.</p></div></div>
+      <div class="result-item"><div class="result-icon">⚡</div><div class="result-text"><h4>Proactive communication system</h4><p>Missing items, payment status, and cancellation reasons now surfaced in-app, designed to reduce the 16% support ticket category.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT -->
+<div class="next reveal">
+  <div>
+    <div class="next-label">Next project</div>
+    <h3 class="next-title">Messaging <em>Insights</em> Redesign</h3>
+  </div>
+  <a href="project-twilio-insights.html" class="next-link">View case study →</a>
+</div>
+
+<script>
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  (function tick(){cursor.style.left=mx+'px';cursor.style.top=my+'px';rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+  document.querySelectorAll('a').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cursor.style.width='18px';cursor.style.height='18px';ring.style.width='52px';ring.style.height='52px';});
+    el.addEventListener('mouseleave',()=>{cursor.style.width='10px';cursor.style.height='10px';ring.style.width='38px';ring.style.height='38px';});
+  });
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
