@@ -105,9 +105,9 @@
     .decision-card p{font-size:13px;color:var(--muted);line-height:1.6;}
 
     /* CONFIDENTIAL */
-    .confidential{filter:blur(5px);user-select:none;transition:filter .3s;cursor:default;}
+    .confidential{filter:none;user-select:text;cursor:default;}
     .confidential-wrap{position:relative;display:inline-block;}
-    .confidential-wrap .conf-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(26,26,18,0.85);padding:2px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;transition:opacity .3s;}
+    .confidential-wrap .conf-label{display:none;}
     .confidential-wrap:hover .conf-label{opacity:0;}
     .confidential-wrap:hover .confidential{filter:blur(0);}
 
@@ -187,7 +187,7 @@
   <div class="meta-grid">
     <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Senior Product Designer, interaction design, data viz & design systems</span></div>
     <div class="meta-item"><span class="meta-label">Products</span><span class="meta-value">Intelligent Alerts · Messaging Insights (6 dashboards) · Health Score</span></div>
-    <div class="meta-item"><span class="meta-label">Users</span><span class="meta-value"><span class="confidential-wrap"><span class="confidential">35,000+</span><span class="conf-label">hover</span></span> users per month, engineers & ops teams</span></div>
+    <div class="meta-item"><span class="meta-label">Users</span><span class="meta-value"><span class="confidential-wrap"><span class="confidential">35,000+</span></span> users per month, engineers & ops teams</span></div>
     <div class="meta-item"><span class="meta-label">Highlight</span><span class="meta-value">Chart interaction pattern adopted org-wide across Twilio design</span></div>
   </div>
 </section>
@@ -361,7 +361,7 @@
 
   <div class="results-row reveal d2">
     <div class="result-card">
-      <span class="result-num"><span class="confidential-wrap"><span class="confidential">35K+</span><span class="conf-label">hover to reveal</span></span></span>
+      <span class="result-num"><span class="confidential-wrap"><span class="confidential">35K+</span></span></span>
       <span class="result-label">Monthly users on the redesigned Insights suite</span>
     </div>
     <div class="result-card">

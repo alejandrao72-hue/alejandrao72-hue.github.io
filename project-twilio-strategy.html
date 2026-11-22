@@ -104,9 +104,9 @@
     .step-dot.active{background:var(--gold);}
     .step-product{font-size:10px;color:var(--gold);letter-spacing:.08em;margin-top:4px;font-weight:500;}
     .journey-step.dim{opacity:.4;}
-    .confidential{filter:blur(5px);user-select:none;transition:filter .3s;cursor:default;}
+    .confidential{filter:none;user-select:text;cursor:default;}
     .confidential-wrap{position:relative;display:inline-block;}
-    .confidential-wrap .conf-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(26,26,18,0.85);padding:2px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;transition:opacity .3s;}
+    .confidential-wrap .conf-label{display:none;}
     .confidential-wrap:hover .conf-label{opacity:0;}
     .confidential-wrap:hover .confidential{filter:blur(0);}
     .step-num{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(139,132,39,0.5);}
@@ -224,15 +224,15 @@
 
   <div class="stat-row reveal">
     <div class="stat-block">
-      <span class="stat-num"><span class="confidential-wrap"><span class="confidential">35K+</span><span class="conf-label">hover to reveal</span></span></span>
-      <span class="stat-label">Accounts using Messaging Insights every quarter</span>
+      <span class="stat-num"><span class="confidential-wrap"><span class="confidential">35K+</span></span></span>
+      <span class="stat-label">Users on Messaging Insights every month</span>
     </div>
     <div class="stat-block">
-      <span class="stat-num"><span class="confidential-wrap"><span class="confidential">125K</span><span class="conf-label">hover to reveal</span></span></span>
+      <span class="stat-num"><span class="confidential-wrap"><span class="confidential">125K</span></span></span>
       <span class="stat-label">Parent accounts visiting Messaging Logs every quarter</span>
     </div>
     <div class="stat-block">
-      <span class="stat-num"><span class="confidential-wrap"><span class="confidential">−30m</span><span class="conf-label">hover to reveal</span></span></span>
+      <span class="stat-num"><span class="confidential-wrap"><span class="confidential">−30m</span></span></span>
       <span class="stat-label">Reduction in average troubleshooting time post-launch</span>
     </div>
   </div>
