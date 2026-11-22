@@ -9,9 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold:#8B8427; --gold-dark:#6a6420; --gold-light:#e8e7cc;
-      --dark:#1a1a12; --mid:#3a3a28; --muted:#8a8a6a;
-      --bg:#f0efd8; --white:#fafaf0;
+      --gold:#0E0E0E; --gold-dark:#000000; --gold-light:#E7E7E2;
+      --dark:#0E0E0E; --mid:#3A3A3A; --muted:#6B6B6B;
+      --bg:#F2F2EF; --white:#FBF9F1;
+      /* risograph accents, each one means something */
+      --coral:#FFB3B4;  --coral-soft:#FFE9E9;   /* problem  */
+      --pink:#FEB3EA;   --pink-soft:#FDE4F7;    /* decision, trade-off */
+      --green:#B6FBB8;  --green-soft:#EFFBEF;   /* measured outcome */
+      --blue:#B6D6FC;   --blue-soft:#E3EFFD;    /* method, context */
+      --yellow:#FCF1B5; --yellow-soft:#FDF8DC;  /* constraint, caution */
       --meli:#FFE600; --meli-dark:#2D3277;
       --serif:'Playfair Display',Georgia,serif;
       --sans:'DM Sans',sans-serif;
@@ -46,7 +52,7 @@
     /* COVER */
     .cover-hero{width:100%;background:var(--dark);padding:64px 56px;display:flex;align-items:center;gap:64px;opacity:0;animation:fadeIn 1s var(--ease) .5s forwards;}
     .cover-left{flex:1;}
-    .cover-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .cover-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:16px;}
     .cover-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:900;color:var(--white);line-height:1;letter-spacing:-1.5px;margin-bottom:16px;}
     .cover-title em{font-style:italic;color:var(--gold);}
     .cover-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.65;max-width:380px;}
@@ -58,7 +64,11 @@
     /* CONTENT */
     .content{max-width:780px;margin:0 auto;padding:88px 56px;}
     .content.wide{max-width:none;padding:72px 56px;}
-    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);margin-bottom:14px;display:inline-block;padding:6px 12px;border-radius:999px;background:var(--blue);}
+    .section-tag.is-problem{background:var(--coral);}
+    .section-tag.is-method{background:var(--blue);}
+    .section-tag.is-decision{background:var(--pink);}
+    .section-tag.is-outcome{background:var(--green);}
     h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,50px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:24px;}
     h2 em{font-style:italic;color:var(--gold);}
     p.body{font-size:17px;line-height:1.8;color:var(--mid);margin-bottom:18px;font-weight:300;}
@@ -67,9 +77,9 @@
 
     /* PROBLEM GRID */
     .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
-    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:10px;}
+    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(14,14,14,0.08);border-top:3px solid var(--coral);display:flex;flex-direction:column;gap:10px;}
     .problem-icon{font-size:20px;margin-bottom:4px;}
-    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
+    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--dark);background:var(--coral);display:inline-block;align-self:flex-start;padding:4px 9px;border-radius:999px;}
     .problem-card h4{font-size:17px;font-weight:700;color:var(--dark);font-family:var(--serif);letter-spacing:-.3px;}
     .problem-card p{font-size:13px;color:var(--muted);line-height:1.65;}
 
@@ -111,7 +121,7 @@
 
     /* DARK FEATURE BLOCK */
     .feature-block{background:var(--dark);border-radius:20px;padding:56px;margin:40px 0;}
-    .feature-block .section-tag{color:rgba(255,230,0,0.7);}
+    .feature-block .section-tag{background:rgba(255,255,255,0.16);color:#FFFFFF;}
     .feature-block h2{color:var(--white);}
     .feature-block h2 em{color:var(--gold);}
     .feature-list{display:flex;flex-direction:column;gap:0;margin-top:32px;}
@@ -131,15 +141,15 @@
     .mvp-badge{display:inline-block;margin-top:12px;font-size:10px;background:rgba(139,132,39,0.1);color:var(--gold-dark);padding:3px 10px;border-radius:100px;}
 
     /* PULL QUOTE */
-    .pull-quote{padding:48px 56px;background:var(--gold-light);border-left:3px solid var(--gold);margin:48px 0;border-radius:0 16px 16px 0;}
+    .pull-quote{padding:48px 56px;background:var(--white);border-left:3px solid var(--blue);margin:48px 0;border-radius:0 16px 16px 0;}
     .pull-quote p{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-style:italic;line-height:1.5;color:var(--dark);margin-bottom:14px;}
     .pull-quote cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
 
     /* RESULTS BOX */
-    .results-box{background:var(--gold-light);border-radius:20px;padding:56px;margin:40px 0;}
+    .results-box{background:var(--white);border:1px solid rgba(14,14,14,0.08);border-radius:20px;padding:56px;margin:40px 0;}
     .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px;}
     .result-item{display:flex;gap:14px;align-items:flex-start;}
-    .result-icon{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+    .result-icon{width:34px;height:34px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
     .result-text h4{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:3px;}
     .result-text p{font-size:13px;color:var(--muted);line-height:1.5;margin:0;}
 
@@ -229,7 +239,7 @@
 <!-- OVERVIEW -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">The Challenge</span>
+    <span class="section-tag is-problem">The Challenge</span>
     <h2>A new format, zero<br><em>reference</em> in the platform</h2>
     <p class="body">Mercado Libre wanted to explore <strong>live commerce</strong>, a format already booming in Asia where creators stream live, showcase products in real time, and viewers can buy directly from the feed. The goal was to design what that experience would look like inside the MeLi app, where no live video product had existed before.</p>
     <p class="body">My job was to define the UX from scratch: how does a live stream look? How do products appear alongside the video? How do viewers interact, ask questions, and buy, without leaving the stream?</p>
@@ -266,7 +276,7 @@
 
   <!-- APPROACH -->
   <div class="reveal">
-    <span class="section-tag">My Approach</span>
+    <span class="section-tag is-method">My Approach</span>
     <h2>Explore fast,<br><em>define the model</em></h2>
     <p class="body">With no prior live commerce reference inside MeLi, I focused on <strong>interaction modeling</strong>: defining the rules of the experience before visual polish. What components exist? When do they appear? How do they behave? I explored multiple options for each decision and worked iteratively across three MVP versions to move the product toward pilot.</p>
   </div>
@@ -302,7 +312,7 @@
 <!-- SCREEN ANATOMY, full image -->
 <div class="content wide">
   <div class="reveal">
-    <span class="section-tag">Screen Design · Live View</span>
+    <span class="section-tag is-decision">Screen Design · Live View</span>
     <h2>Four zones,<br><em>one screen</em></h2>
     <p class="body" style="max-width:640px">The live screen needed to work as a unified experience: creator header, video in 16:9, a dynamic product carousel, and a live chat that scrolls behind the products. Every element hides on tap to give full screen to the video.</p>
   </div>
@@ -328,7 +338,7 @@
 <!-- PRODUCT PRESENTATION FLOW, full image -->
 <div class="content wide">
   <div class="reveal">
-    <span class="section-tag">Interaction · Product Presentation</span>
+    <span class="section-tag is-decision">Interaction · Product Presentation</span>
     <h2>Products enter<br><em>one at a time</em></h2>
     <p class="body" style="max-width:640px">Explored how the product shelf animates as the creator introduces items. Option B shows products starting hidden, then entering one by one, highlighted first, then shifting right as the next product is featured. When the fourth product arrives, the carousel scrolls to reveal it while pushing earlier items left.</p>
   </div>
@@ -367,7 +377,7 @@
 <!-- FINISHED SCREEN FULL -->
 <div class="content wide">
   <div class="reveal">
-    <span class="section-tag">Screen Design · Finished State</span>
+    <span class="section-tag is-decision">Screen Design · Finished State</span>
     <h2>Three iterations<br>of the <em>end screen</em></h2>
     <p class="body" style="max-width:640px">Explored three versions of the post-stream screen, from an ideal design with follow prompts and curated product lists to progressively simpler MVP versions that could ship faster while still preserving the shopping opportunity.</p>
   </div>
@@ -380,7 +390,7 @@
 <!-- DESIGN DECISIONS -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">Key Design Decisions</span>
+    <span class="section-tag is-decision">Key Design Decisions</span>
     <h2>Every tap<br><em>intentional</em></h2>
   </div>
   <div class="decisions-grid reveal d1">
@@ -405,7 +415,7 @@
 <!-- MVP PROGRESSION -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">MVP Progression</span>
+    <span class="section-tag is-decision">MVP Progression</span>
     <h2>Ship small,<br><em>learn fast</em></h2>
     <p class="body">Worked with product and engineering to define three progressive versions of the experience, each buildable independently, each moving closer to the ideal end state.</p>
   </div>
@@ -434,7 +444,7 @@
 <!-- FEATURE BLOCK -->
 <div class="content">
   <div class="feature-block reveal">
-    <span class="section-tag">Interaction System</span>
+    <span class="section-tag is-decision">Interaction System</span>
     <h2>What I<br><em>defined</em></h2>
     <div class="feature-list">
       <div class="feature-item">
@@ -487,7 +497,7 @@
 <!-- RESULTS / IMPACT -->
 <div class="content">
   <div class="results-box reveal">
-    <span class="section-tag">Outcome</span>
+    <span class="section-tag is-outcome">Outcome</span>
     <h2>Exploration that<br><em>enabled the pilot</em></h2>
     <div class="results-grid">
       <div class="result-item"><div class="result-icon">🎯</div><div class="result-text"><h4>Full interaction model defined</h4><p>Every screen state, component, and timing rule documented and ready for engineering handoff across 3 MVP versions.</p></div></div>

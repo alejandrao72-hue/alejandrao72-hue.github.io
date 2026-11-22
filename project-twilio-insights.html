@@ -9,9 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold:#8B8427; --gold-dark:#6a6420; --gold-light:#e8e7cc;
-      --dark:#1a1a12; --mid:#3a3a28; --muted:#8a8a6a;
-      --bg:#f0efd8; --white:#fafaf0;
+      --gold:#0E0E0E; --gold-dark:#000000; --gold-light:#E7E7E2;
+      --dark:#0E0E0E; --mid:#3A3A3A; --muted:#6B6B6B;
+      --bg:#F2F2EF; --white:#FBF9F1;
+      /* risograph accents, each one means something */
+      --coral:#FFB3B4;  --coral-soft:#FFE9E9;   /* problem  */
+      --pink:#FEB3EA;   --pink-soft:#FDE4F7;    /* decision, trade-off */
+      --green:#B6FBB8;  --green-soft:#EFFBEF;   /* measured outcome */
+      --blue:#B6D6FC;   --blue-soft:#E3EFFD;    /* method, context */
+      --yellow:#FCF1B5; --yellow-soft:#FDF8DC;  /* constraint, caution */
       --twilio:#F22F46;
       --serif:'Playfair Display',Georgia,serif;
       --sans:'DM Sans',sans-serif;
@@ -73,7 +79,11 @@
     /* CONTENT */
     .content{max-width:780px;margin:0 auto;padding:80px 56px;}
     .content.wide{max-width:none;padding:64px 56px;}
-    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);margin-bottom:14px;display:inline-block;padding:6px 12px;border-radius:999px;background:var(--blue);}
+    .section-tag.is-problem{background:var(--coral);}
+    .section-tag.is-method{background:var(--blue);}
+    .section-tag.is-decision{background:var(--pink);}
+    .section-tag.is-outcome{background:var(--green);}
     h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,44px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:20px;}
     h2 em{font-style:italic;color:var(--gold);}
     p.body{font-size:16px;line-height:1.8;color:var(--mid);margin-bottom:16px;font-weight:300;}
@@ -112,7 +122,7 @@
     .confidential-wrap:hover .confidential{filter:blur(0);}
 
     /* QUOTE */
-    .pull-quote{padding:40px 48px;background:var(--gold-light);border-left:3px solid var(--gold);margin:40px 0;border-radius:0 16px 16px 0;}
+    .pull-quote{padding:40px 48px;background:var(--white);border-left:3px solid var(--blue);margin:40px 0;border-radius:0 16px 16px 0;}
     .pull-quote p{font-family:var(--serif);font-size:clamp(16px,2vw,22px);font-style:italic;line-height:1.55;color:var(--dark);margin-bottom:12px;}
     .pull-quote cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
 
@@ -206,7 +216,7 @@
 
 <!-- FRAMING -->
 <div class="content reveal">
-  <span class="section-tag">How these two products fit together</span>
+  <span class="section-tag is-method">How these two products fit together</span>
   <h2>Different moments,<br><em>one continuous journey</em></h2>
   <p class="body"><strong>Intelligent Alerts</strong> operates in real time. It monitors traffic continuously using ML models, detects anomalies like a spike in error 30001, an unusual drop in delivery rate, and notifies you immediately. It's the product that tells you there's a fire.</p>
   <p class="body"><strong>Messaging Insights</strong> is where you go to understand that fire. It's a suite of 6 dashboards that aggregate the last 7 days of messaging data across delivery, engagement, OTP conversions, risk, and fraud. It tells you what happened, why, and where. The Health Score, also part of Insights, is a weekly retrospective, a snapshot of how your messaging performed across 5 dimensions, not a live monitor.</p>
@@ -330,7 +340,7 @@
 
 <!-- CRAFT SECTION -->
 <div class="content reveal">
-  <span class="section-tag">Design decisions that scaled</span>
+  <span class="section-tag is-decision">Design decisions that scaled</span>
   <h2>Patterns built for<br><em>the whole org</em></h2>
   <p class="body">Beyond the individual features, the Insights redesign produced design decisions that became standards across Twilio's broader design organization.</p>
 </div>

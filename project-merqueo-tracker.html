@@ -9,9 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold:#8B8427; --gold-dark:#6a6420; --gold-light:#e8e7cc;
-      --dark:#1a1a12; --mid:#3a3a28; --muted:#8a8a6a;
-      --bg:#f0efd8; --white:#fafaf0;
+      --gold:#0E0E0E; --gold-dark:#000000; --gold-light:#E7E7E2;
+      --dark:#0E0E0E; --mid:#3A3A3A; --muted:#6B6B6B;
+      --bg:#F2F2EF; --white:#FBF9F1;
+      /* risograph accents, each one means something */
+      --coral:#FFB3B4;  --coral-soft:#FFE9E9;   /* problem  */
+      --pink:#FEB3EA;   --pink-soft:#FDE4F7;    /* decision, trade-off */
+      --green:#B6FBB8;  --green-soft:#EFFBEF;   /* measured outcome */
+      --blue:#B6D6FC;   --blue-soft:#E3EFFD;    /* method, context */
+      --yellow:#FCF1B5; --yellow-soft:#FDF8DC;  /* constraint, caution */
       --merqueo:#C0186C;
       --serif:'Playfair Display',Georgia,serif;
       --sans:'DM Sans',sans-serif;
@@ -55,7 +61,11 @@
 
     .content{max-width:780px;margin:0 auto;padding:88px 56px;}
     .content.wide{max-width:none;padding:72px 56px;}
-    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);margin-bottom:14px;display:inline-block;padding:6px 12px;border-radius:999px;background:var(--blue);}
+    .section-tag.is-problem{background:var(--coral);}
+    .section-tag.is-method{background:var(--blue);}
+    .section-tag.is-decision{background:var(--pink);}
+    .section-tag.is-outcome{background:var(--green);}
     h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,50px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:24px;}
     h2 em{font-style:italic;color:var(--gold);}
     p.body{font-size:17px;line-height:1.8;color:var(--mid);margin-bottom:18px;font-weight:300;}
@@ -63,9 +73,9 @@
     hr{border:none;border-top:1px solid rgba(0,0,0,0.07);margin:64px 0;}
 
     .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
-    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:10px;}
+    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(14,14,14,0.08);border-top:3px solid var(--coral);display:flex;flex-direction:column;gap:10px;}
     .problem-icon{font-size:20px;margin-bottom:4px;}
-    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
+    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--dark);background:var(--coral);display:inline-block;align-self:flex-start;padding:4px 9px;border-radius:999px;}
     .problem-card h4{font-size:17px;font-weight:700;color:var(--dark);font-family:var(--serif);letter-spacing:-.3px;}
     .problem-card p{font-size:13px;color:var(--muted);line-height:1.65;}
 
@@ -104,7 +114,7 @@
     .quote-meta{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
 
     .feature-block{background:var(--dark);border-radius:20px;padding:56px;margin:40px 0;}
-    .feature-block .section-tag{color:rgba(192,24,108,0.7);}
+    .feature-block .section-tag{background:rgba(255,255,255,0.16);color:#FFFFFF;}
     .feature-block h2{color:var(--white);}
     .feature-block h2 em{color:var(--gold);}
     .feature-list{display:flex;flex-direction:column;gap:0;margin-top:32px;}
@@ -114,14 +124,14 @@
     .feature-item h4{font-size:14px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:4px;}
     .feature-item p{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6;}
 
-    .pull-quote{padding:48px 56px;background:var(--gold-light);border-left:3px solid var(--gold);margin:48px 0;border-radius:0 16px 16px 0;}
+    .pull-quote{padding:48px 56px;background:var(--white);border-left:3px solid var(--blue);margin:48px 0;border-radius:0 16px 16px 0;}
     .pull-quote p{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-style:italic;line-height:1.5;color:var(--dark);margin-bottom:14px;}
     .pull-quote cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
 
-    .results-box{background:var(--gold-light);border-radius:20px;padding:56px;margin:40px 0;}
+    .results-box{background:var(--white);border:1px solid rgba(14,14,14,0.08);border-radius:20px;padding:56px;margin:40px 0;}
     .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px;}
     .result-item{display:flex;gap:14px;align-items:flex-start;}
-    .result-icon{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+    .result-icon{width:34px;height:34px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
     .result-text h4{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:3px;}
     .result-text p{font-size:13px;color:var(--muted);line-height:1.5;margin:0;}
 
@@ -217,7 +227,7 @@
 <!-- THE PROBLEM -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">The Problem</span>
+    <span class="section-tag is-problem">The Problem</span>
     <h2>Users didn't know<br>where their <em>order was</em></h2>
     <p class="body">Merqueo's order tracking screen showed four states (Received, Picked, Dispatched, Delivered) but gave users almost no information about what was actually happening at each step. The result: <strong>16% of all support tickets</strong> were people asking "where is my order?" or "when does it get charged?"</p>
     <p class="body">Payment confusion was especially severe. Users didn't know when their card would be charged, and seeing unexpected charges triggered panic and support calls, a friction point that impacted both trust and operational costs.</p>
@@ -269,7 +279,7 @@
 <!-- RESEARCH -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">Research Process</span>
+    <span class="section-tag is-method">Research Process</span>
     <h2>From tickets to<br><em>real insights</em></h2>
     <p class="body">Before designing anything, I dove into the data. I read 20 Zendesk tickets to understand exactly what users were asking, ran user interviews using a mental model exercise ("how do you imagine the process from order to delivery?"), and benchmarked how MeLi, Uber Eats, Rappi, and Domicilios handled the same problem.</p>
   </div>
@@ -310,7 +320,7 @@
   </div>
 
   <div class="reveal d1" style="margin-top:16px;">
-    <span class="section-tag">What users were actually saying</span>
+    <span class="section-tag is-method">What users were actually saying</span>
   </div>
   <div class="research-quotes reveal d1">
     <div class="quote-card">
@@ -361,12 +371,12 @@
 <!-- DESIGN SYSTEM -->
 <div class="content wide">
   <div class="reveal">
-    <span class="section-tag">Design System · 7 States</span>
+    <span class="section-tag is-decision">Design System · 7 States</span>
     <h2>Every state,<br><em>designed with intent</em></h2>
     <p class="body" style="max-width:640px">Defined the information architecture for all 7 order states, each with its own illustration, title, description, and optional contextual alerts. The component system was designed so any combination of payment method and order type could be handled consistently.</p>
   </div>
   <div class="feature-block reveal d1">
-    <span class="section-tag">The 7 tracker states</span>
+    <span class="section-tag is-decision">The 7 tracker states</span>
     <h2>From <em>verification</em><br>to delivery</h2>
     <div class="feature-list">
       <div class="feature-item"><div class="feature-dot"></div><div><h4>Verificando el pedido</h4><p>Order received, data being verified. Service may reach out if there's an issue.</p></div></div>
@@ -383,7 +393,7 @@
 <!-- SCREENS GALLERY -->
 <div class="content wide">
   <div class="reveal">
-    <span class="section-tag">Final Design · All states</span>
+    <span class="section-tag is-decision">Final Design · All states</span>
     <h2>The experience,<br><em>state by state</em></h2>
     <p class="body" style="max-width:640px">Each screen was designed to communicate the right information at the right moment — reducing the uncertainty that was driving users to call support.</p>
   </div>
@@ -424,7 +434,7 @@
   </div>
 
   <div class="results-box reveal d1">
-    <span class="section-tag">Outcome</span>
+    <span class="section-tag is-outcome">Outcome</span>
     <h2>Designed to<br><em>reduce support load</em></h2>
     <div class="results-grid">
       <div class="result-item"><div class="result-icon">🔍</div><div class="result-text"><h4>Research-grounded decisions</h4><p>Every design choice was backed by Zendesk data, user interviews, or validated through the 5-second test, nothing was assumed.</p></div></div>
