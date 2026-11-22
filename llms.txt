@@ -1,0 +1,41 @@
+# Alejandra Osorio
+
+> Senior Product Designer, 8+ years across B2B SaaS, AI and data products, e-commerce and
+> digital media. Based in Colombia, open to relocation and to remote roles in US and European
+> time zones. Previously Twilio, Mercado Libre, Zubale, Benchmark Email, Merqueo, El Tiempo.
+
+Industry-agnostic by method rather than by accident: frame the problem, find the real
+constraint, choose the trade-off, ship it, measure it. Works close to the decision and close
+to the code, including building and shipping in code with AI-assisted workflows.
+
+Contact: https://alejandrao72-hue.github.io/#contact
+
+## Case studies
+
+- [Customer Intelligence Strategy, Twilio, 2024-2026](https://alejandrao72-hue.github.io/project-twilio-strategy.html):
+  Co-created the observability journey the suite was built around and extended it during One
+  Twilio, the migration onto a single platform. Six products mapped to one troubleshooting
+  path. 35K+ active users every quarter on Messaging Insights. Average troubleshooting time
+  down 30 minutes. Created a chart pattern adopted across Twilio's design organization.
+- [Messaging Insights and Intelligent Alerts, Twilio, 2024-2026](https://alejandrao72-hue.github.io/project-twilio-insights.html):
+  Interaction design and data visualization for anomaly detection and investigation. Six
+  dashboards unified on one interaction model. A core filtering task cut from six steps to two.
+- [Gig Worker Onboarding Revamp, Zubale, 2021-2023](https://alejandrao72-hue.github.io/project-zubale-onboarding.html):
+  Replaced onboarding spread across WhatsApp, chatbots, web and SMS with one app flow.
+  Conversion to first task from 5.13% to 12.75%. Time to convert from 13.1 days to 3.7.
+  Gated the signup reward behind two completed tasks after testing showed reward-only signups.
+  Configuration tool serving 100+ clients without engineering.
+- [Live Commerce, Mercado Libre, 2021](https://alejandrao72-hue.github.io/project-meli-video.html):
+  Live video shopping taken from zero to pilot. Interaction rules for stream, product shelf,
+  chat and checkout on one screen, scoped into three MVP versions, two dev-ready.
+- [Order Status Tracker, Merqueo, 2020](https://alejandrao72-hue.github.io/project-merqueo-tracker.html):
+  Order tracking redesigned during the 2020 demand spike, when order status and payment
+  questions were 16% of all support tickets. Seven-state tracker, live delivery map, inline
+  alerts. Copy comprehension validated with a 5-second test across 17 users.
+
+## Skills
+
+Product design, UX strategy, product discovery, AI product design, B2B SaaS, data
+visualization, design systems, user research, interaction design, information architecture,
+usability testing, prototyping, workshop facilitation, cross-functional leadership, Figma.
+Spanish native, English professional.

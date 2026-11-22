@@ -3,29 +3,48 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Messaging Insights & Intelligent Alerts, Alejandra Osorio</title>
+  <title>Messaging Insights & Intelligent Alerts · Twilio · Alejandra Osorio</title>
+  <meta name="description" content="Dashboards, alerts and data visualization that help engineers catch messaging anomalies before customers do. Six dashboards on one interaction model and a core filtering task cut from six steps to two."/>
+  <meta name="author" content="Alejandra Osorio"/>
+  <link rel="canonical" href="https://alejandrao72-hue.github.io/project-twilio-insights.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Messaging Insights & Intelligent Alerts · Twilio · Alejandra Osorio"/>
+  <meta property="og:description" content="Dashboards, alerts and data visualization that help engineers catch messaging anomalies before customers do. Six dashboards on one interaction model and a core filtering task cut from six steps to two."/>
+  <meta property="og:url" content="https://alejandrao72-hue.github.io/project-twilio-insights.html"/>
+  <meta property="og:image" content="https://alejandrao72-hue.github.io/insights-intelligent-alerts.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Messaging Insights & Intelligent Alerts · Twilio · Alejandra Osorio"/>
+  <meta name="twitter:description" content="Dashboards, alerts and data visualization that help engineers catch messaging anomalies before customers do. Six dashboards on one interaction model and a core filtering task cut from six steps to two."/>
+  <meta name="twitter:image" content="https://alejandrao72-hue.github.io/insights-intelligent-alerts.png"/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold:#8B8427; --gold-dark:#6a6420; --gold-light:#e8e7cc;
-      --dark:#1a1a12; --mid:#3a3a28; --muted:#8a8a6a;
-      --bg:#f0efd8; --white:#fafaf0;
+      --gold:#0E0E0E; --gold-dark:#000000; --gold-light:#E7E7E2;
+      --dark:#0E0E0E; --mid:#3A3A3A; --muted:#6B6B6B;
+      --bg:#F2F2EF; --white:#FBF9F1;
+      /* risograph accents, each one means something */
+      --coral:#FFB3B4;  --coral-soft:#FFE9E9;   /* problem  */
+      --pink:#FEB3EA;   --pink-soft:#FDE4F7;    /* decision, trade-off */
+      --green:#B6FBB8;  --green-soft:#EFFBEF;   /* measured outcome */
+      --blue:#B6D6FC;   --blue-soft:#E3EFFD;    /* method, context */
+      --yellow:#FCF1B5; --yellow-soft:#FDF8DC;  /* constraint, caution */
       --twilio:#F22F46;
-      --serif:'Playfair Display',Georgia,serif;
-      --sans:'DM Sans',sans-serif;
+      --serif:'Inter Tight','Inter','Helvetica Neue',Arial,sans-serif;
+      --sans:'Inter Tight','Inter','Helvetica Neue',Arial,sans-serif;
       --ease:cubic-bezier(0.16,1,0.3,1);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--dark);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;}
-    .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);}
-    .cursor-ring{width:38px;height:38px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;background:rgba(240,239,216,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);}
+    .cursor{width:10px;height:10px;background:var(--dark);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);}
+    .cursor-ring{width:38px;height:38px;border:1.5px solid var(--dark);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;background:rgba(242,242,239,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);}
     .nav-logo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--dark);text-decoration:none;}
     .nav-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mid);text-decoration:none;transition:color .2s;}
-    .nav-back:hover{color:var(--gold);}
+    .nav-back:hover{color:var(--dark);}
 
     /* HERO */
     .hero{padding:130px 56px 64px;border-bottom:1px solid rgba(0,0,0,0.08);}
@@ -34,7 +53,7 @@
     .twilio-name{font-size:12px;font-weight:500;color:rgba(255,255,255,0.9);letter-spacing:.04em;}
     .badge-sep{width:1px;height:14px;background:rgba(255,255,255,0.15);}
     .badge-year{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:.08em;}
-    .hero-title{font-family:var(--serif);font-size:clamp(36px,5.5vw,82px);font-weight:900;line-height:.92;letter-spacing:-2px;margin-bottom:24px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
+    .hero-title{font-family:var(--serif);font-size:clamp(36px,5.5vw,82px);font-weight:600;line-height:.92;letter-spacing:-2px;margin-bottom:24px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
     .hero-title em{font-style:italic;color:var(--gold);}
     .hero-summary{font-size:16px;line-height:1.7;color:var(--mid);max-width:600px;margin-bottom:40px;font-weight:300;opacity:0;animation:fadeUp .8s var(--ease) .3s forwards;}
     .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.08);opacity:0;animation:fadeUp .8s var(--ease) .4s forwards;}
@@ -58,7 +77,7 @@
     /* PRODUCT HEADER */
     .product-header{background:var(--dark);padding:56px 56px 48px;border-top:1px solid rgba(255,255,255,0.04);}
     .ph-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(242,47,70,0.7);margin-bottom:12px;display:block;}
-    .ph-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:900;color:white;line-height:1;letter-spacing:-1px;margin-bottom:14px;}
+    .ph-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:600;color:white;line-height:1;letter-spacing:-1px;margin-bottom:14px;}
     .ph-title em{font-style:italic;color:var(--gold);}
     .ph-desc{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.65;max-width:600px;}
     .ph-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;}
@@ -73,7 +92,11 @@
     /* CONTENT */
     .content{max-width:780px;margin:0 auto;padding:80px 56px;}
     .content.wide{max-width:none;padding:64px 56px;}
-    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);margin-bottom:14px;display:inline-block;padding:6px 12px;border-radius:999px;background:var(--blue);}
+    .section-tag.is-problem{background:var(--coral);}
+    .section-tag.is-method{background:var(--blue);}
+    .section-tag.is-decision{background:var(--pink);}
+    .section-tag.is-outcome{background:var(--green);}
     h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,44px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:20px;}
     h2 em{font-style:italic;color:var(--gold);}
     p.body{font-size:16px;line-height:1.8;color:var(--mid);margin-bottom:16px;font-weight:300;}
@@ -87,7 +110,7 @@
     .split-img{border-radius:14px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,0.1);background:#f8f8f4;}
     .split-img img{width:100%;display:block;max-height:480px;object-fit:cover;object-position:top;}
     .split-text{display:flex;flex-direction:column;gap:14px;}
-    .cap-badge{display:inline-block;font-size:10px;background:rgba(139,132,39,0.12);color:var(--gold-dark);padding:4px 12px;border-radius:100px;align-self:flex-start;letter-spacing:.04em;}
+    .cap-badge{display:inline-block;font-size:10px;background:rgba(254,179,234,0.35);color:var(--dark);padding:4px 12px;border-radius:100px;align-self:flex-start;letter-spacing:.04em;}
     .split-text h3{font-family:var(--serif);font-size:clamp(20px,2.3vw,30px);font-weight:700;letter-spacing:-.4px;line-height:1.1;}
     .split-text h3 em{font-style:italic;color:var(--gold);}
     .split-text p{font-size:14px;line-height:1.75;color:var(--mid);}
@@ -100,26 +123,26 @@
     /* DESIGN DECISIONS */
     .decisions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:32px 0;border-radius:16px;overflow:hidden;}
     .decision-card{background:var(--white);border:1px solid rgba(0,0,0,0.07);padding:28px;display:flex;flex-direction:column;gap:8px;}
-    .decision-num{font-family:var(--serif);font-size:36px;font-weight:900;color:rgba(139,132,39,0.14);letter-spacing:-1.5px;line-height:1;}
+    .decision-num{font-family:var(--serif);font-size:36px;font-weight:600;color:rgba(139,132,39,0.14);letter-spacing:-1.5px;line-height:1;}
     .decision-card h4{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--dark);letter-spacing:-.3px;}
     .decision-card p{font-size:13px;color:var(--muted);line-height:1.6;}
 
     /* CONFIDENTIAL */
-    .confidential{filter:blur(5px);user-select:none;transition:filter .3s;cursor:default;}
+    .confidential{filter:none;user-select:text;cursor:default;}
     .confidential-wrap{position:relative;display:inline-block;}
-    .confidential-wrap .conf-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(26,26,18,0.85);padding:2px 7px;border-radius:4px;white-space:nowrap;pointer-events:none;transition:opacity .3s;}
+    .confidential-wrap .conf-label{display:none;}
     .confidential-wrap:hover .conf-label{opacity:0;}
     .confidential-wrap:hover .confidential{filter:blur(0);}
 
     /* QUOTE */
-    .pull-quote{padding:40px 48px;background:var(--gold-light);border-left:3px solid var(--gold);margin:40px 0;border-radius:0 16px 16px 0;}
+    .pull-quote{padding:40px 48px;background:var(--white);border-left:3px solid var(--blue);margin:40px 0;border-radius:0 16px 16px 0;}
     .pull-quote p{font-family:var(--serif);font-size:clamp(16px,2vw,22px);font-style:italic;line-height:1.55;color:var(--dark);margin-bottom:12px;}
     .pull-quote cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
 
     /* RESULTS */
     .results-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:32px 0;border-radius:16px;overflow:hidden;}
     .result-card{background:var(--dark);padding:32px 28px;display:flex;flex-direction:column;gap:6px;}
-    .result-num{font-family:var(--serif);font-size:36px;font-weight:900;color:var(--gold);letter-spacing:-1.5px;line-height:1;}
+    .result-num{font-family:var(--serif);font-size:36px;font-weight:600;color:var(--gold);letter-spacing:-1.5px;line-height:1;}
     .result-label{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;}
 
     /* NEXT */
@@ -151,7 +174,45 @@
       .decisions-grid,.results-row{grid-template-columns:1fr;}
       .next{flex-direction:column;gap:24px;align-items:flex-start;padding:56px 24px;}
     }
+
+    /* acentos sobre superficies oscuras: la tinta negra desaparece */
+    .cover-hero em,.cover-hero .cover-stat-num,.stat-block .stat-num,.stat-block .confidential,
+    .workshop-visual em,.journey-viz em,.journey-viz .step-product,.opp-card em,.ida-principle em,
+    .journey-strip em,.product-header em,.product-header .confidential,.result-card .result-num,
+    .result-card .confidential,.feature-block em,.feature-block h2 em,.mvp-title em,
+    .hero-dark em,.cover-title em{color:var(--coral);}
+    .cover-hero .cover-stat-label,.workshop-visual .wt-name{color:rgba(255,255,255,0.72);}
+    .ba-card.after .ba-num{color:var(--green);}
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Messaging Insights and Intelligent Alerts",
+  "url": "https://alejandrao72-hue.github.io/project-twilio-insights.html",
+  "author": {
+    "@type": "Person",
+    "name": "Alejandra Osorio",
+    "jobTitle": "Senior Product Designer",
+    "sameAs": [
+      "https://www.linkedin.com/in/alejandra-osorio-9b014614a/"
+    ]
+  },
+  "about": [
+    "Interaction design",
+    "Data visualization",
+    "Design systems",
+    "B2B SaaS"
+  ],
+  "sourceOrganization": {
+    "@type": "Organization",
+    "name": "Twilio"
+  },
+  "temporalCoverage": "2024/2026",
+  "abstract": "Six dashboards unified on one interaction model; a core filtering task cut from six steps to two; a reusable chart pattern adopted org-wide.",
+  "inLanguage": "en"
+}
+  </script>
 </head>
 <body>
 
@@ -187,7 +248,7 @@
   <div class="meta-grid">
     <div class="meta-item"><span class="meta-label">My role</span><span class="meta-value">Senior Product Designer, interaction design, data viz & design systems</span></div>
     <div class="meta-item"><span class="meta-label">Products</span><span class="meta-value">Intelligent Alerts · Messaging Insights (6 dashboards) · Health Score</span></div>
-    <div class="meta-item"><span class="meta-label">Users</span><span class="meta-value"><span class="confidential-wrap"><span class="confidential">35,000+</span><span class="conf-label">hover</span></span> users per month, engineers & ops teams</span></div>
+    <div class="meta-item"><span class="meta-label">Users</span><span class="meta-value"><span class="confidential-wrap"><span class="confidential">35,000+</span></span> active users every quarter, engineers & ops teams</span></div>
     <div class="meta-item"><span class="meta-label">Highlight</span><span class="meta-value">Chart interaction pattern adopted org-wide across Twilio design</span></div>
   </div>
 </section>
@@ -206,7 +267,7 @@
 
 <!-- FRAMING -->
 <div class="content reveal">
-  <span class="section-tag">How these two products fit together</span>
+  <span class="section-tag is-method">How these two products fit together</span>
   <h2>Different moments,<br><em>one continuous journey</em></h2>
   <p class="body"><strong>Intelligent Alerts</strong> operates in real time. It monitors traffic continuously using ML models, detects anomalies like a spike in error 30001, an unusual drop in delivery rate, and notifies you immediately. It's the product that tells you there's a fire.</p>
   <p class="body"><strong>Messaging Insights</strong> is where you go to understand that fire. It's a suite of 6 dashboards that aggregate the last 7 days of messaging data across delivery, engagement, OTP conversions, risk, and fraud. It tells you what happened, why, and where. The Health Score, also part of Insights, is a weekly retrospective, a snapshot of how your messaging performed across 5 dimensions, not a live monitor.</p>
@@ -330,7 +391,7 @@
 
 <!-- CRAFT SECTION -->
 <div class="content reveal">
-  <span class="section-tag">Design decisions that scaled</span>
+  <span class="section-tag is-decision">Design decisions that scaled</span>
   <h2>Patterns built for<br><em>the whole org</em></h2>
   <p class="body">Beyond the individual features, the Insights redesign produced design decisions that became standards across Twilio's broader design organization.</p>
 </div>
@@ -361,8 +422,8 @@
 
   <div class="results-row reveal d2">
     <div class="result-card">
-      <span class="result-num"><span class="confidential-wrap"><span class="confidential">35K+</span><span class="conf-label">hover to reveal</span></span></span>
-      <span class="result-label">Monthly users on the redesigned Insights suite</span>
+      <span class="result-num"><span class="confidential-wrap"><span class="confidential">35K+</span></span></span>
+      <span class="result-label">Active users every quarter on the redesigned Insights suite</span>
     </div>
     <div class="result-card">
       <span class="result-num">6</span>

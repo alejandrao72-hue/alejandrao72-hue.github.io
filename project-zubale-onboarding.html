@@ -3,40 +3,59 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Onboarding Revamp, Alejandra Osorio</title>
+  <title>Gig Worker Onboarding Revamp · Zubale · Alejandra Osorio</title>
+  <meta name="description" content="Rebuilding onboarding across WhatsApp, chatbots, web and SMS into one app flow. Conversion to first task went from 5.13% to 12.75% and time to convert from 13.1 days to 3.7."/>
+  <meta name="author" content="Alejandra Osorio"/>
+  <link rel="canonical" href="https://alejandrao72-hue.github.io/project-zubale-onboarding.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Gig Worker Onboarding Revamp · Zubale · Alejandra Osorio"/>
+  <meta property="og:description" content="Rebuilding onboarding across WhatsApp, chatbots, web and SMS into one app flow. Conversion to first task went from 5.13% to 12.75% and time to convert from 13.1 days to 3.7."/>
+  <meta property="og:url" content="https://alejandrao72-hue.github.io/project-zubale-onboarding.html"/>
+  <meta property="og:image" content="https://alejandrao72-hue.github.io/zubale-screens.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Gig Worker Onboarding Revamp · Zubale · Alejandra Osorio"/>
+  <meta name="twitter:description" content="Rebuilding onboarding across WhatsApp, chatbots, web and SMS into one app flow. Conversion to first task went from 5.13% to 12.75% and time to convert from 13.1 days to 3.7."/>
+  <meta name="twitter:image" content="https://alejandrao72-hue.github.io/zubale-screens.png"/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold:#8B8427; --gold-dark:#6a6420; --gold-light:#e8e7cc;
-      --dark:#1a1a12; --mid:#3a3a28; --muted:#8a8a6a;
-      --bg:#f0efd8; --white:#fafaf0;
+      --gold:#0E0E0E; --gold-dark:#000000; --gold-light:#E7E7E2;
+      --dark:#0E0E0E; --mid:#3A3A3A; --muted:#6B6B6B;
+      --bg:#F2F2EF; --white:#FBF9F1;
+      /* risograph accents, each one means something */
+      --coral:#FFB3B4;  --coral-soft:#FFE4E4;   /* problem  */
+      --pink:#FEB3EA;   --pink-soft:#FDE4F7;    /* decision, trade-off */
+      --green:#B6FBB8;  --green-soft:#EFFBEF;   /* measured outcome */
+      --blue:#B6D6FC;   --blue-soft:#E3EFFD;    /* method, context */
+      --yellow:#FCF1B5; --yellow-soft:#FDF8DC;  /* constraint, caution */
       --zubale:#2233FF;
-      --serif:'Playfair Display',Georgia,serif;
-      --sans:'DM Sans',sans-serif;
+      --serif:'Inter Tight','Inter','Helvetica Neue',Arial,sans-serif;
+      --sans:'Inter Tight','Inter','Helvetica Neue',Arial,sans-serif;
       --ease:cubic-bezier(0.16,1,0.3,1);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--dark);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;}
 
-    .cursor{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);}
-    .cursor-ring{width:38px;height:38px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;}
+    .cursor{width:10px;height:10px;background:var(--dark);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease);}
+    .cursor-ring{width:38px;height:38px;border:1.5px solid var(--dark);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;}
 
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;background:rgba(240,239,216,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;background:rgba(242,242,239,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.06);}
     .nav-logo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--dark);text-decoration:none;}
     .nav-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mid);text-decoration:none;transition:color .2s;}
-    .nav-back:hover{color:var(--gold);}
+    .nav-back:hover{color:var(--dark);}
 
     /* HERO */
     .hero{padding:130px 56px 64px;border-bottom:1px solid rgba(0,0,0,0.08);}
     .company-badge{display:inline-flex;align-items:center;gap:10px;background:var(--zubale);border-radius:100px;padding:7px 16px 7px 12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) .1s forwards;}
-    .zubale-z{font-size:14px;font-weight:900;color:#FFE600;font-family:var(--sans);}
+    .zubale-z{font-size:14px;font-weight:600;color:#FFE600;font-family:var(--sans);}
     .zubale-name{font-size:12px;font-weight:600;color:white;letter-spacing:.04em;}
     .badge-sep{width:1px;height:14px;background:rgba(255,255,255,0.2);}
     .badge-year{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:.08em;}
-    .hero-title{font-family:var(--serif);font-size:clamp(48px,7vw,100px);font-weight:900;line-height:.9;letter-spacing:-2.5px;margin-bottom:48px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
+    .hero-title{font-family:var(--serif);font-size:clamp(48px,7vw,100px);font-weight:600;line-height:.9;letter-spacing:-2.5px;margin-bottom:48px;opacity:0;animation:fadeUp .8s var(--ease) .2s forwards;}
     .hero-title em{font-style:italic;color:var(--gold);}
     .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.08);opacity:0;animation:fadeUp .8s var(--ease) .35s forwards;}
     .meta-item{display:flex;flex-direction:column;gap:5px;}
@@ -46,19 +65,23 @@
     /* COVER, hero visual recreated */
     .cover-hero{width:100%;background:var(--dark);padding:64px 56px;display:flex;align-items:center;gap:64px;opacity:0;animation:fadeIn 1s var(--ease) .5s forwards;}
     .cover-left{flex:1;}
-    .cover-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-    .cover-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:900;color:var(--white);line-height:1;letter-spacing:-1.5px;margin-bottom:16px;}
-    .cover-title em{font-style:italic;color:var(--gold);}
+    .cover-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:16px;}
+    .cover-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:600;color:var(--white);line-height:1;letter-spacing:-1.5px;margin-bottom:16px;}
+    .cover-title em{font-style:italic;color:var(--coral);}
     .cover-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.65;max-width:380px;}
     .cover-right{flex-shrink:0;display:flex;flex-direction:column;gap:10px;min-width:200px;}
     .cover-stat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px 20px;}
-    .cover-stat-num{font-family:var(--serif);font-size:28px;font-weight:900;color:var(--gold);letter-spacing:-1px;line-height:1;}
+    .cover-stat-num{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--gold);letter-spacing:-1px;line-height:1;}
     .cover-stat-label{font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;}
 
     /* CONTENT */
     .content{max-width:780px;margin:0 auto;padding:88px 56px;}
     .content.wide{max-width:none;padding:72px 56px;}
-    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);margin-bottom:14px;display:inline-block;padding:6px 12px;border-radius:999px;background:var(--blue);}
+    .section-tag.is-problem{background:var(--coral);}
+    .section-tag.is-method{background:var(--blue);}
+    .section-tag.is-decision{background:var(--pink);}
+    .section-tag.is-outcome{background:var(--green);}
     h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,50px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:24px;}
     h2 em{font-style:italic;color:var(--gold);}
     p.body{font-size:17px;line-height:1.8;color:var(--mid);margin-bottom:18px;font-weight:300;}
@@ -67,16 +90,16 @@
 
     /* PROBLEM, recreated as styled cards */
     .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
-    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:10px;}
+    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(14,14,14,0.08);border-top:3px solid var(--coral);display:flex;flex-direction:column;gap:10px;}
     .problem-icon{font-size:20px;margin-bottom:4px;}
-    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
+    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--dark);background:var(--coral);display:inline-block;align-self:flex-start;padding:4px 9px;border-radius:999px;}
     .problem-card h4{font-size:17px;font-weight:700;color:var(--dark);font-family:var(--serif);letter-spacing:-.3px;}
     .problem-card p{font-size:13px;color:var(--muted);line-height:1.65;}
 
     /* STATS, dark, site palette */
     .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:48px 0;border-radius:16px;overflow:hidden;}
     .stat-block{background:var(--dark);padding:44px 36px;display:flex;flex-direction:column;gap:8px;}
-    .stat-num{font-family:var(--serif);font-size:clamp(36px,5vw,60px);font-weight:900;color:var(--gold);letter-spacing:-1.5px;line-height:1;}
+    .stat-num{font-family:var(--serif);font-size:clamp(36px,5vw,60px);font-weight:600;color:var(--gold);letter-spacing:-1.5px;line-height:1;}
     .stat-label{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.4;}
 
     /* APPROACH, timeline style */
@@ -84,7 +107,7 @@
     .timeline-item{display:grid;grid-template-columns:120px 1fr;gap:32px;padding:28px 0;border-top:1px solid rgba(0,0,0,0.07);}
     .timeline-item:last-child{border-bottom:1px solid rgba(0,0,0,0.07);}
     .timeline-left{display:flex;flex-direction:column;gap:4px;}
-    .timeline-num{font-family:var(--serif);font-size:32px;font-weight:900;color:rgba(139,132,39,0.2);letter-spacing:-1px;line-height:1;}
+    .timeline-num{font-family:var(--serif);font-size:32px;font-weight:600;color:rgba(139,132,39,0.2);letter-spacing:-1px;line-height:1;}
     .timeline-phase{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
     .timeline-right h4{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--dark);margin-bottom:8px;letter-spacing:-.3px;}
     .timeline-right p{font-size:14px;color:var(--mid);line-height:1.65;}
@@ -98,7 +121,7 @@
     .split-img{border-radius:16px;overflow:hidden;box-shadow:0 16px 56px rgba(0,0,0,0.1);}
     .split-img img{width:100%;display:block;max-height:420px;object-fit:cover;object-position:top;}
     .split-text{display:flex;flex-direction:column;gap:16px;}
-    .split-text .cap-badge{display:inline-block;font-size:10px;background:rgba(139,132,39,0.12);color:var(--gold-dark);padding:4px 12px;border-radius:100px;align-self:flex-start;}
+    .split-text .cap-badge{display:inline-block;font-size:10px;background:rgba(254,179,234,0.35);color:var(--dark);padding:4px 12px;border-radius:100px;align-self:flex-start;}
     .split-text h3{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:700;letter-spacing:-.5px;line-height:1.1;}
     .split-text h3 em{font-style:italic;color:var(--gold);}
     .split-text p{font-size:15px;line-height:1.75;color:var(--mid);}
@@ -111,12 +134,12 @@
     /* BEFORE/AFTER, site palette */
     .before-after{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:48px 0;border-radius:16px;overflow:hidden;}
     .ba-card{padding:48px 40px;display:flex;flex-direction:column;gap:12px;}
-    .ba-card.before{background:#2a2a20;}
+    .ba-card.before{background:#232322;}
     .ba-card.after{background:var(--dark);}
     .ba-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
-    .ba-num{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1;}
+    .ba-num{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:600;letter-spacing:-1.5px;line-height:1;}
     .ba-card.before .ba-num{color:rgba(255,255,255,0.35);}
-    .ba-card.after .ba-num{color:var(--gold);}
+    .ba-card.after .ba-num{color:var(--green);}
     .ba-desc{font-size:13px;line-height:1.5;}
     .ba-card.before .ba-desc{color:rgba(255,255,255,0.3);}
     .ba-card.after .ba-desc{color:rgba(255,255,255,0.5);}
@@ -133,15 +156,15 @@
     .wt-name{font-size:13px;color:rgba(255,255,255,0.7);}
 
     /* RESULTS BOX */
-    .results-box{background:var(--gold-light);border-radius:20px;padding:56px;margin:40px 0;}
+    .results-box{background:var(--white);border:1px solid rgba(14,14,14,0.08);border-radius:20px;padding:56px;margin:40px 0;}
     .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px;}
     .result-item{display:flex;gap:14px;align-items:flex-start;}
-    .result-icon{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+    .result-icon{width:34px;height:34px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
     .result-text h4{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:3px;}
     .result-text p{font-size:13px;color:var(--muted);line-height:1.5;margin:0;}
 
     /* PULL QUOTE */
-    .pull-quote{padding:48px 56px;background:var(--gold-light);border-left:3px solid var(--gold);margin:48px 0;border-radius:0 16px 16px 0;}
+    .pull-quote{padding:48px 56px;background:var(--white);border-left:3px solid var(--blue);margin:48px 0;border-radius:0 16px 16px 0;}
     .pull-quote p{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-style:italic;line-height:1.5;color:var(--dark);margin-bottom:14px;}
     .pull-quote cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
 
@@ -172,7 +195,45 @@
       .next{flex-direction:column;gap:28px;align-items:flex-start;padding:56px 24px;}
       .timeline-item{grid-template-columns:1fr;gap:8px;}
     }
+
+    /* acentos sobre superficies oscuras: la tinta negra desaparece */
+    .cover-hero em,.cover-hero .cover-stat-num,.stat-block .stat-num,.stat-block .confidential,
+    .workshop-visual em,.workshop-visual h3 em,.journey-viz em,.journey-viz .step-product,.opp-card em,.ida-principle em,
+    .journey-strip em,.product-header em,.product-header .confidential,.result-card .result-num,
+    .result-card .confidential,.feature-block em,.feature-block h2 em,.mvp-title em,
+    .hero-dark em,.cover-title em{color:var(--coral);}
+    .cover-hero .cover-stat-label,.workshop-visual .wt-name{color:rgba(255,255,255,0.72);}
+    .ba-card.after .ba-num{color:var(--green);}
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Gig Worker Onboarding Revamp",
+  "url": "https://alejandrao72-hue.github.io/project-zubale-onboarding.html",
+  "author": {
+    "@type": "Person",
+    "name": "Alejandra Osorio",
+    "jobTitle": "Senior Product Designer",
+    "sameAs": [
+      "https://www.linkedin.com/in/alejandra-osorio-9b014614a/"
+    ]
+  },
+  "about": [
+    "UX research",
+    "Growth design",
+    "Mobile app design",
+    "Service design"
+  ],
+  "sourceOrganization": {
+    "@type": "Organization",
+    "name": "Zubale"
+  },
+  "temporalCoverage": "2021/2023",
+  "abstract": "Conversion to first task from 5.13% to 12.75%; time to convert from 13.1 days to 3.7; a configuration tool serving 100+ clients without engineering.",
+  "inLanguage": "en"
+}
+  </script>
 </head>
 <body>
 
@@ -230,9 +291,9 @@
 <!-- OVERVIEW -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">The Problem</span>
+    <span class="section-tag is-problem">The Problem</span>
     <h2>Fragmented, slow,<br><em>and losing users</em></h2>
-    <p class="body">Zubale's gig workers ("Zubaleros") had to navigate a maze of channels just to register. WhatsApp agents, chatbot groups, web pages, the app, and SMS, each asking for the same information. The result: a conversion rate under 1% and a $200 CAC.</p>
+    <p class="body">Zubale's gig workers ("Zubaleros") had to navigate a maze of channels just to register. WhatsApp agents, chatbot groups, web pages, the app, and SMS, each asking for the same information. The result: only 5.13% of leads ever reached a first task, and the ones who did took almost two weeks to get there.</p>
   </div>
 
   <div class="problem-grid reveal">
@@ -245,8 +306,8 @@
     <div class="problem-card">
       <span class="problem-icon">📉</span>
       <span class="problem-type">Business pain</span>
-      <h4>Under 1% conversion</h4>
-      <p>$200 CAC and 5–10 days to convert made scaling unsustainable. Not enough supply to fulfill operations.</p>
+      <h4>5.13% conversion to first task</h4>
+      <p>13.1 days on average to convert, and high acquisition cost per active worker. Not enough supply to fulfill operations.</p>
     </div>
     <div class="problem-card">
       <span class="problem-icon">😵</span>
@@ -272,7 +333,7 @@
 
   <!-- HACKATHON APPROACH, recreated -->
   <div class="reveal">
-    <span class="section-tag">My Approach</span>
+    <span class="section-tag is-method">My Approach</span>
     <h2>A cross-functional<br><em>hackathon</em> to solve it fast</h2>
     <p class="body">Rather than a traditional design cycle, we ran a <strong>user acquisition hackathon</strong>, bringing together 7 teams in one room to define, prototype and test a solution in days. My role: moderate workshops, lead discovery, design wireframes and prototypes, and run user testing in the field.</p>
   </div>
@@ -350,7 +411,7 @@
 <!-- FINAL SCREENS, real screenshots -->
 <div class="content wide">
   <div class="reveal">
-    <span class="section-tag">The Revamped Flow</span>
+    <span class="section-tag is-decision">The Revamped Flow</span>
     <h2 style="max-width:520px">Standardized,<br><em>configurable</em> per country</h2>
     <p class="body" style="max-width:640px">The revamped onboarding could be configured per country, operation, and brand client, audiovisual content, document requirements, bonus amounts, all without engineering support.</p>
   </div>
@@ -376,7 +437,7 @@
 <!-- RESULTS -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">Results</span>
+    <span class="section-tag is-outcome">Results</span>
     <h2>Conversion more than<br><em>doubled</em> after launch</h2>
   </div>
 
@@ -400,12 +461,12 @@
   </div>
 
   <div class="full-img reveal">
-    <img src="zubale-results-chart.png" alt="Conversion rate chart before and after hackathon"/>
+    <img src="zubale-results-chart.png" alt="Conversion to first task before and after the redesign: from 5.13 percent to 12.75 percent, and time to convert from 13.1 days to 3.7 days"/>
     <p class="img-caption">Conversion rate over time: before and after the onboarding revamp</p>
   </div>
 
   <div class="results-box reveal">
-    <span class="section-tag">Impact summary</span>
+    <span class="section-tag is-outcome">Impact summary</span>
     <h2>What we<br><em>achieved</em></h2>
     <div class="results-grid">
       <div class="result-item"><div class="result-icon">📈</div><div class="result-text"><h4>2.5x conversion increase</h4><p>From 5.13% to 12.75% conversion to first task, in weeks, not quarters.</p></div></div>
