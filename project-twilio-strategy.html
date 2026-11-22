@@ -68,11 +68,12 @@
     .content{max-width:780px;margin:0 auto;padding:88px 56px;}
     .content.wide{max-width:none;padding:72px 56px;}
 
-    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);margin-bottom:14px;display:inline-block;padding:6px 12px;border-radius:999px;background:var(--blue);}
+    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);margin-bottom:14px;display:inline-block;padding:6px 12px;border-radius:100px;background:var(--blue);}
     .section-tag.is-problem{background:var(--coral);}
     .section-tag.is-method{background:var(--blue);}
     .section-tag.is-decision{background:var(--pink);}
     .section-tag.is-outcome{background:var(--green);}
+    .section-tag.is-constraint{background:var(--yellow);}
     h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,50px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:24px;}
     h2 em{font-style:italic;color:var(--gold);}
     p.body{font-size:17px;line-height:1.8;color:var(--mid);margin-bottom:18px;font-weight:300;}
@@ -159,7 +160,7 @@
     .ida-card-label{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
     .ida-card-desc{font-size:13px;color:var(--mid);line-height:1.65;margin:0;}
     .ida-principle{margin-top:20px;padding:24px 28px;background:#1a1a0d;border-radius:12px;display:flex;gap:16px;align-items:flex-start;}
-    .ida-principle-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px;}
+    .ida-principle-dot{width:6px;height:6px;border-radius:50%;background:var(--coral);flex-shrink:0;margin-top:6px;}
     .ida-principle-title{font-size:13px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:5px;}
     .ida-principle-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.65;margin:0;}
 
@@ -338,6 +339,20 @@
     <p class="body">The core output of this strategy work was a <strong>7-step observability journey</strong>: a shared framework that aligned design, product, and engineering around what users actually need at each stage of monitoring and troubleshooting. This journey became the north star for every product decision that followed.</p>
     <p class="body">Each step maps to a specific product or feature. The question was no longer "what should we build?" but "which step of the journey is broken, and what's the right intervention?"</p>
   </div>
+
+  <div class="reveal">
+    <span class="section-tag is-decision">The decision behind it</span>
+    <h2>Why a journey<br>and not a <em>product map</em></h2>
+    <p class="body">The hardest part of designing for Twilio was the spread of customers. The same surface serves an on-call engineer chasing a delivery drop and a marketing lead watching a campaign, and what each one needs to see is different. <strong>Organizing the suite by product would have mirrored our org chart. Organizing it by journey mirrored what the customer is actually doing</strong>, which is trying to find out what is happening.</p>
+    <p class="body">So the approach was to find the common ground first, the one mission every customer shares regardless of their use case, and then let each account shape the rest. The journey sets the context; filters and configuration let customers build the dashboard that matters to them. Finding that common denominator across a very wide customer base, and then designing for personalization on top of it, was the real problem to solve.</p>
+  </div>
+
+  <div class="reveal">
+    <span class="section-tag is-constraint">What I had to work with</span>
+    <h2>Three months,<br>inside a <em>platform migration</em></h2>
+    <p class="body">This work did not get a clean runway. The company-wide priority was <strong>One Twilio</strong>, the migration of every product onto a single platform, and Insights had to lift and ship into it. The journey and the redesign had to happen inside that, in under three months.</p>
+    <p class="body">That constraint shaped the plan more than any design preference. Instead of holding everything for one launch, I prioritized the quick wins that could ship with the migration and sequenced the heavier pieces into later milestones, so the suite kept improving release after release rather than waiting for a perfect version.</p>
+  </div>
 </div>
 
 <!-- JOURNEY FRAMEWORK -->
@@ -369,8 +384,8 @@
   <div style="margin-top:80px;" class="reveal">
     <span class="section-tag is-decision">AI in the Journey · Intelligent Discovery Assistant</span>
     <h2>Designing for<br><em>AI-first</em> troubleshooting</h2>
-    <p class="body" style="max-width:680px;">One of the most consequential products in the strategy was the <strong>Intelligent Discovery Assistant (IDA)</strong> — an AI chat layer embedded directly inside the troubleshooting journey. Rather than routing users to documentation or support tickets, IDA surfaces root-cause analysis, error explanations, and next steps in context, right where the investigation is already happening.</p>
-    <p class="body" style="max-width:680px;">Designing IDA meant answering a harder question than "how does the chat look?" — it meant defining <strong>where AI fits in the workflow</strong>, how it coexists with the existing data, and what level of trust users should place in its answers. The screenshots below show four moments across two surfaces where IDA changes the experience.</p>
+    <p class="body" style="max-width:680px;">One of the most consequential products in the strategy was the <strong>Intelligent Discovery Assistant (IDA)</strong>, an AI layer embedded directly inside the troubleshooting journey. Rather than routing users to documentation or support tickets, IDA surfaces root-cause analysis, error explanations and next steps in context, right where the investigation is already happening.</p>
+    <p class="body" style="max-width:680px;">IDA was defined as a team. My part was the surfaces it lives on: how it appears inside Messaging Insights and Message Details, how it coexists with the data already on the screen, and how it stays an assist to the investigation instead of a separate place to go. The screenshots below show four moments across those two surfaces.</p>
   </div>
 
   <div class="ida-grid reveal d1">
@@ -425,6 +440,15 @@
     </div>
   </div>
 
+</div>
+
+<div class="content" style="margin-top:40px;">
+  <div class="reveal">
+    <span class="section-tag is-decision">A decision I pushed for</span>
+    <h2>Putting the product<br>where the <em>problem shows up</em></h2>
+    <p class="body">In research I kept hearing the same thing from a different angle: customers had a problem that one of Twilio's add-ons already solved, and no idea the add-on existed. Discovery of those capabilities was left to sales conversations, so most accounts never found them.</p>
+    <p class="body">This one started with me. <strong>I placed the relevant product next to the subscore that exposes the need</strong>, so a customer looking at an engagement problem sees Engagement Suite right there, and the same logic applies across the other dashboards. The point was to connect the need to the solution at the moment the need appears, instead of leaving it to a separate sales motion.</p>
+  </div>
 </div>
 
 <!-- MY CONTRIBUTION -->
