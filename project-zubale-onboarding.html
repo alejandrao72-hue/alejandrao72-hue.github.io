@@ -9,9 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold:#8B8427; --gold-dark:#6a6420; --gold-light:#e8e7cc;
-      --dark:#1a1a12; --mid:#3a3a28; --muted:#8a8a6a;
-      --bg:#f0efd8; --white:#fafaf0;
+      --gold:#0E0E0E; --gold-dark:#000000; --gold-light:#E7E7E2;
+      --dark:#0E0E0E; --mid:#3A3A3A; --muted:#6B6B6B;
+      --bg:#F2F2EF; --white:#FBF9F1;
+      /* risograph accents, each one means something */
+      --coral:#FFB3B4;  --coral-soft:#FFE4E4;   /* problem  */
+      --pink:#FEB3EA;   --pink-soft:#FDE4F7;    /* decision, trade-off */
+      --green:#B6FBB8;  --green-soft:#EFFBEF;   /* measured outcome */
+      --blue:#B6D6FC;   --blue-soft:#E3EFFD;    /* method, context */
+      --yellow:#FCF1B5; --yellow-soft:#FDF8DC;  /* constraint, caution */
       --zubale:#2233FF;
       --serif:'Playfair Display',Georgia,serif;
       --sans:'DM Sans',sans-serif;
@@ -46,7 +52,7 @@
     /* COVER, hero visual recreated */
     .cover-hero{width:100%;background:var(--dark);padding:64px 56px;display:flex;align-items:center;gap:64px;opacity:0;animation:fadeIn 1s var(--ease) .5s forwards;}
     .cover-left{flex:1;}
-    .cover-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .cover-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-bottom:16px;}
     .cover-title{font-family:var(--serif);font-size:clamp(28px,4vw,52px);font-weight:900;color:var(--white);line-height:1;letter-spacing:-1.5px;margin-bottom:16px;}
     .cover-title em{font-style:italic;color:var(--gold);}
     .cover-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.65;max-width:380px;}
@@ -58,7 +64,11 @@
     /* CONTENT */
     .content{max-width:780px;margin:0 auto;padding:88px 56px;}
     .content.wide{max-width:none;padding:72px 56px;}
-    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block;}
+    .section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dark);margin-bottom:14px;display:inline-block;padding:6px 12px;border-radius:999px;background:var(--blue);}
+    .section-tag.is-problem{background:var(--coral);}
+    .section-tag.is-method{background:var(--blue);}
+    .section-tag.is-decision{background:var(--pink);}
+    .section-tag.is-outcome{background:var(--green);}
     h2{font-family:var(--serif);font-size:clamp(30px,3.8vw,50px);font-weight:700;line-height:1.06;letter-spacing:-.8px;margin-bottom:24px;}
     h2 em{font-style:italic;color:var(--gold);}
     p.body{font-size:17px;line-height:1.8;color:var(--mid);margin-bottom:18px;font-weight:300;}
@@ -67,9 +77,9 @@
 
     /* PROBLEM, recreated as styled cards */
     .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:40px 0;border-radius:16px;overflow:hidden;}
-    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:10px;}
+    .problem-card{padding:32px;background:var(--white);border:1px solid rgba(14,14,14,0.08);border-top:3px solid var(--coral);display:flex;flex-direction:column;gap:10px;}
     .problem-icon{font-size:20px;margin-bottom:4px;}
-    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
+    .problem-type{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--dark);background:var(--coral);display:inline-block;align-self:flex-start;padding:4px 9px;border-radius:999px;}
     .problem-card h4{font-size:17px;font-weight:700;color:var(--dark);font-family:var(--serif);letter-spacing:-.3px;}
     .problem-card p{font-size:13px;color:var(--muted);line-height:1.65;}
 
@@ -111,12 +121,12 @@
     /* BEFORE/AFTER, site palette */
     .before-after{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:48px 0;border-radius:16px;overflow:hidden;}
     .ba-card{padding:48px 40px;display:flex;flex-direction:column;gap:12px;}
-    .ba-card.before{background:#2a2a20;}
+    .ba-card.before{background:#232322;}
     .ba-card.after{background:var(--dark);}
     .ba-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
     .ba-num{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1;}
     .ba-card.before .ba-num{color:rgba(255,255,255,0.35);}
-    .ba-card.after .ba-num{color:var(--gold);}
+    .ba-card.after .ba-num{color:var(--green);}
     .ba-desc{font-size:13px;line-height:1.5;}
     .ba-card.before .ba-desc{color:rgba(255,255,255,0.3);}
     .ba-card.after .ba-desc{color:rgba(255,255,255,0.5);}
@@ -133,15 +143,15 @@
     .wt-name{font-size:13px;color:rgba(255,255,255,0.7);}
 
     /* RESULTS BOX */
-    .results-box{background:var(--gold-light);border-radius:20px;padding:56px;margin:40px 0;}
+    .results-box{background:var(--green-soft);border-radius:20px;padding:56px;margin:40px 0;}
     .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px;}
     .result-item{display:flex;gap:14px;align-items:flex-start;}
-    .result-icon{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+    .result-icon{width:34px;height:34px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
     .result-text h4{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:3px;}
     .result-text p{font-size:13px;color:var(--muted);line-height:1.5;margin:0;}
 
     /* PULL QUOTE */
-    .pull-quote{padding:48px 56px;background:var(--gold-light);border-left:3px solid var(--gold);margin:48px 0;border-radius:0 16px 16px 0;}
+    .pull-quote{padding:48px 56px;background:var(--blue-soft);border-left:3px solid var(--blue);margin:48px 0;border-radius:0 16px 16px 0;}
     .pull-quote p{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-style:italic;line-height:1.5;color:var(--dark);margin-bottom:14px;}
     .pull-quote cite{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-style:normal;}
 
@@ -230,7 +240,7 @@
 <!-- OVERVIEW -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">The Problem</span>
+    <span class="section-tag is-problem">The Problem</span>
     <h2>Fragmented, slow,<br><em>and losing users</em></h2>
     <p class="body">Zubale's gig workers ("Zubaleros") had to navigate a maze of channels just to register. WhatsApp agents, chatbot groups, web pages, the app, and SMS, each asking for the same information. The result: only 5.13% of leads ever reached a first task, and the ones who did took almost two weeks to get there.</p>
   </div>
@@ -272,7 +282,7 @@
 
   <!-- HACKATHON APPROACH, recreated -->
   <div class="reveal">
-    <span class="section-tag">My Approach</span>
+    <span class="section-tag is-method">My Approach</span>
     <h2>A cross-functional<br><em>hackathon</em> to solve it fast</h2>
     <p class="body">Rather than a traditional design cycle, we ran a <strong>user acquisition hackathon</strong>, bringing together 7 teams in one room to define, prototype and test a solution in days. My role: moderate workshops, lead discovery, design wireframes and prototypes, and run user testing in the field.</p>
   </div>
@@ -350,7 +360,7 @@
 <!-- FINAL SCREENS, real screenshots -->
 <div class="content wide">
   <div class="reveal">
-    <span class="section-tag">The Revamped Flow</span>
+    <span class="section-tag is-decision">The Revamped Flow</span>
     <h2 style="max-width:520px">Standardized,<br><em>configurable</em> per country</h2>
     <p class="body" style="max-width:640px">The revamped onboarding could be configured per country, operation, and brand client, audiovisual content, document requirements, bonus amounts, all without engineering support.</p>
   </div>
@@ -376,7 +386,7 @@
 <!-- RESULTS -->
 <div class="content">
   <div class="reveal">
-    <span class="section-tag">Results</span>
+    <span class="section-tag is-outcome">Results</span>
     <h2>Conversion more than<br><em>doubled</em> after launch</h2>
   </div>
 
@@ -405,7 +415,7 @@
   </div>
 
   <div class="results-box reveal">
-    <span class="section-tag">Impact summary</span>
+    <span class="section-tag is-outcome">Impact summary</span>
     <h2>What we<br><em>achieved</em></h2>
     <div class="results-grid">
       <div class="result-item"><div class="result-icon">📈</div><div class="result-text"><h4>2.5x conversion increase</h4><p>From 5.13% to 12.75% conversion to first task, in weeks, not quarters.</p></div></div>
