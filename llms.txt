@@ -15,7 +15,7 @@ Contact: https://alejandrao72-hue.github.io/#contact
 - [Customer Intelligence Strategy, Twilio, 2024-2026](https://alejandrao72-hue.github.io/project-twilio-strategy.html):
   Co-created the observability journey the suite was built around and extended it during One
   Twilio, the migration onto a single platform. Six products mapped to one troubleshooting
-  path. 35K+ active users every quarter on Messaging Insights. Average troubleshooting time
+  path. 35K+ accounts every quarter on Messaging Insights. Average troubleshooting time
   down 30 minutes. Created a chart pattern adopted across Twilio's design organization.
 - [Messaging Insights and Intelligent Alerts, Twilio, 2024-2026](https://alejandrao72-hue.github.io/project-twilio-insights.html):
   Interaction design and data visualization for anomaly detection and investigation. Six
